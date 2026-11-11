@@ -19,6 +19,7 @@ import {
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
+import TopographyCanvas from '../components/home/TopographyCanvas';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -130,11 +131,8 @@ export default function Home({ onStart, onBrowse }) {
           <div className="absolute top-44 left-1/3 w-[450px] h-[350px] rounded-full bg-[radial-gradient(circle,rgba(217,119,6,0.035)_0%,transparent_60%)] blur-3xl pointer-events-none" />
         </div>
 
-        {/* Cal.com Architectural Background Grid */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(17,17,17,0.08)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_85%_75%_at_50%_30%,#000_50%,transparent_100%)] opacity-60"
-        />
+        {/* 3D Topographical Particle Wave (Micro-WebGL GPU Canvas) */}
+        <TopographyCanvas bloomActive={effectiveOption === 1} />
 
         {/* Main Framed Container with Vertical Architectural Rails */}
         <div className="relative mx-auto max-w-7xl border-x border-[#E5E3DC] px-5 sm:px-8 lg:px-12 py-10 lg:py-16">
@@ -254,8 +252,8 @@ export default function Home({ onStart, onBrowse }) {
             {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card (Cal.com + GOV.UK Pattern) */}
             <div className="lg:col-span-6">
               
-              {/* Daylight Form Card */}
-              <div className="rounded-2xl bg-white border border-zinc-200/90 shadow-sm p-6 sm:p-7 space-y-5">
+              {/* Apple Glassmorphic Daylight Form Card */}
+              <div className="rounded-2xl bg-white/85 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 sm:p-7 space-y-5 transition-all">
                 
                 {/* Clean Top Progress Bar */}
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
@@ -298,8 +296,8 @@ export default function Home({ onStart, onBrowse }) {
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 1
-                        ? 'bg-emerald-50/70 border-2 border-emerald-600 shadow-[0_3px_0_0_#059669]'
-                        : 'bg-white border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50/60 shadow-[0_2px_0_0_#E4E4E7]'
+                        ? 'bg-emerald-50/80 border-2 border-emerald-600 shadow-[0_3px_0_0_#059669]'
+                        : 'bg-white/80 backdrop-blur-md border border-zinc-200/90 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
@@ -337,8 +335,8 @@ export default function Home({ onStart, onBrowse }) {
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 2
-                        ? 'bg-zinc-100 border-2 border-zinc-900 shadow-[0_3px_0_0_#18181B]'
-                        : 'bg-white border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50/60 shadow-[0_2px_0_0_#E4E4E7]'
+                        ? 'bg-zinc-100/90 border-2 border-zinc-900 shadow-[0_3px_0_0_#18181B]'
+                        : 'bg-white/80 backdrop-blur-md border border-zinc-200/90 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
