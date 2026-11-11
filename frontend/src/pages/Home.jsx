@@ -330,83 +330,21 @@ export default function Home({ onStart, onBrowse }) {
 
                 </div>
 
-                {/* Attio-Style Live Scheme Impact Dock */}
-                <div className="rounded-xl bg-zinc-50 p-4 border border-zinc-200/80 space-y-3">
-                  
-                  <div className="flex items-center justify-between text-xs text-zinc-600 font-medium">
-                    <span className="font-semibold text-zinc-800">Live Eligibility Reaction</span>
-                    <span className="text-emerald-700 font-semibold inline-flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
-                      <span>{effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}</span>
-                    </span>
+                {/* Clean Bottom Action Row (Replaces Cluttered Box-in-Box) */}
+                <div className="pt-2 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>No login or paperwork needed to evaluate</span>
                   </div>
 
-                  {/* 3 Interactive Scheme Chips */}
-                  <div className="grid grid-cols-3 gap-2">
-                    
-                    {/* PM-KISAN */}
-                    <div
-                      className={`rounded-lg p-2.5 border text-xs transition-all ${
-                        effectiveOption === 1
-                          ? 'bg-emerald-50 border-emerald-400 text-emerald-950 shadow-2xs scale-[1.02]'
-                          : 'bg-zinc-100/70 border-zinc-200 text-zinc-400 opacity-60'
-                      }`}
-                    >
-                      <div className="font-bold truncate text-[11px]">PM-KISAN</div>
-                      <div className={`font-extrabold text-xs mt-0.5 ${effectiveOption === 1 ? 'text-[#16A34A]' : 'text-zinc-400'}`}>
-                        {effectiveOption === 1 ? '₹6,000/yr' : 'Excluded'}
-                      </div>
-                      <div className="text-[10px] mt-0.5 truncate text-zinc-500">
-                        {effectiveOption === 1 ? 'Eligible' : 'Land required'}
-                      </div>
-                    </div>
-
-                    {/* PMAY-G */}
-                    <div className="rounded-lg bg-white p-2.5 border border-zinc-200 text-xs shadow-2xs">
-                      <div className="font-bold truncate text-[11px] text-zinc-800">PMAY-G</div>
-                      <div className="font-extrabold text-xs mt-0.5 text-amber-700">
-                        ₹1.30 Lakh
-                      </div>
-                      <div className="text-[10px] mt-0.5 truncate text-emerald-700 font-semibold">
-                        Eligible
-                      </div>
-                    </div>
-
-                    {/* PM-JAY */}
-                    <div className="rounded-lg bg-white p-2.5 border border-zinc-200 text-xs shadow-2xs">
-                      <div className="font-bold truncate text-[11px] text-zinc-800">PM-JAY</div>
-                      <div className="font-extrabold text-xs mt-0.5 text-sky-700">
-                        ₹5,00,000
-                      </div>
-                      <div className="text-[10px] mt-0.5 truncate text-emerald-700 font-semibold">
-                        Eligible
-                      </div>
-                    </div>
-
-                  </div>
-
-                  {/* Bottom Action Strip Inside Question Card */}
-                  <div className="pt-2 border-t border-zinc-200/80 flex items-center justify-between gap-3 text-xs">
-                    <span className="text-zinc-500 font-medium">
-                      Est. Total: <strong className="text-zinc-900">{effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}</strong>
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={handleProceed}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-4 py-2 text-xs shadow-sm transition-all active:scale-[0.985]"
-                    >
-                      <span>Continue to Step 2</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-
-                </div>
-
-                {/* Kiosk Keyboard Hint */}
-                <div className="flex items-center justify-between text-[11px] text-zinc-400 font-medium pt-1">
-                  <span>Press <kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">1</kbd> or <kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">2</kbd> to toggle</span>
-                  <span><kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">Enter ↵</kbd> to continue</span>
+                  <button
+                    type="button"
+                    onClick={handleProceed}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-3 text-sm shadow-sm transition-all active:scale-[0.985]"
+                  >
+                    <span>Continue to Step 2</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                 </div>
 
               </div>

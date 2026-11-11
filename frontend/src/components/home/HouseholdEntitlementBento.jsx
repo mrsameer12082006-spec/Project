@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
-  TrendingUp,
   ArrowRight,
   Sprout,
   Home as HomeIcon,
   ShieldPlus,
-  CheckCircle2,
-  Info,
-  SlidersHorizontal
+  Info
 } from 'lucide-react';
 import CountUp from '../common/CountUp';
 
@@ -67,10 +64,9 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       ministry: 'Ministry of Agriculture',
       payout: 'Direct DBT into Aadhaar-linked Bank Account',
       amount: '₹6,000 / yr',
-      frequency: '3 installments of ₹2,000',
+      benefitTag: 'Direct Bank DBT',
       active: pmKisanActive,
       icon: Sprout,
-      color: 'emerald',
       inactiveReason: 'Requires cultivable agricultural land title in revenue records'
     },
     {
@@ -80,23 +76,21 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       ministry: 'Ministry of Rural Development',
       payout: 'Direct Treasury Construction Subsidy + MGNREGA wages',
       amount: '₹1,30,000 Grant',
-      frequency: 'Staged construction releases',
+      benefitTag: 'Direct Construction Subsidy',
       active: pmAwasActive,
       icon: HomeIcon,
-      color: 'amber',
-      inactiveReason: isKutchaHouse ? 'Not selected under senior citizen priority profile' : 'Dwelling is already a pucca concrete structure'
+      inactiveReason: isKutchaHouse ? 'Not selected under senior citizen priority profile' : 'Dwelling is already a permanent pucca structure'
     },
     {
       id: 'pm-jay',
       name: 'Ayushman Bharat PM-JAY',
       category: 'Cashless Healthcare Protection',
       ministry: 'National Health Authority',
-      payout: '100% Cashless secondary & tertiary hospital care',
+      payout: 'Cashless hospitalization across 27,000+ hospitals',
       amount: '₹5,00,000 / yr',
-      frequency: 'Annual family floating coverage',
+      benefitTag: 'Annual Cashless Hospital Cover',
       active: pmJayActive,
       icon: ShieldPlus,
-      color: 'sky',
       inactiveReason: null
     }
   ];
@@ -153,68 +147,70 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           
           <div className="space-y-6">
             
-            {/* Top Bar with Profile Info & Interactive Dwelling Toggle */}
+            {/* Top Bar with Profile Info & Tactile Dwelling Toggle */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-100">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200/60">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
-                  <span>Interactive Entitlement Model</span>
+              <div className="space-y-0.5">
+                <span className="text-xs font-bold text-zinc-700 uppercase tracking-wider block">
+                  Household Category: {currentProfile.label}
                 </span>
-                <span className="text-xs text-zinc-500 font-medium hidden sm:inline">
-                  · Profile: <strong className="text-zinc-800">{currentProfile.label}</strong>
+                <span className="text-xs text-zinc-500 font-medium">
+                  {currentProfile.tagline}
                 </span>
               </div>
 
-              {/* Ramp-Style Condition Switcher: Kutcha House Toggle */}
-              <div className="flex items-center gap-2 text-xs">
-                <span className="text-zinc-600 font-medium">House Type:</span>
+              {/* Clean Dwelling Type Segmented Toggle */}
+              <div className="flex items-center gap-1 bg-[#F2F2F4] border border-[#E4E4E7] p-1 rounded-lg text-xs font-semibold w-fit">
                 <button
                   type="button"
-                  onClick={() => setIsKutchaHouse(prev => !prev)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-semibold transition-all active:scale-[0.985] ${
+                  onClick={() => setIsKutchaHouse(true)}
+                  className={`px-3 py-1.5 rounded-md transition-all ${
                     isKutchaHouse
-                      ? 'bg-amber-50 text-amber-900 border-amber-300 shadow-2xs'
-                      : 'bg-zinc-100 text-zinc-600 border-zinc-200'
+                      ? 'bg-white text-zinc-900 shadow-2xs font-bold'
+                      : 'text-zinc-500 hover:text-zinc-900'
                   }`}
                 >
-                  <HomeIcon className="w-3 h-3 text-amber-600" />
-                  <span>{isKutchaHouse ? 'Kutcha / Kutcha Dwelling (PMAY-G Active)' : 'Pucca Dwelling (PMAY-G Excluded)'}</span>
+                  Kutcha Dwelling
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsKutchaHouse(false)}
+                  className={`px-3 py-1.5 rounded-md transition-all ${
+                    !isKutchaHouse
+                      ? 'bg-white text-zinc-900 shadow-2xs font-bold'
+                      : 'text-zinc-500 hover:text-zinc-900'
+                  }`}
+                >
+                  Pucca Dwelling
                 </button>
               </div>
             </div>
 
             {/* Giant Metric Counter */}
-            <div className="space-y-2">
+            <div className="space-y-1">
               <div className="flex flex-wrap items-baseline gap-3">
                 <div className="text-4xl sm:text-6xl font-extrabold text-[#111111] tracking-tight metric-tabular">
                   <CountUp end={totalCalculated} prefix="₹" duration={600} />
                 </div>
-                <span className="text-sm sm:text-base font-semibold text-emerald-800">
-                  Total Annual Household Welfare Value
+                <span className="text-sm sm:text-base font-semibold text-zinc-600">
+                  Total Annual Household Welfare Value & Cashless Cover
                 </span>
               </div>
-
-              <p className="text-xs sm:text-sm text-zinc-500">
-                {currentProfile.tagline}
-              </p>
             </div>
 
             {/* Wise-Style Segmented Proportional Grant Bar */}
             <div className="space-y-2 pt-1">
-              <div className="h-3 w-full bg-zinc-100 rounded-full overflow-hidden flex shadow-inner p-0.5">
+              <div className="h-2.5 w-full bg-zinc-100 rounded-full overflow-hidden flex shadow-inner p-0.5">
                 {pmJayPct > 0 && (
                   <motion.div
                     style={{ width: `${pmJayPct}%` }}
-                    className="bg-sky-500 h-full first:rounded-l-full last:rounded-r-full"
-                    title={`Healthcare: ₹5,00,000 (${pmJayPct.toFixed(1)}%)`}
+                    className="bg-sky-600 h-full first:rounded-l-full last:rounded-r-full"
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
                 {pmAwasPct > 0 && (
                   <motion.div
                     style={{ width: `${pmAwasPct}%` }}
-                    className="bg-amber-500 h-full first:rounded-l-full last:rounded-r-full"
-                    title={`Housing Grant: ₹1,30,000 (${pmAwasPct.toFixed(1)}%)`}
+                    className="bg-amber-600 h-full first:rounded-l-full last:rounded-r-full"
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
@@ -222,34 +218,33 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                   <motion.div
                     style={{ width: `${pmKisanPct}%` }}
                     className="bg-emerald-600 h-full first:rounded-l-full last:rounded-r-full"
-                    title={`Income Support: ₹6,000 (${pmKisanPct.toFixed(1)}%)`}
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
               </div>
 
-              {/* Legend with exact amounts and percentages */}
+              {/* Clean Metric Legend */}
               <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-zinc-600 pt-1">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0" />
+                  <span className="w-2 h-2 rounded-full bg-sky-600 shrink-0" />
                   <span>Healthcare Cover: <strong>₹5,00,000</strong> ({pmJayPct.toFixed(0)}%)</span>
                 </div>
                 {pmAwasActive && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
                     <span>Housing Grant: <strong>₹1,30,000</strong> ({pmAwasPct.toFixed(0)}%)</span>
                   </div>
                 )}
                 {pmKisanActive && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
                     <span>Farmer DBT: <strong>₹6,000</strong> ({pmKisanPct.toFixed(0)}%)</span>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Included Scheme Breakdown Rows (Wise Hairline Architecture) */}
+            {/* Included Scheme Breakdown Rows (Clean Passbook Ledger) */}
             <div className="space-y-3 pt-2">
               {schemesList.map((sc) => {
                 const Icon = sc.icon;
@@ -259,7 +254,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                     className={`rounded-2xl p-4 sm:p-5 border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                       sc.active
                         ? 'bg-zinc-50/70 hover:bg-zinc-100/70 border-zinc-200/80'
-                        : 'bg-zinc-50/20 border-zinc-200/40 opacity-60'
+                        : 'bg-zinc-50/20 border-zinc-200/40 opacity-50'
                     }`}
                   >
                     <div className="flex items-start sm:items-center gap-3.5">
@@ -285,19 +280,18 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                       </div>
                     </div>
 
-                    <div className="text-left sm:text-right shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-zinc-100">
+                    <div className="text-left sm:text-right shrink-0 border-t sm:border-t-0 pt-2 sm:pt-0 border-zinc-100 space-y-0.5">
                       <div className={`font-bold text-sm sm:text-base ${sc.active ? 'text-[#111111]' : 'text-zinc-400'}`}>
-                        {sc.active ? sc.amount : 'Excluded'}
+                        {sc.active ? sc.amount : 'Not Applicable'}
                       </div>
-                      <div className="text-[11px] font-semibold mt-0.5">
+                      <div className="text-xs font-semibold">
                         {sc.active ? (
-                          <span className="inline-flex items-center gap-1 text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/70">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                            <span>Qualified</span>
+                          <span className="text-emerald-700">
+                            {sc.benefitTag}
                           </span>
                         ) : (
-                          <span className="text-zinc-400">
-                            Criteria not met
+                          <span className="text-zinc-400 font-normal">
+                            {isKutchaHouse ? 'Criteria not met' : 'Pucca house owned'}
                           </span>
                         )}
                       </div>
@@ -313,7 +307,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           <div className="pt-6 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-zinc-500">
               <Info className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-              <span>Calculated strictly using official Ministry guidelines and direct PFMS disbursement criteria.</span>
+              <span>Grounded directly in official 2026 central ministry welfare guidelines.</span>
             </div>
 
             <button
