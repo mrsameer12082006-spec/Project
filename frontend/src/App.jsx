@@ -63,7 +63,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-[#141417] transition-all font-sans selection:bg-[#141417] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-[#141417] transition-all font-sans selection:bg-[#141417] selection:text-white">
       {/* 1. Sleek Sticky Header */}
       <Navbar
         currentScreen={screen}

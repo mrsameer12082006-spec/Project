@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   ArrowRight,
   ExternalLink,
@@ -18,6 +19,30 @@ import {
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
+
+// Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05
+    }
+  }
+};
+
+const fadeUpCard = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.16, 1, 0.3, 1]
+    }
+  }
+};
 
 export default function Home({ onStart, onBrowse }) {
   const [selectedOption, setSelectedOption] = useState(1);
@@ -88,8 +113,23 @@ export default function Home({ onStart, onBrowse }) {
       {/* ───────────────────────────────────────────────────────────
           1. ASYMMETRIC 2-COLUMN HERO & INTERACTIVE CONSOLE
           ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[#FAFAF8] text-[#0C0A09] border-y border-[#E5E3DC] -mx-4 sm:-mx-6 lg:-mx-8">
+      <section className="relative overflow-hidden bg-[#FAF9F5] text-[#0C0A09] border-y border-[#E5E3DC] -mx-4 sm:-mx-6 lg:-mx-8">
         
+        {/* Atmospheric Sunlight Dual Radial Glow (Stripe / Linear Architecture) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+        >
+          {/* Warm Emerald / Mint Sunlight Glow (Top Right) */}
+          <div className="absolute -top-24 -right-16 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(5,150,105,0.08)_0%,rgba(16,185,129,0.03)_40%,transparent_70%)] blur-3xl pointer-events-none" />
+          
+          {/* Subtle Marine Sky Glow (Top Left) */}
+          <div className="absolute -top-32 -left-16 w-[550px] h-[550px] rounded-full bg-[radial-gradient(circle,rgba(2,132,199,0.06)_0%,transparent_65%)] blur-3xl pointer-events-none" />
+
+          {/* Soft Amber Warmth (Center Inset) */}
+          <div className="absolute top-44 left-1/3 w-[450px] h-[350px] rounded-full bg-[radial-gradient(circle,rgba(217,119,6,0.035)_0%,transparent_60%)] blur-3xl pointer-events-none" />
+        </div>
+
         {/* Cal.com Architectural Background Grid */}
         <div
           aria-hidden="true"
@@ -330,20 +370,53 @@ export default function Home({ onStart, onBrowse }) {
 
                 </div>
 
-                {/* Clean Bottom Action Row (Replaces Cluttered Box-in-Box) */}
-                <div className="pt-2 flex items-center justify-between gap-4">
+                {/* Sleek 1-Line Dynamic Micro-Ticker (Path B: Linear / Stripe Style) */}
+                <div className="rounded-xl bg-zinc-50/80 border border-zinc-200/90 px-3.5 py-2.5 flex items-center justify-between transition-colors shadow-2xs">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+                    </span>
+                    <span className="text-xs font-medium text-zinc-500">
+                      Live Reaction:
+                    </span>
+                    <span className="text-xs sm:text-sm font-bold text-zinc-900 metric-tabular">
+                      {effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold transition-colors ${
+                      effectiveOption === 1
+                        ? 'bg-emerald-100/70 text-emerald-800 border border-emerald-200/60'
+                        : 'bg-zinc-200/70 text-zinc-700 border border-zinc-300/60'
+                    }`}>
+                      {effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}
+                    </span>
+                    <span className="hidden sm:inline-block text-[11px] text-zinc-400 font-medium">
+                      {effectiveOption === 1 ? '· incl. PM-KISAN ₹6k' : '· PM-KISAN excluded'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Clean Bottom Action Row with Keyboard Shortcuts Hint */}
+                <div className="pt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>No login or paperwork needed to evaluate</span>
+                    <span>No login or paperwork needed</span>
+                    <span className="text-zinc-300 hidden md:inline">|</span>
+                    <span className="hidden md:inline-flex items-center gap-1 text-[11px] text-zinc-400">
+                      Press <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-zinc-100 border border-zinc-300/80 rounded text-zinc-600 shadow-2xs">1</kbd> or <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-zinc-100 border border-zinc-300/80 rounded text-zinc-600 shadow-2xs">2</kbd>
+                    </span>
                   </div>
 
                   <button
                     type="button"
                     onClick={handleProceed}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-3 text-sm shadow-sm transition-all active:scale-[0.985]"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-3 text-sm shadow-sm transition-all active:scale-[0.985] group shrink-0 whitespace-nowrap"
                   >
                     <span>Continue to Step 2</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform shrink-0" />
                   </button>
                 </div>
 
@@ -379,11 +452,15 @@ export default function Home({ onStart, onBrowse }) {
           </button>
         </div>
 
-        {/* 3 Featured Passbook Cards */}
+        {/* 3 Featured Passbook Cards with Micro-Lift Interaction */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Card 1: PM-KISAN (Farmer Support) */}
-          <div className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200">
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.2 }}
+            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
+          >
             <div className="p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
@@ -429,10 +506,14 @@ export default function Home({ onStart, onBrowse }) {
                 Ministry of Agriculture & Farmers Welfare
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2: PMAY-G (Rural Housing) */}
-          <div className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200">
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.2 }}
+            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
+          >
             <div className="p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
@@ -478,10 +559,14 @@ export default function Home({ onStart, onBrowse }) {
                 Ministry of Rural Development
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3: PM-JAY (Free Healthcare) */}
-          <div className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200">
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.2 }}
+            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
+          >
             <div className="p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
@@ -527,7 +612,7 @@ export default function Home({ onStart, onBrowse }) {
                 National Health Authority (NHA)
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 
