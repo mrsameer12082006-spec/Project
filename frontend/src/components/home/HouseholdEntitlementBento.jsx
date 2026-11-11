@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -10,6 +10,8 @@ import {
   Info
 } from 'lucide-react';
 import CountUp from '../common/CountUp';
+
+const VillageDiorama3D = lazy(() => import('../3d/VillageDiorama3D'));
 
 export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
   const [activeProfile, setActiveProfile] = useState('farmer');
@@ -210,6 +212,29 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 </span>
               </div>
             </div>
+
+            {/* Interactive 3D Miniature Village Simulation (Higgsfield / Meshy Diorama) */}
+            <Suspense fallback={
+              <div className="w-full h-[380px] rounded-3xl bg-[#F7F5EE] border border-black/[0.06] flex items-center justify-center text-xs text-zinc-500 font-semibold my-4">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                  <span>Loading 3D Village Simulation...</span>
+                </span>
+              </div>
+            }>
+              <VillageDiorama3D
+                focusZone={activeProfile === 'farmer' ? 'farm' : activeProfile === 'artisan' ? 'housing' : 'health'}
+                hasLand={pmKisanActive}
+                isKutcha={isKutchaHouse}
+                height="380px"
+                className="w-full my-4"
+                onSelectZone={(zone) => {
+                  if (zone === 'farm') setActiveProfile('farmer');
+                  if (zone === 'housing') setActiveProfile('artisan');
+                  if (zone === 'health') setActiveProfile('senior');
+                }}
+              />
+            </Suspense>
 
             {/* 3D Extruded Isometric Compounding Blocks (Moment 2: 79% / 20% / 1% Honest Proportions) */}
             <div className="space-y-3 pt-2">
