@@ -19,6 +19,7 @@ import {
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
+import HeroShieldEmblem from '../components/home/HeroShieldEmblem';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -49,6 +50,25 @@ export default function Home({ onStart, onBrowse }) {
   const [hoveredOption, setHoveredOption] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [audioLang, setAudioLang] = useState('en');
+  const [activeAudience, setActiveAudience] = useState('citizen');
+  const [cardTilt, setCardTilt] = useState({ x: 0, y: 0 });
+
+  const handleCardMouseMove = (e) => {
+    // Check if on touch/coarse device
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setCardTilt({
+      x: Math.max(-2.5, Math.min(2.5, -(y / (rect.height / 2)) * 2.5)),
+      y: Math.max(-3, Math.min(3, (x / (rect.width / 2)) * 3))
+    });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ x: 0, y: 0 });
+  };
 
   const effectiveOption = hoveredOption !== null ? hoveredOption : selectedOption;
 
@@ -136,6 +156,13 @@ export default function Home({ onStart, onBrowse }) {
             
             {/* LEFT 6 COLUMNS: Editorial Pitch & Tactile Controls */}
             <div className="lg:col-span-6 space-y-6">
+
+              {/* SchemeSathi 3D Shield Emblem + Gazette Status + Kiosk Switcher */}
+              <HeroShieldEmblem
+                activeAudience={activeAudience}
+                setActiveAudience={setActiveAudience}
+                className="pb-1"
+              />
 
               {/* Display Headline with Humanist Italic Accent */}
               <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
@@ -246,13 +273,21 @@ export default function Home({ onStart, onBrowse }) {
             </div>
 
             {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card (Cal.com + GOV.UK Pattern) */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 perspective-container">
               
-              {/* Apple Glassmorphic Daylight Form Card */}
-              <div className="rounded-2xl bg-white/85 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 sm:p-7 space-y-5 transition-all">
+              {/* Apple Glassmorphic Daylight Form Card with 3D Perspective Tilt */}
+              <div 
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
+                style={{
+                  transform: `perspective(1200px) rotateX(${cardTilt.x}deg) rotateY(${cardTilt.y}deg)`,
+                  transition: 'transform 120ms ease-out'
+                }}
+                className="spatial-glass rounded-2xl p-6 sm:p-7 space-y-5 transition-shadow hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.08)]"
+              >
                 
                 {/* Clean Top Progress Bar */}
-                <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+                <div className="flex items-center justify-between pb-3 border-b border-black/[0.06]">
                   <div className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-700">
                     <Sprout className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                     <span>Question 1 of 4 · Agricultural Landholding</span>
@@ -292,8 +327,8 @@ export default function Home({ onStart, onBrowse }) {
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 1
-                        ? 'bg-emerald-50/80 border-2 border-emerald-600 shadow-[0_3px_0_0_#059669]'
-                        : 'bg-white/80 backdrop-blur-md border border-zinc-200/90 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
+                        ? 'spatial-glass-emerald'
+                        : 'bg-white/70 backdrop-blur-md border border-zinc-200/80 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
@@ -332,7 +367,7 @@ export default function Home({ onStart, onBrowse }) {
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 2
                         ? 'bg-zinc-100/90 border-2 border-zinc-900 shadow-[0_3px_0_0_#18181B]'
-                        : 'bg-white/80 backdrop-blur-md border border-zinc-200/90 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
+                        : 'bg-white/70 backdrop-blur-md border border-zinc-200/80 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
                     <div className="flex items-center gap-3.5">
@@ -364,21 +399,50 @@ export default function Home({ onStart, onBrowse }) {
 
                 </div>
 
-                {/* Clean Bottom Action Row */}
-                <div className="pt-2 flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>No login or paperwork needed to evaluate</span>
+                {/* Sleek 1-Line Dynamic Micro-Ticker (Image 3 Redesign) */}
+                <div className="rounded-xl spatial-glass p-2.5 sm:p-3 border border-emerald-500/20 flex flex-wrap items-center justify-between gap-2 text-xs">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
+                    <span className="text-zinc-600 font-medium">Live Reaction:</span>
+                    <span className="font-extrabold text-[#111111] text-sm metric-tabular">
+                      {effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}
+                    </span>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={handleProceed}
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-3 text-sm shadow-sm transition-all active:scale-[0.985] group shrink-0 whitespace-nowrap"
-                  >
-                    <span>Continue to Step 2</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform shrink-0" />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold text-[11px] border border-emerald-300/70">
+                      {effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}
+                    </span>
+                    <span className="text-zinc-500 text-[11px] hidden sm:inline">
+                      {effectiveOption === 1 ? '· incl. PM-KISAN ₹6k' : '· excl. PM-KISAN (landless)'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Clean Bottom Action Row with Keyboard Shortcut Keycaps */}
+                <div className="pt-1 flex flex-wrap items-center justify-between gap-3 text-xs">
+                  <div className="flex items-center gap-2 text-zinc-500 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>No login or paperwork needed</span>
+                  </div>
+
+                  <div className="flex items-center gap-3 shrink-0">
+                    <div className="hidden sm:flex items-center gap-1.5 text-zinc-400 text-[11px] font-medium">
+                      <span>Press</span>
+                      <span className="keycap-badge">1</span>
+                      <span>or</span>
+                      <span className="keycap-badge">2</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleProceed}
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-2.5 text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.15)] transition-all active:scale-[0.985] group shrink-0 whitespace-nowrap"
+                    >
+                      <span>Continue to Step 2</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                    </button>
+                  </div>
                 </div>
 
               </div>
