@@ -53,15 +53,15 @@ export default function EligibilityResults({
         </button>
       </div>
 
-      {/* Filter Tabs in Segmented Recessed Well */}
-      <div className="flex items-center gap-1.5 bg-[#F2F2F4] border border-[#E4E4E7] p-1.5 rounded-xl w-fit shadow-2xs text-xs font-semibold">
+      {/* Apple Glassmorphic Filter Tabs */}
+      <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full w-fit shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)] text-xs font-semibold">
         <button
           type="button"
           onClick={() => setFilter('all')}
-          className={`px-3.5 py-1.5 rounded-lg transition-all ${
+          className={`px-4 py-1.5 rounded-full transition-all duration-200 ${
             filter === 'all'
-              ? 'bg-[#111111] text-white shadow-2xs font-bold'
-              : 'text-zinc-600 hover:text-zinc-900'
+              ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
+              : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
           }`}
         >
           All Schemes ({results.length})
@@ -70,10 +70,10 @@ export default function EligibilityResults({
         <button
           type="button"
           onClick={() => setFilter('potentially_eligible')}
-          className={`px-3.5 py-1.5 rounded-lg transition-all ${
+          className={`px-4 py-1.5 rounded-full transition-all duration-200 ${
             filter === 'potentially_eligible'
-              ? 'bg-[#111111] text-white shadow-2xs font-bold'
-              : 'text-zinc-600 hover:text-zinc-900'
+              ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
+              : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
           }`}
         >
           Eligible ({eligibleCount})

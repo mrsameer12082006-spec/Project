@@ -189,15 +189,15 @@ export default function Home({ onStart, onBrowse }) {
                     <span>{isAudioPlaying ? 'Stop Audio' : 'Audio Guide'}</span>
                   </button>
 
-                  {/* Compact Bilingual Switcher */}
-                  <div className="flex items-center gap-1 border-l border-zinc-200 pl-1.5 pr-1 text-[11px] font-bold">
+                  {/* Apple Glassmorphic Bilingual Switcher */}
+                  <div className="flex items-center gap-1 border-l border-zinc-200/80 pl-1.5 pr-1 text-[11px] font-bold">
                     <button
                       type="button"
                       onClick={() => handleToggleAudio('en')}
-                      className={`px-2 py-1 rounded-full transition-colors ${
+                      className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                         audioLang === 'en'
-                          ? 'bg-zinc-900 text-white'
-                          : 'text-zinc-500 hover:text-zinc-900'
+                          ? 'bg-[#111111] text-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]'
+                          : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.04]'
                       }`}
                     >
                       EN
@@ -205,10 +205,10 @@ export default function Home({ onStart, onBrowse }) {
                     <button
                       type="button"
                       onClick={() => handleToggleAudio('hi')}
-                      className={`px-2 py-1 rounded-full transition-colors ${
+                      className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                         audioLang === 'hi'
-                          ? 'bg-emerald-700 text-white'
-                          : 'text-zinc-500 hover:text-zinc-900'
+                          ? 'bg-[#111111] text-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]'
+                          : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.04]'
                       }`}
                     >
                       हिन्दी
@@ -370,44 +370,11 @@ export default function Home({ onStart, onBrowse }) {
 
                 </div>
 
-                {/* Sleek 1-Line Dynamic Micro-Ticker (Path B: Linear / Stripe Style) */}
-                <div className="rounded-xl bg-zinc-50/80 border border-zinc-200/90 px-3.5 py-2.5 flex items-center justify-between transition-colors shadow-2xs">
-                  <div className="flex items-center gap-2.5">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-                    </span>
-                    <span className="text-xs font-medium text-zinc-500">
-                      Live Reaction:
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-zinc-900 metric-tabular">
-                      {effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold transition-colors ${
-                      effectiveOption === 1
-                        ? 'bg-emerald-100/70 text-emerald-800 border border-emerald-200/60'
-                        : 'bg-zinc-200/70 text-zinc-700 border border-zinc-300/60'
-                    }`}>
-                      {effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}
-                    </span>
-                    <span className="hidden sm:inline-block text-[11px] text-zinc-400 font-medium">
-                      {effectiveOption === 1 ? '· incl. PM-KISAN ₹6k' : '· PM-KISAN excluded'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Clean Bottom Action Row with Keyboard Shortcuts Hint */}
-                <div className="pt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                {/* Clean Bottom Action Row */}
+                <div className="pt-2 flex items-center justify-between gap-4">
                   <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>No login or paperwork needed</span>
-                    <span className="text-zinc-300 hidden md:inline">|</span>
-                    <span className="hidden md:inline-flex items-center gap-1 text-[11px] text-zinc-400">
-                      Press <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-zinc-100 border border-zinc-300/80 rounded text-zinc-600 shadow-2xs">1</kbd> or <kbd className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-zinc-100 border border-zinc-300/80 rounded text-zinc-600 shadow-2xs">2</kbd>
-                    </span>
+                    <span>No login or paperwork needed to evaluate</span>
                   </div>
 
                   <button

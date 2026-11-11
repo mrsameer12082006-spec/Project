@@ -109,9 +109,10 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           ─────────────────────────────────────────────────────────── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 pb-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-            Household Entitlement Calculator
-          </div>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-semibold tracking-tight w-fit">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+            Compounding Entitlement Model
+          </span>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111111] leading-tight">
             How Government Welfare Entitlements Compound for Your Family.
@@ -122,8 +123,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </p>
         </div>
 
-        {/* Profile Switcher Tabs */}
-        <div className="flex items-center gap-1 bg-[#F2F2F4] border border-[#E4E4E7] p-1.5 rounded-xl w-fit shadow-2xs text-xs font-semibold self-start md:self-auto">
+        {/* Profile Switcher Tabs (Apple Glassmorphic Segmented Control - Image 5 Redesign) */}
+        <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full w-fit shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)] text-xs font-semibold self-start md:self-auto">
           {Object.values(baseProfiles).map(p => {
             const isSelected = activeProfile === p.id;
             return (
@@ -131,10 +132,10 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 key={p.id}
                 type="button"
                 onClick={() => setActiveProfile(p.id)}
-                className={`relative px-3.5 py-2 rounded-lg font-semibold transition-all ${
+                className={`relative px-4 py-2 rounded-full font-semibold transition-all duration-200 ${
                   isSelected
-                    ? 'bg-[#111111] text-white shadow-xs'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60'
+                    ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)]'
+                    : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
                 }`}
               >
                 <span>{p.label}</span>
@@ -153,26 +154,31 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           
           <div className="space-y-6">
             
-            {/* Top Bar with Profile Info & Tactile Dwelling Toggle */}
+            {/* Top Bar with Profile Info & Apple Glassmorphic Dwelling Toggle (Image 2 Redesign) */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-100">
               <div className="space-y-0.5">
-                <span className="text-xs font-bold text-zinc-700 uppercase tracking-wider block">
-                  Household Category: {currentProfile.label}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-bold text-zinc-900">
+                    {currentProfile.label}
+                  </span>
+                  <span className="text-xs text-zinc-400 font-medium hidden sm:inline">
+                    · Baseline Household Model
+                  </span>
+                </div>
                 <span className="text-xs text-zinc-500 font-medium">
                   {currentProfile.tagline}
                 </span>
               </div>
 
-              {/* Clean Dwelling Type Segmented Toggle */}
-              <div className="flex items-center gap-1 bg-[#F2F2F4] border border-[#E4E4E7] p-1 rounded-lg text-xs font-semibold w-fit">
+              {/* Apple Glassmorphic Segmented Control (Dwelling Toggle) */}
+              <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full text-xs font-semibold w-fit shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)]">
                 <button
                   type="button"
                   onClick={() => setIsKutchaHouse(true)}
-                  className={`px-3 py-1.5 rounded-md transition-all ${
+                  className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
                     isKutchaHouse
-                      ? 'bg-white text-zinc-900 shadow-2xs font-bold'
-                      : 'text-zinc-500 hover:text-zinc-900'
+                      ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
+                      : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
                   }`}
                 >
                   Kutcha Dwelling
@@ -180,10 +186,10 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 <button
                   type="button"
                   onClick={() => setIsKutchaHouse(false)}
-                  className={`px-3 py-1.5 rounded-md transition-all ${
+                  className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
                     !isKutchaHouse
-                      ? 'bg-white text-zinc-900 shadow-2xs font-bold'
-                      : 'text-zinc-500 hover:text-zinc-900'
+                      ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
+                      : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
                   }`}
                 >
                   Pucca Dwelling
@@ -311,9 +317,9 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
 
           {/* Action Row */}
           <div className="pt-6 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-xs text-zinc-500">
-              <Info className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-              <span>Grounded directly in official 2026 central ministry welfare guidelines.</span>
+            <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
+              <span>Verified statutory guidelines from Ministry of Agriculture, Rural Development & NHA.</span>
             </div>
 
             <button

@@ -81,8 +81,8 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
           </div>
         </div>
 
-        {/* Category Segmented Recessed Well */}
-        <div className="flex items-center gap-1.5 bg-[#F2F2F4] border border-[#E4E4E7] p-1.5 rounded-xl w-fit max-w-full overflow-x-auto shadow-2xs text-xs font-semibold">
+        {/* Apple Glassmorphic Category Segmented Control */}
+        <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full w-fit max-w-full overflow-x-auto shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)] text-xs font-semibold">
           {categories.map(cat => {
             const Icon = cat.icon;
             const isSelected = selectedCategory === cat.id;
@@ -91,10 +91,10 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
                 key={cat.id}
                 type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition-all whitespace-nowrap ${
+                className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap ${
                   isSelected
-                    ? 'bg-[#111111] text-white shadow-2xs font-bold'
-                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-white/60'
+                    ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
+                    : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
                 }`}
               >
                 {Icon && <Icon className="w-3.5 h-3.5 shrink-0" />}

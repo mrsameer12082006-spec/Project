@@ -75,11 +75,6 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
             <p className="text-xs text-zinc-500 leading-relaxed max-w-sm">
               An independent, non-commercial public service helping underserved rural and semi-urban Indian households discover and claim statutory government welfare benefits without middlemen.
             </p>
-
-            <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 rounded-lg w-fit">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
-              <span>Gazette Sync: 2026 Central Rules Active</span>
-            </div>
           </div>
 
           {/* Column 2: Central Ministries & Official Portals (3 cols) */}

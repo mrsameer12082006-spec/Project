@@ -10,8 +10,8 @@ export default function CheckAnswersTable({
 }) {
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="p-2 bg-[#F2F2F4] border border-[#E4E4E7] rounded-2xl shadow-2xs">
-        <div className="bg-white rounded-xl border border-zinc-200/80 p-6 sm:p-8 space-y-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+      <div className="p-1.5 sm:p-2 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] rounded-2xl sm:rounded-3xl shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)]">
+        <div className="bg-white rounded-xl sm:rounded-2xl border border-zinc-200/80 p-6 sm:p-8 space-y-6 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
           
           {/* Header */}
           <div className="space-y-1.5 border-b border-zinc-100 pb-4">
