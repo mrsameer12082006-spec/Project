@@ -69,18 +69,6 @@ export default function Home({ onStart, onBrowse }) {
             
             {/* LEFT 6 COLUMNS: Editorial Pitch & Tactile Controls */}
             <div className="lg:col-span-6 space-y-6">
-              
-              {/* Verified Audit Badge with Solid Check Icon */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111111] shadow-[0_2px_6px_rgba(12,10,9,0.05),0_0_0_1px_rgba(12,10,9,0.08)]">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                <span className="font-bold">
-                  3 Verified Central Welfare Schemes
-                </span>
-                <span className="text-[#D6D3D1]">|</span>
-                <span className="font-mono text-[10px] tracking-widest uppercase font-bold text-[#777169]">
-                  GAZETTE AUDIT: 2026
-                </span>
-              </div>
 
               {/* Display Headline */}
               <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
@@ -135,82 +123,71 @@ export default function Home({ onStart, onBrowse }) {
               {/* Trust Ledger Strip with Lucide Icons */}
               <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#E5E3DC]">
                 <div>
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase font-bold text-[#777169]">
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
                     <Clock className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-                    <span>TIME</span>
+                    <span>Time</span>
                   </div>
                   <div className="mt-1 text-xs sm:text-sm font-bold text-[#0C0A09]">
                     60 Seconds
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase font-bold text-[#777169]">
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
                     <FileText className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
-                    <span>FLOW</span>
+                    <span>Questions</span>
                   </div>
                   <div className="mt-1 text-xs sm:text-sm font-bold text-[#0C0A09]">
-                    4 Questions
+                    4 Simple Steps
                   </div>
                 </div>
                 <div>
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] tracking-widest uppercase font-bold text-[#777169]">
+                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
                     <CreditCard className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>PRIVACY</span>
+                    <span>Privacy</span>
                   </div>
                   <div className="mt-1 text-xs sm:text-sm font-bold text-[#16A34A]">
-                    Zero Uploads
+                    Zero Document Uploads
                   </div>
                 </div>
               </div>
 
             </div>
 
-            {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Console */}
+            {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card */}
             <div className="lg:col-span-6">
               
-              {/* Double-Bezel Outer Frame with Multi-Layer Elevation Shadow */}
-              <div className="rounded-[24px] bg-[#EAE8E1]/90 p-2 shadow-[0_32px_64px_-16px_rgba(12,10,9,0.14),0_8px_20px_-4px_rgba(12,10,9,0.06),0_0_0_1px_rgba(12,10,9,0.08)] backdrop-blur-md">
+              {/* Daylight Form Card */}
+              <div className="rounded-2xl bg-white border border-zinc-200/90 shadow-sm p-6 sm:p-7 space-y-5">
                 
-                {/* Top Dark Console Header Bar */}
-                <div className="flex items-center justify-between rounded-t-[18px] bg-[#111111] px-5 py-3.5 text-white">
-                  <div className="flex items-center gap-2.5">
-                    <span className="h-2 w-2 rounded-full bg-[#22C55E]" />
-                    <span className="text-xs font-bold tracking-wider uppercase text-stone-200 font-mono">
-                      LIVE ELIGIBILITY PREVIEW
-                    </span>
+                {/* Clean Top Progress Bar */}
+                <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-700">
+                    <Sprout className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Question 1 of 4 · Agricultural Landholding</span>
                   </div>
                   
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1" aria-label="Step 1 of 4">
-                      <span className="h-1.5 w-6 rounded-full bg-[#22C55E]" />
-                      <span className="h-1.5 w-4 rounded-full bg-white/20" />
-                      <span className="h-1.5 w-4 rounded-full bg-white/20" />
-                      <span className="h-1.5 w-4 rounded-full bg-white/20" />
+                      <span className="h-1.5 w-6 rounded-full bg-[#111111]" />
+                      <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
+                      <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
+                      <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
                     </div>
-                    <span className="ml-1 font-mono text-xs text-stone-400 font-bold">
-                      01 / 04
+                    <span className="text-xs text-zinc-400 font-semibold">
+                      1 / 4
                     </span>
                   </div>
                 </div>
 
-                {/* Inner Crisp Surface Card */}
-                <div className="rounded-b-[18px] bg-white p-5 sm:p-7 border-x border-b border-white space-y-4">
-                  
-                  {/* Category Tag with Lucide Icon */}
-                  <div className="inline-flex items-center gap-2 rounded-md bg-zinc-100 px-3 py-1 text-xs font-semibold text-zinc-800 border border-zinc-200">
-                    <Sprout className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>Question 1 of 4: Agricultural Landholding</span>
-                  </div>
-
-                  {/* Question Text */}
-                  <div className="space-y-1">
-                    <h2 className="text-lg sm:text-2xl font-bold text-[#0C0A09] leading-snug">
-                      Do you or your family own cultivable agricultural land?
-                    </h2>
-                    <p className="text-xs sm:text-sm text-[#777169]">
-                      Select your landholding status to evaluate land-linked central benefits.
-                    </p>
-                  </div>
+                {/* Question Text */}
+                <div className="space-y-1">
+                  <h2 className="text-lg sm:text-2xl font-bold text-[#0C0A09] leading-snug">
+                    Do you or your family own cultivable agricultural land?
+                  </h2>
+                  <p className="text-xs sm:text-sm text-[#777169]">
+                    Select your landholding status to evaluate land-linked central benefits.
+                  </p>
+                </div>
 
                   {/* Tactile Keycap Option Rows */}
                   <div className="space-y-2.5 pt-1">
@@ -265,12 +242,12 @@ export default function Home({ onStart, onBrowse }) {
                     </button>
                   </div>
 
-                  {/* Live Scheme Match Dock (Dynamic Rule Reaction) */}
-                  <div className="rounded-xl bg-[#F4F3EE] p-3 sm:p-3.5 border border-[#E5E3DC]">
-                    <div className="flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-[#777169] mb-2">
-                      <span className="font-bold">LIVE BENEFIT MATRIX</span>
-                      <span className="text-[#16A34A] font-bold">
-                        {hoveredOption === 2 ? '● 2/3 Schemes Active' : '● 3/3 Schemes Active'}
+                  {/* Scheme Match Dock */}
+                  <div className="rounded-xl bg-zinc-50 p-3 sm:p-3.5 border border-zinc-200/80">
+                    <div className="flex items-center justify-between text-xs text-zinc-600 font-medium mb-2">
+                      <span className="font-semibold text-zinc-800">Estimated Scheme Matches</span>
+                      <span className="text-emerald-700 font-semibold">
+                        {hoveredOption === 2 ? '2 of 3 Schemes Active' : '3 of 3 Schemes Active'}
                       </span>
                     </div>
 
@@ -286,7 +263,7 @@ export default function Home({ onStart, onBrowse }) {
                         }`}
                       >
                         <div className="font-semibold truncate">PM-KISAN</div>
-                        <div className="font-mono text-[11px] text-[#16A34A] font-bold">
+                        <div className="text-[11px] text-[#16A34A] font-bold">
                           {hoveredOption === 2 ? 'Excluded' : '₹6,000/yr'}
                         </div>
                       </div>
@@ -294,7 +271,7 @@ export default function Home({ onStart, onBrowse }) {
                       {/* PMAY-G Chip */}
                       <div className="rounded-lg bg-white px-2.5 py-2 border border-[#E5E3DC] text-xs text-[#141413]">
                         <div className="font-semibold truncate">PMAY-G</div>
-                        <div className="font-mono text-[11px] text-amber-700 font-bold">
+                        <div className="text-[11px] text-amber-700 font-bold">
                           ₹1.30 Lakh
                         </div>
                       </div>
@@ -302,14 +279,12 @@ export default function Home({ onStart, onBrowse }) {
                       {/* PM-JAY Chip */}
                       <div className="rounded-lg bg-white px-2.5 py-2 border border-[#E5E3DC] text-xs text-[#141413]">
                         <div className="font-semibold truncate">PM-JAY</div>
-                        <div className="font-mono text-[11px] text-sky-700 font-bold">
+                        <div className="text-[11px] text-sky-700 font-bold">
                           ₹5,00,000
                         </div>
                       </div>
                     </div>
                   </div>
-
-                </div>
 
               </div>
 
@@ -382,14 +357,14 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-[11px] font-mono text-zinc-500">
+            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
               <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
-                <span className="font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                <span>
                   Direct DBT Bank Transfer
                 </span>
               </div>
-              <div className="text-zinc-400 text-[10px] pl-0.5">
+              <div className="text-zinc-400 text-[11px] pl-0.5">
                 Ministry of Agriculture & Farmers Welfare
               </div>
             </div>
@@ -431,14 +406,14 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-[11px] font-mono text-zinc-500">
+            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
               <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 shadow-[0_0_6px_rgba(245,158,11,0.5)]" />
-                <span className="font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                <span>
                   Pucca House + 90 Days MGNREGA
                 </span>
               </div>
-              <div className="text-zinc-400 text-[10px] pl-0.5">
+              <div className="text-zinc-400 text-[11px] pl-0.5">
                 Ministry of Rural Development
               </div>
             </div>
@@ -480,14 +455,14 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-[11px] font-mono text-zinc-500">
+            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
               <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 shadow-[0_0_6px_rgba(14,165,233,0.5)]" />
-                <span className="font-sans">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
+                <span>
                   27,000+ Cashless Hospitals
                 </span>
               </div>
-              <div className="text-zinc-400 text-[10px] pl-0.5">
+              <div className="text-zinc-400 text-[11px] pl-0.5">
                 National Health Authority (NHA)
               </div>
             </div>
@@ -521,13 +496,8 @@ export default function Home({ onStart, onBrowse }) {
           {/* Step 01 */}
           <div className="group rounded-2xl bg-white border border-zinc-200/90 p-6 sm:p-7 space-y-5 shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-mono text-xs font-bold shadow-xs">
-                  01
-                </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200/60 font-semibold">
-                  VOICE / TAP
-                </span>
+              <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                01
               </div>
 
               <h4 className="font-bold text-[#111111] text-lg flex items-center gap-2">
@@ -540,29 +510,20 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-zinc-500">
+            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 inline-block" />
                 <span>Voice or Touch Input</span>
               </span>
-              <span className="flex items-end gap-0.5 h-3">
-                <span className="w-1 h-2 bg-zinc-300 rounded-full" />
-                <span className="w-1 h-3 bg-zinc-500 rounded-full" />
-                <span className="w-1 h-1.5 bg-zinc-300 rounded-full" />
-              </span>
+              <span className="text-zinc-400">Step 1 of 3</span>
             </div>
           </div>
 
           {/* Step 02 */}
           <div className="group rounded-2xl bg-white border border-zinc-200/90 p-6 sm:p-7 space-y-5 shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-mono text-xs font-bold shadow-xs">
-                  02
-                </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 font-semibold">
-                  100% AUDITED
-                </span>
+              <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                02
               </div>
 
               <h4 className="font-bold text-[#111111] text-lg flex items-center gap-2">
@@ -575,25 +536,20 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-emerald-800">
+            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-emerald-800 font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
                 <span>Official Policy Grounded</span>
               </span>
-              <span className="font-bold text-[11px]">✓ 100% Gazette Rules</span>
+              <span className="text-zinc-400 font-normal">Step 2 of 3</span>
             </div>
           </div>
 
           {/* Step 03 */}
           <div className="group rounded-2xl bg-white border border-zinc-200/90 p-6 sm:p-7 space-y-5 shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 flex flex-col justify-between">
             <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-mono text-xs font-bold shadow-xs">
-                  03
-                </div>
-                <span className="inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded border border-zinc-200/60 font-semibold">
-                  PRINT SLIP
-                </span>
+              <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                03
               </div>
 
               <h4 className="font-bold text-[#111111] text-lg flex items-center gap-2">
@@ -606,12 +562,12 @@ export default function Home({ onStart, onBrowse }) {
               </p>
             </div>
 
-            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs font-mono text-zinc-500">
+            <div className="pt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-medium">
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 inline-block" />
                 <span>Document Checklist Slip</span>
               </span>
-              <span className="text-zinc-600 font-bold">#SS-2026</span>
+              <span className="text-zinc-400">Step 3 of 3</span>
             </div>
           </div>
 

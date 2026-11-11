@@ -120,9 +120,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           ─────────────────────────────────────────────────────────── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 pb-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/80 px-3.5 py-1 text-xs font-bold text-emerald-900 shadow-2xs">
-            <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-            <span>ESTIMATED ANNUAL WELFARE BENEFIT</span>
+          <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+            Household Entitlements
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111111] leading-tight">
@@ -154,75 +153,84 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       </div>
 
       {/* ───────────────────────────────────────────────────────────
-          PROMINENT HOUSEHOLD ENTITLEMENT CARD
+          PROMINENT HOUSEHOLD ENTITLEMENT CARD (CLEAN DAYLIGHT THEME)
           ─────────────────────────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto w-full">
         
-        {/* Deep Obsidian Household Entitlement Hub */}
-        <div className="relative overflow-hidden rounded-3xl bg-[#0B1310] text-white p-7 sm:p-10 shadow-[0_24px_48px_-12px_rgba(11,19,16,0.35),0_0_0_1px_rgba(255,255,255,0.06)] min-h-[460px] flex flex-col justify-between">
+        <div className="rounded-3xl bg-white border border-zinc-200/90 p-7 sm:p-10 shadow-sm flex flex-col justify-between space-y-7">
           
-          {/* Ambient Radial Glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gradient-to-br from-emerald-500/30 via-emerald-600/15 to-transparent blur-3xl"
-          />
-
-          <div className="relative z-10 space-y-6">
+          <div className="space-y-6">
             
             {/* Top Bar with Status Tag */}
-            <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-mono font-bold text-emerald-300 border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                <span>COMBINED ANNUAL ENTITLEMENT</span>
+            <div className="flex items-center justify-between pb-3 border-b border-zinc-100">
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3.5 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200/60">
+                <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                <span>Estimated Combined Entitlement</span>
               </span>
 
-              <span className="text-xs font-mono text-zinc-400">
-                Profile: {current.label}
+              <span className="text-xs text-zinc-500 font-medium">
+                Family Profile: <strong className="text-zinc-800">{current.label}</strong>
               </span>
             </div>
 
             {/* Giant Metric Counter */}
             <div className="space-y-1">
-              <div className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight metric-tabular">
+              <div className="text-4xl sm:text-6xl font-extrabold text-[#111111] tracking-tight metric-tabular">
                 <CountUp end={current.total} prefix="₹" duration={600} />
               </div>
-              <div className="text-xs sm:text-sm text-emerald-300 font-medium">
+              <div className="text-sm font-semibold text-emerald-800">
                 Annual Direct Household Benefit & Cashless Protection
               </div>
-              <p className="text-xs text-zinc-400 pt-1">
+              <p className="text-xs text-zinc-500 pt-0.5">
                 {current.tagline}
               </p>
             </div>
 
-            {/* Included Scheme Breakdown Chips */}
+            {/* Included Scheme Breakdown Rows */}
             <div className="space-y-2.5 pt-2">
               {current.schemes.map((sc, idx) => {
                 const Icon = sc.icon;
                 return (
                   <div
                     key={idx}
-                    className={`rounded-xl p-3.5 border transition-all flex items-center justify-between gap-3 ${sc.color}`}
+                    className={`rounded-xl p-4 border transition-all flex items-center justify-between gap-3 ${
+                      sc.active
+                        ? 'bg-zinc-50/80 hover:bg-zinc-100/70 border-zinc-200/80'
+                        : 'bg-zinc-50/30 border-zinc-200/40 opacity-60'
+                    }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                        <Icon className="w-4 h-4 text-white" />
+                    <div className="flex items-center gap-3.5">
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 border ${
+                        sc.active
+                          ? 'bg-white border-zinc-200 shadow-2xs text-[#111111]'
+                          : 'bg-zinc-100 border-zinc-200 text-zinc-400'
+                      }`}>
+                        <Icon className="w-4 h-4" />
                       </div>
                       <div>
-                        <div className="font-bold text-sm text-white">
+                        <div className="font-bold text-sm text-[#111111]">
                           {sc.name}
                         </div>
-                        <div className="text-xs text-zinc-300 line-clamp-1">
+                        <div className="text-xs text-zinc-500 line-clamp-1">
                           {sc.detail}
                         </div>
                       </div>
                     </div>
 
                     <div className="text-right shrink-0">
-                      <div className="font-mono font-extrabold text-sm text-white">
+                      <div className={`font-bold text-sm ${sc.active ? 'text-[#111111]' : 'text-zinc-400'}`}>
                         {sc.amount}
                       </div>
-                      <div className="text-[10px] font-mono uppercase text-zinc-400 font-semibold">
-                        {sc.active ? '● QUALIFIED' : '○ EXCLUDED'}
+                      <div className="text-[11px] font-semibold mt-0.5">
+                        {sc.active ? (
+                          <span className="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+                            Eligible
+                          </span>
+                        ) : (
+                          <span className="text-zinc-400">
+                            Not Applicable
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -233,15 +241,15 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </div>
 
           {/* Action Row */}
-          <div className="relative z-10 pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-            <span className="text-xs text-zinc-400">
+          <div className="pt-6 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4">
+            <span className="text-xs text-zinc-500">
               Evaluated strictly according to official central ministry guidelines.
             </span>
 
             <button
               type="button"
               onClick={onStart}
-              className="inline-flex items-center gap-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-[#0B1310] font-extrabold px-6 py-3 text-xs sm:text-sm shadow-md transition-all active:scale-[0.985]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-7 py-3.5 text-xs sm:text-sm shadow-sm transition-all active:scale-[0.985]"
             >
               <span>Check Your Household Eligibility</span>
               <ArrowRight className="w-4 h-4" />

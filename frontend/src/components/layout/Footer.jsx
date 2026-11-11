@@ -7,30 +7,15 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
     <footer className="mt-20 border-t border-zinc-200 bg-[#FBFBFA] text-zinc-600 text-xs">
       
       {/* ───────────────────────────────────────────────────────────
-          1. HIGH-IMPACT PRE-FOOTER CTA BANNER (Fingrow / Stripe Inspired)
+          1. HIGH-IMPACT PRE-FOOTER CTA BANNER (CLEAN & SOLID)
           ─────────────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-10">
-        <div className="relative overflow-hidden rounded-3xl bg-[#0F1714] text-white p-8 sm:p-12 lg:p-14 shadow-[0_32px_64px_-16px_rgba(15,23,20,0.3),0_0_0_1px_rgba(255,255,255,0.08)]">
+        <div className="rounded-3xl bg-[#111111] text-white p-8 sm:p-12 lg:p-14 border border-zinc-800 shadow-xl">
           
-          {/* Subtle Ambient Radial Glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gradient-to-br from-emerald-500/25 via-emerald-600/15 to-transparent blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -left-20 -bottom-20 h-80 w-80 rounded-full bg-gradient-to-tr from-amber-500/15 via-transparent to-transparent blur-3xl"
-          />
-
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left 8 Cols: Pitch & Assurance */}
             <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-white/10 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                <span>100% Free · Zero Intermediaries · Official Gazette Grounded</span>
-              </div>
-
               <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold tracking-tight text-white leading-[1.18]">
                 Claim What Is Rightfully Yours From Central Welfare Programs.
               </h2>
@@ -45,10 +30,10 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
               <button
                 type="button"
                 onClick={onStart}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-7 py-4 text-sm font-bold text-[#0F1714] shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition-all duration-150 hover:bg-zinc-100 active:scale-[0.985]"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-7 py-4 text-sm font-bold text-[#111111] shadow-sm transition-all duration-150 hover:bg-zinc-100 active:scale-[0.985]"
               >
                 <span>Check Eligibility in 60s</span>
-                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#0F1714] text-white text-xs transition-transform group-hover:translate-x-1">
+                <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#111111] text-white text-xs transition-transform group-hover:translate-x-1">
                   →
                 </span>
               </button>
@@ -56,7 +41,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
               <button
                 type="button"
                 onClick={onBrowse}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 px-6 py-3.5 text-sm font-semibold text-white transition-all active:scale-[0.985]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-transparent hover:bg-white/10 border border-zinc-700 px-6 py-3.5 text-sm font-semibold text-white transition-all active:scale-[0.985]"
               >
                 <span>Browse All Verified Schemes</span>
                 <ArrowRight className="w-4 h-4 text-zinc-400" />

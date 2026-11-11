@@ -25,8 +25,8 @@ export default function Navbar({
               <span className="font-bold text-base sm:text-lg text-[#111111] tracking-tight">
                 SchemeSathi
               </span>
-              <span className="text-[10px] font-mono tracking-widest uppercase font-bold text-zinc-400 hidden sm:inline">
-                PUBLIC SERVICE
+              <span className="text-xs text-zinc-400 font-medium hidden sm:inline">
+                Civic Welfare Platform
               </span>
             </div>
           </div>

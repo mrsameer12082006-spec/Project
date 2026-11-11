@@ -65,7 +65,7 @@ export default function ResultCard({
 
         <div className="bg-[#F4F3EE] border border-[#E5E3DC] rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <span className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider block">
+            <span className="text-xs font-semibold text-zinc-500 block">
               Government Benefit:
             </span>
             <div className="text-xl sm:text-2xl font-extrabold text-[#111111] mt-0.5 metric-tabular">
@@ -83,7 +83,7 @@ export default function ResultCard({
         
         {/* Rules */}
         <div className="bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 space-y-2">
-          <strong className="text-zinc-800 font-bold block text-xs uppercase tracking-wider font-mono">
+          <strong className="text-zinc-800 font-bold block text-xs">
             Verified Rules:
           </strong>
           <ul className="space-y-1.5 text-zinc-700">

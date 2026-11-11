@@ -8,7 +8,7 @@ export default function DisclaimerBanner() {
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
           <span>Public service platform grounded in verified central ministry guidelines · 100% Free</span>
         </span>
-        <span className="text-zinc-400 font-mono text-[11px] hidden sm:inline">
+        <span className="text-zinc-500 text-xs hidden sm:inline">
           Official eligibility guidance · Direct central rules
         </span>
       </div>

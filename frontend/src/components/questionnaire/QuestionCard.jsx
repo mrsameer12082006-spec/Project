@@ -76,7 +76,7 @@ export default function QuestionCard({
                     </span>
                   </div>
 
-                  <span className="text-zinc-400 group-hover:text-[#111111] group-hover:translate-x-1 transition-all duration-150 font-mono text-sm">
+                  <span className="text-zinc-400 group-hover:text-[#111111] group-hover:translate-x-1 transition-all duration-150 text-sm">
                     →
                   </span>
                 </button>
