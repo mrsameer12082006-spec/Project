@@ -123,8 +123,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </p>
         </div>
 
-        {/* Profile Switcher Tabs (Apple Glassmorphic Segmented Control - Image 5 Redesign) */}
-        <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full w-fit shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)] text-xs font-semibold self-start md:self-auto">
+        {/* Profile Switcher Tabs (Apple Glassmorphic Segmented Control) */}
+        <div className="spatial-segmented-track flex items-center gap-1 text-xs font-semibold self-start md:self-auto">
           {Object.values(baseProfiles).map(p => {
             const isSelected = activeProfile === p.id;
             return (
@@ -132,10 +132,10 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 key={p.id}
                 type="button"
                 onClick={() => setActiveProfile(p.id)}
-                className={`relative px-4 py-2 rounded-full font-semibold transition-all duration-200 ${
+                className={`relative px-4 py-2 transition-all duration-200 ${
                   isSelected
-                    ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)]'
-                    : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
+                    ? 'spatial-segmented-pill-active'
+                    : 'spatial-segmented-pill-inactive'
                 }`}
               >
                 <span>{p.label}</span>
@@ -150,12 +150,12 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           ─────────────────────────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto w-full">
         
-        <div className="rounded-3xl bg-white border border-zinc-200/90 p-7 sm:p-10 shadow-sm flex flex-col justify-between space-y-7">
+        <div className="rounded-3xl spatial-glass p-7 sm:p-10 shadow-sm flex flex-col justify-between space-y-7">
           
           <div className="space-y-6">
             
-            {/* Top Bar with Profile Info & Apple Glassmorphic Dwelling Toggle (Image 2 Redesign) */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-100">
+            {/* Top Bar with Profile Info & Apple Glassmorphic Dwelling Toggle */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-black/[0.06]">
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-bold text-zinc-900">
@@ -171,14 +171,14 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
               </div>
 
               {/* Apple Glassmorphic Segmented Control (Dwelling Toggle) */}
-              <div className="flex items-center gap-1 bg-zinc-200/40 backdrop-blur-md border border-black/[0.06] p-1 rounded-full text-xs font-semibold w-fit shadow-[inset_0_1px_1px_rgba(0,0,0,0.04)]">
+              <div className="spatial-segmented-track flex items-center gap-1 text-xs font-semibold w-fit">
                 <button
                   type="button"
                   onClick={() => setIsKutchaHouse(true)}
-                  className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
+                  className={`px-3.5 py-1.5 transition-all duration-200 ${
                     isKutchaHouse
-                      ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
-                      : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
+                      ? 'spatial-segmented-pill-active'
+                      : 'spatial-segmented-pill-inactive'
                   }`}
                 >
                   Kutcha Dwelling
@@ -186,10 +186,10 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 <button
                   type="button"
                   onClick={() => setIsKutchaHouse(false)}
-                  className={`px-3.5 py-1.5 rounded-full transition-all duration-200 ${
+                  className={`px-3.5 py-1.5 transition-all duration-200 ${
                     !isKutchaHouse
-                      ? 'bg-white text-zinc-900 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_1.5px_rgba(0,0,0,0.04),0_0_0_0.5px_rgba(0,0,0,0.04)] font-semibold'
-                      : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.03]'
+                      ? 'spatial-segmented-pill-active'
+                      : 'spatial-segmented-pill-inactive'
                   }`}
                 >
                   Pucca Dwelling
@@ -209,48 +209,54 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
               </div>
             </div>
 
-            {/* Wise-Style Segmented Proportional Grant Bar */}
-            <div className="space-y-2 pt-1">
-              <div className="h-2.5 w-full bg-zinc-100 rounded-full overflow-hidden flex gap-1 p-0.5">
+            {/* 3D Extruded Isometric Compounding Blocks (Moment 2: 79% / 20% / 1% Honest Proportions) */}
+            <div className="space-y-3 pt-2">
+              <div className="h-6 w-full bg-zinc-100/80 rounded-xl p-1 flex gap-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] border border-black/[0.04]">
                 {pmJayPct > 0 && (
                   <motion.div
                     style={{ width: `${pmJayPct}%` }}
-                    className="bg-sky-600 h-full rounded-full"
-                    transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                  />
+                    className="isometric-block-blue h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
+                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                  >
+                    <span className="hidden sm:inline px-1 truncate drop-shadow-xs">79% Healthcare</span>
+                  </motion.div>
                 )}
                 {pmAwasPct > 0 && (
                   <motion.div
                     style={{ width: `${pmAwasPct}%` }}
-                    className="bg-amber-600 h-full rounded-full"
-                    transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                  />
+                    className="isometric-block-amber h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
+                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                  >
+                    <span className="hidden sm:inline px-1 truncate drop-shadow-xs">20% Housing</span>
+                  </motion.div>
                 )}
                 {pmKisanPct > 0 && (
                   <motion.div
                     style={{ width: `${pmKisanPct}%` }}
-                    className="bg-emerald-600 h-full min-w-[14px] rounded-full"
-                    transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                  />
+                    className="isometric-block-emerald h-full min-w-[22px] rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
+                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                  >
+                    <span className="px-1 drop-shadow-xs">1%</span>
+                  </motion.div>
                 )}
               </div>
 
-              {/* Clean Metric Legend */}
+              {/* Honest Proportional Metric Legend */}
               <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-zinc-600 pt-1">
                 <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-sky-600 shrink-0" />
-                  <span>Healthcare Cover: <strong>₹5,00,000</strong> ({pmJayPct.toFixed(0)}%)</span>
+                  <span className="w-2.5 h-2.5 rounded-sm bg-sky-600 shadow-2xs shrink-0" />
+                  <span>Healthcare Cover: <strong className="text-zinc-900 font-bold">₹5,00,000</strong> ({pmJayPct.toFixed(0)}%)</span>
                 </div>
                 {pmAwasActive && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
-                    <span>Housing Grant: <strong>₹1,30,000</strong> ({pmAwasPct.toFixed(0)}%)</span>
+                    <span className="w-2.5 h-2.5 rounded-sm bg-amber-600 shadow-2xs shrink-0" />
+                    <span>Housing Grant: <strong className="text-zinc-900 font-bold">₹1,30,000</strong> ({pmAwasPct.toFixed(0)}%)</span>
                   </div>
                 )}
                 {pmKisanActive && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600 shrink-0" />
-                    <span>Farmer DBT: <strong>₹6,000</strong> ({pmKisanPct.toFixed(0)}%)</span>
+                    <span className="w-2.5 h-2.5 rounded-sm bg-emerald-600 shadow-2xs shrink-0" />
+                    <span>Farmer DBT: <strong className="text-zinc-900 font-bold">₹6,000</strong> ({pmKisanPct.toFixed(0)}%)</span>
                   </div>
                 )}
               </div>
@@ -265,8 +271,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                     key={sc.id}
                     className={`rounded-2xl p-4 sm:p-5 border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${
                       sc.active
-                        ? 'bg-zinc-50/70 hover:bg-zinc-100/70 border-zinc-200/80'
-                        : 'bg-zinc-50/20 border-zinc-200/40 opacity-50'
+                        ? 'spatial-glass hover:border-zinc-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_8px_rgba(0,0,0,0.02)]'
+                        : 'bg-zinc-50/40 border-zinc-200/40 opacity-50'
                     }`}
                   >
                     <div className="flex items-start sm:items-center gap-3.5">
