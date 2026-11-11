@@ -65,6 +65,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Direct DBT into Aadhaar-linked Bank Account',
       amount: '₹6,000 / yr',
       benefitTag: 'Direct Bank DBT',
+      colorClass: 'text-emerald-700',
+      iconBoxClass: 'bg-emerald-50 border-emerald-200/80 text-emerald-700 shadow-2xs',
       active: pmKisanActive,
       icon: Sprout,
       inactiveReason: 'Requires cultivable agricultural land title in revenue records'
@@ -77,6 +79,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Direct Treasury Construction Subsidy + MGNREGA wages',
       amount: '₹1,30,000 Grant',
       benefitTag: 'Direct Construction Subsidy',
+      colorClass: 'text-amber-700',
+      iconBoxClass: 'bg-amber-50 border-amber-200/80 text-amber-700 shadow-2xs',
       active: pmAwasActive,
       icon: HomeIcon,
       inactiveReason: isKutchaHouse ? 'Not selected under senior citizen priority profile' : 'Dwelling is already a permanent pucca structure'
@@ -89,6 +93,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Cashless hospitalization across 27,000+ hospitals',
       amount: '₹5,00,000 / yr',
       benefitTag: 'Annual Cashless Hospital Cover',
+      colorClass: 'text-sky-700',
+      iconBoxClass: 'bg-sky-50 border-sky-200/80 text-sky-700 shadow-2xs',
       active: pmJayActive,
       icon: ShieldPlus,
       inactiveReason: null
@@ -199,25 +205,25 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
 
             {/* Wise-Style Segmented Proportional Grant Bar */}
             <div className="space-y-2 pt-1">
-              <div className="h-2.5 w-full bg-zinc-100 rounded-full overflow-hidden flex shadow-inner p-0.5">
+              <div className="h-2.5 w-full bg-zinc-100 rounded-full overflow-hidden flex gap-1 p-0.5">
                 {pmJayPct > 0 && (
                   <motion.div
                     style={{ width: `${pmJayPct}%` }}
-                    className="bg-sky-600 h-full first:rounded-l-full last:rounded-r-full"
+                    className="bg-sky-600 h-full rounded-full"
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
                 {pmAwasPct > 0 && (
                   <motion.div
                     style={{ width: `${pmAwasPct}%` }}
-                    className="bg-amber-600 h-full first:rounded-l-full last:rounded-r-full"
+                    className="bg-amber-600 h-full rounded-full"
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
                 {pmKisanPct > 0 && (
                   <motion.div
                     style={{ width: `${pmKisanPct}%` }}
-                    className="bg-emerald-600 h-full first:rounded-l-full last:rounded-r-full"
+                    className="bg-emerald-600 h-full min-w-[14px] rounded-full"
                     transition={{ type: 'spring', stiffness: 200, damping: 25 }}
                   />
                 )}
@@ -258,9 +264,9 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                     }`}
                   >
                     <div className="flex items-start sm:items-center gap-3.5">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border transition-colors ${
                         sc.active
-                          ? 'bg-white border-zinc-200 shadow-2xs text-[#111111]'
+                          ? sc.iconBoxClass
                           : 'bg-zinc-100 border-zinc-200 text-zinc-400'
                       }`}>
                         <Icon className="w-5 h-5" />
@@ -286,7 +292,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                       </div>
                       <div className="text-xs font-semibold">
                         {sc.active ? (
-                          <span className="text-emerald-700">
+                          <span className={sc.colorClass}>
                             {sc.benefitTag}
                           </span>
                         ) : (
