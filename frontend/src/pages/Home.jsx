@@ -82,14 +82,14 @@ export default function Home({ onStart, onBrowse }) {
                 </span>
               </div>
 
-              {/* Headline (Clean, Bold, Solid — No AI Highlighter Clichés) */}
+              {/* Display Headline */}
               <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
                 Find Government Schemes You Qualify For — One Simple Question at a Time.
               </h1>
 
               {/* Plain Language Subtitle */}
               <p className="max-w-xl text-base sm:text-lg leading-relaxed text-[#57534E]">
-                No bureaucratic forms, no login needed. Answer simple prompts one by one with voice or tap, verified against official central ministry guidelines.
+                No bureaucratic forms, no login needed. Answer 4 simple questions one by one with voice or tap, verified against official central ministry guidelines.
               </p>
 
               {/* High-Impact Action Row (Nike-Style Pill Buttons) */}
@@ -174,9 +174,9 @@ export default function Home({ onStart, onBrowse }) {
                 {/* Top Dark Console Header Bar */}
                 <div className="flex items-center justify-between rounded-t-[18px] bg-[#111111] px-5 py-3.5 text-white">
                   <div className="flex items-center gap-2.5">
-                    <span className="h-2 w-2 rounded-full bg-[#22C55E] shadow-[0_0_8px_#22C55E]" />
+                    <span className="h-2 w-2 rounded-full bg-[#22C55E]" />
                     <span className="text-xs font-bold tracking-wider uppercase text-stone-200 font-mono">
-                      LIVE ELIGIBILITY SIMULATOR
+                      LIVE ELIGIBILITY PREVIEW
                     </span>
                   </div>
                   
@@ -202,7 +202,7 @@ export default function Home({ onStart, onBrowse }) {
                     <span>Question 1 of 4: Agricultural Landholding</span>
                   </div>
 
-                  {/* Question Prompt */}
+                  {/* Question Text */}
                   <div className="space-y-1">
                     <h2 className="text-lg sm:text-2xl font-bold text-[#0C0A09] leading-snug">
                       Do you or your family own cultivable agricultural land?
@@ -343,7 +343,7 @@ export default function Home({ onStart, onBrowse }) {
           </button>
         </div>
 
-        {/* 3 Crisp Passbook Cards with Lucide Icons (Zero AI Pastel Clichés) */}
+        {/* 3 Featured Passbook Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Card 1: PM-KISAN (Farmer Support) */}
@@ -536,7 +536,7 @@ export default function Home({ onStart, onBrowse }) {
               </h4>
 
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                Answer simple, jargon-free prompts one by one using voice input or touch. No complicated forms or initial document uploads.
+                Answer simple, jargon-free questions one by one using voice input or touch. No complicated forms or initial document uploads.
               </p>
             </div>
 

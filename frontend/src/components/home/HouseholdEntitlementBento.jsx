@@ -2,18 +2,9 @@ import React, { useState } from 'react';
 import {
   TrendingUp,
   ArrowRight,
-  ShieldCheck,
-  CheckCircle2,
-  Building2,
-  CreditCard,
-  FileCheck,
-  Sparkles,
-  Layers,
   Sprout,
   Home as HomeIcon,
-  ShieldPlus,
-  Zap,
-  Lock
+  ShieldPlus
 } from 'lucide-react';
 import CountUp from '../common/CountUp';
 
@@ -131,11 +122,11 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
         <div className="space-y-2 max-w-2xl">
           <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200/80 px-3.5 py-1 text-xs font-bold text-emerald-900 shadow-2xs">
             <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-            <span>HOUSEHOLD ENTITLEMENT ACCUMULATOR</span>
+            <span>ESTIMATED ANNUAL WELFARE BENEFIT</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111111] leading-tight">
-            Watch Your Family's Welfare Entitlement Bloom & Accumulate.
+            How Government Welfare Entitlements Compound for Your Family.
           </h2>
 
           <p className="text-sm text-zinc-600 leading-relaxed">
@@ -163,12 +154,12 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       </div>
 
       {/* ───────────────────────────────────────────────────────────
-          FINGROW-INSPIRED ASYMMETRIC BENTO GRID
+          PROMINENT HOUSEHOLD ENTITLEMENT CARD
           ─────────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="max-w-4xl mx-auto w-full">
         
-        {/* BENTO CARD 1 (7 Cols): Deep Obsidian Household Entitlement Hub */}
-        <div className="lg:col-span-7 relative overflow-hidden rounded-3xl bg-[#0B1310] text-white p-7 sm:p-9 flex flex-col justify-between shadow-[0_24px_48px_-12px_rgba(11,19,16,0.35),0_0_0_1px_rgba(255,255,255,0.06)] min-h-[460px]">
+        {/* Deep Obsidian Household Entitlement Hub */}
+        <div className="relative overflow-hidden rounded-3xl bg-[#0B1310] text-white p-7 sm:p-10 shadow-[0_24px_48px_-12px_rgba(11,19,16,0.35),0_0_0_1px_rgba(255,255,255,0.06)] min-h-[460px] flex flex-col justify-between">
           
           {/* Ambient Radial Glow */}
           <div
@@ -180,9 +171,9 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
             
             {/* Top Bar with Status Tag */}
             <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-mono font-bold text-emerald-300 border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>DYNAMIC COMBINED ENTITLEMENT</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-mono font-bold text-emerald-300 border border-white/10">
+                <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                <span>COMBINED ANNUAL ENTITLEMENT</span>
               </span>
 
               <span className="text-xs font-mono text-zinc-400">
@@ -230,7 +221,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                       <div className="font-mono font-extrabold text-sm text-white">
                         {sc.amount}
                       </div>
-                      <div className="text-[10px] font-mono uppercase text-zinc-400">
+                      <div className="text-[10px] font-mono uppercase text-zinc-400 font-semibold">
                         {sc.active ? '● QUALIFIED' : '○ EXCLUDED'}
                       </div>
                     </div>
@@ -242,9 +233,9 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </div>
 
           {/* Action Row */}
-          <div className="relative z-10 pt-6 mt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div className="relative z-10 pt-6 mt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
             <span className="text-xs text-zinc-400">
-              Deterministic rule evaluation based on official gazette limits.
+              Evaluated strictly according to official central ministry guidelines.
             </span>
 
             <button
@@ -252,202 +243,11 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
               onClick={onStart}
               className="inline-flex items-center gap-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-[#0B1310] font-extrabold px-6 py-3 text-xs sm:text-sm shadow-md transition-all active:scale-[0.985]"
             >
-              <span>Verify Your Exact Household</span>
+              <span>Check Your Household Eligibility</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
 
-        </div>
-
-        {/* BENTO CARD 2 (5 Cols): Direct Central Treasury Pipeline */}
-        <div className="lg:col-span-5 rounded-3xl bg-white border border-zinc-200/90 p-7 sm:p-8 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
-          <div className="space-y-5">
-            
-            <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-[11px] font-bold px-2.5 py-1 rounded-md">
-                <Zap className="w-3.5 h-3.5 text-emerald-600" />
-                <span>DIRECT BENEFIT PIPELINE</span>
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400 font-bold">
-                PFMS CONNECTED
-              </span>
-            </div>
-
-            <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-[#111111] leading-snug">
-                Zero Middlemen. Direct Treasury Conduit.
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-600 mt-1 leading-relaxed">
-                Central welfare subsidies disburse directly from the Consolidated Fund of India into the citizen's Aadhaar-seeded bank account.
-              </p>
-            </div>
-
-            {/* Visual Pipeline Conduit Animation */}
-            <div className="space-y-3 py-2">
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-zinc-50 border border-zinc-200">
-                <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center font-bold text-xs shrink-0">
-                  <Building2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-[#111111]">
-                    Central Ministry Treasury
-                  </div>
-                  <div className="text-[11px] font-mono text-zinc-500">
-                    Direct RBI / PFMS Authorization
-                  </div>
-                </div>
-              </div>
-
-              {/* Animated Connecting Arrow */}
-              <div className="flex items-center justify-center gap-2 py-0.5 text-emerald-700 text-xs font-mono font-bold">
-                <span className="h-4 w-[2px] bg-emerald-500" />
-                <span>100% Direct DBT (Zero Commission Cut)</span>
-                <span className="h-4 w-[2px] bg-emerald-500" />
-              </div>
-
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-emerald-50/60 border border-emerald-200/80">
-                <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
-                  <CreditCard className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-emerald-950">
-                    Beneficiary Bank Account
-                  </div>
-                  <div className="text-[11px] font-mono text-emerald-800">
-                    Aadhaar-Seeded DBT Account
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="pt-4 border-t border-zinc-100 grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <div className="text-[10px] font-mono uppercase text-zinc-400 font-bold">
-                COMMISSION LEAKAGE
-              </div>
-              <div className="text-lg font-extrabold text-emerald-700 font-mono mt-0.5">
-                0.00%
-              </div>
-            </div>
-            <div>
-              <div className="text-[10px] font-mono uppercase text-zinc-400 font-bold">
-                RETAINED BY CITIZEN
-              </div>
-              <div className="text-lg font-extrabold text-[#111111] font-mono mt-0.5">
-                100.00%
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* BENTO CARD 3 (6 Cols): Zero-Document Initial Barrier */}
-        <div className="lg:col-span-6 rounded-3xl bg-white border border-zinc-200/90 p-7 sm:p-8 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
-          <div className="space-y-4">
-            
-            <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 bg-zinc-100 border border-zinc-200 text-zinc-800 text-[11px] font-bold px-2.5 py-1 rounded-md">
-                <FileCheck className="w-3.5 h-3.5 text-zinc-700" />
-                <span>ACCESSIBILITY FIRST</span>
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400 font-bold">
-                ZERO INITIAL UPLOADS
-              </span>
-            </div>
-
-            <div className="space-y-1.5">
-              <h3 className="text-xl font-bold text-[#111111]">
-                Check Eligibility First. Gather Paperwork Second.
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                Traditional portals demand 10+ PDF uploads before showing whether you qualify. SchemeSathi flips the paradigm: answer 4 plain-language prompts in 60 seconds with voice or touch, then receive an exact 1-page paper checklist to take to your village CSC kiosk.
-              </p>
-            </div>
-
-            {/* Checklist Comparison Pills */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-              <div className="rounded-xl p-3 bg-red-50/40 border border-red-200 text-xs space-y-1">
-                <div className="font-bold text-red-900 flex items-center gap-1.5">
-                  <span>✕ Traditional Portals</span>
-                </div>
-                <div className="text-[11px] text-red-700">
-                  12-page PDF forms, mandatory document scanning, frequent OTP timeouts.
-                </div>
-              </div>
-
-              <div className="rounded-xl p-3 bg-emerald-50/60 border border-emerald-200 text-xs space-y-1">
-                <div className="font-bold text-emerald-900 flex items-center gap-1.5">
-                  <span>✓ SchemeSathi Flow</span>
-                </div>
-                <div className="text-[11px] text-emerald-800">
-                  4 intuitive prompts, voice playback, zero uploads, instant CSC paper slip.
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="pt-4 mt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500 font-mono">
-            <span>No Aadhaar Required to Check</span>
-            <span className="text-[#111111] font-bold">Zero PII Stored</span>
-          </div>
-        </div>
-
-        {/* BENTO CARD 4 (6 Cols): 100% Deterministic Gazette Policy Engine */}
-        <div className="lg:col-span-6 rounded-3xl bg-white border border-zinc-200/90 p-7 sm:p-8 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all">
-          <div className="space-y-4">
-            
-            <div className="flex items-center justify-between">
-              <span className="inline-flex items-center gap-1.5 bg-zinc-100 border border-zinc-200 text-zinc-800 text-[11px] font-bold px-2.5 py-1 rounded-md">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>OFFICIAL GAZETTE GROUNDED</span>
-              </span>
-              <span className="font-mono text-[11px] text-zinc-400 font-bold">
-                AUDITED: 2026
-              </span>
-            </div>
-
-            <div className="space-y-1.5">
-              <h3 className="text-xl font-bold text-[#111111]">
-                Zero Hallucinations. Deterministic Ministry Logic.
-              </h3>
-              <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                We reject opaque AI guessing for citizen welfare. Every scheme requirement is codified as deterministic boolean rules extracted verbatim from official government gazettes and ministry notification guidelines.
-              </p>
-            </div>
-
-            {/* Code Policy Matrix Mock */}
-            <div className="rounded-xl bg-zinc-900 text-zinc-300 p-3.5 font-mono text-[11px] space-y-1 border border-zinc-800 shadow-inner">
-              <div className="text-zinc-500">
-                // Official Gazette Verification Engine
-              </div>
-              <div className="text-emerald-400">
-                RULE_PMKISAN_LAND == true &rarr; PASS (Cultivable Land)
-              </div>
-              <div className="text-emerald-400">
-                RULE_PMKISAN_TAX == false &rarr; PASS (Non-Taxpayer)
-              </div>
-              <div className="text-emerald-400">
-                RULE_PMAY_HOUSE == kutcha &rarr; PASS (Homeless / Kutcha)
-              </div>
-            </div>
-
-          </div>
-
-          <div className="pt-4 mt-3 border-t border-zinc-100 flex items-center justify-between text-xs text-zinc-500">
-            <span className="font-mono text-[11px]">
-              Grounded in Gazette of India
-            </span>
-            <button
-              type="button"
-              onClick={onBrowse}
-              className="font-bold text-[#111111] hover:underline flex items-center gap-1"
-            >
-              <span>Explore Rule Books</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
         </div>
 
       </div>

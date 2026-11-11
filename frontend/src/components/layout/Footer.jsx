@@ -27,7 +27,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
             {/* Left 8 Cols: Pitch & Assurance */}
             <div className="lg:col-span-8 space-y-4">
               <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 border border-white/10 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 <span>100% Free · Zero Intermediaries · Official Gazette Grounded</span>
               </div>
 
@@ -36,7 +36,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
               </h2>
 
               <p className="max-w-2xl text-sm sm:text-base text-zinc-300 leading-relaxed">
-                No middlemen, no bribery, no bureaucratic jargon. Answer 4 simple prompts in 60 seconds and print an instant CSC document slip to submit at your nearest village kiosk.
+                No middlemen, no bribery, no bureaucratic jargon. Answer 4 simple questions in 60 seconds and print an instant CSC document slip to submit at your nearest village kiosk.
               </p>
             </div>
 
@@ -240,13 +240,8 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
             <span>Open Source Civic Technology</span>
           </div>
 
-          <div className="flex items-center gap-3 font-mono text-[10px] text-zinc-400">
-            <span className="inline-flex items-center gap-1 text-emerald-700 font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              <span>DATABASE ACTIVE</span>
-            </span>
-            <span>·</span>
-            <span>REF: #SS-2026-MVP</span>
+          <div className="text-[11px] text-zinc-400 font-medium">
+            Grounded directly in official Gazette of India criteria · Zero user data retained
           </div>
         </div>
 
