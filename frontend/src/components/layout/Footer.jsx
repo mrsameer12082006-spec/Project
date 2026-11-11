@@ -11,7 +11,6 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
           ─────────────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-10">
         <div className="rounded-3xl bg-[#111111] text-white p-8 sm:p-12 lg:p-14 border border-zinc-800 shadow-xl">
-          
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left 8 Cols: Pitch & Assurance */}
@@ -73,7 +72,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
               An independent, non-commercial public service helping underserved rural and semi-urban Indian households discover and claim statutory government welfare benefits without middlemen.
             </p>
 
-            <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 rounded-lg w-fit">
+            <div className="flex items-center gap-2 text-xs text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-3 py-1.5 rounded-lg w-fit">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
               <span>Gazette Sync: 2026 Central Rules Active</span>
             </div>
@@ -81,7 +80,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
 
           {/* Column 2: Central Ministries & Official Portals (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="font-bold text-[#111111] uppercase tracking-wider text-[11px] font-mono">
+            <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
               Official Central Portals
             </div>
             <ul className="space-y-2 text-xs">
@@ -145,7 +144,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
 
           {/* Column 3: Citizen & Kiosk Tools (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="font-bold text-[#111111] uppercase tracking-wider text-[11px] font-mono">
+            <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
               Citizen & Kiosk Tools
             </div>
             <ul className="space-y-2 text-xs">
@@ -190,7 +189,7 @@ export default function Footer({ onStart, onBrowse, setScreen }) {
 
           {/* Column 4: Public Guarantees & Privacy (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
-            <div className="font-bold text-[#111111] uppercase tracking-wider text-[11px] font-mono">
+            <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
               Public Charter
             </div>
             <ul className="space-y-2 text-xs text-zinc-600">
