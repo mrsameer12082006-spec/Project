@@ -668,35 +668,35 @@ export default function Home({ onStart, onBrowse }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* STEP 01: Voice & Tap Interactive Simulation */}
-          <div className="group rounded-3xl bg-white border border-zinc-200/90 p-6 flex flex-col justify-between shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 space-y-5">
+          <div className="group rounded-3xl spatial-glass p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 space-y-5">
             
-            {/* Clerk-Style Micro-UI Stage: Voice Wave & Keycap Simulation */}
-            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-zinc-200/80 p-4 flex flex-col justify-between overflow-hidden relative group-hover:border-zinc-300 transition-all">
+            {/* Micro-UI Stage: Voice Wave & Keycap Simulation */}
+            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-black/[0.06] p-4 flex flex-col justify-between overflow-hidden relative transition-all">
               
               {/* Mini Console Header */}
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white text-[10px] font-bold text-zinc-700 border border-zinc-200 shadow-2xs">
-                  <Sprout className="w-3 h-3 text-emerald-600" />
+                  <Sprout className="w-3.5 h-3.5 text-emerald-600" />
                   <span>Question 1 of 4</span>
                 </span>
 
                 {/* Oscillating Voice Wave Visualizer */}
-                <div className="flex items-center gap-1 bg-white px-2 py-0.5 rounded-full border border-zinc-200 shadow-2xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <div className="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-full border border-zinc-200 shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span className="flex items-end gap-[1.5px] h-3 w-3.5">
                     <span className="w-[1.5px] bg-emerald-600 rounded-full animate-eq-bar-1" />
                     <span className="w-[1.5px] bg-emerald-600 rounded-full animate-eq-bar-2" />
                     <span className="w-[1.5px] bg-emerald-600 rounded-full animate-eq-bar-3" />
                   </span>
-                  <span className="text-[9px] font-bold text-zinc-600">VOICE ACTIVE</span>
+                  <span className="text-[9px] font-bold text-zinc-700">VOICE ACTIVE</span>
                 </div>
               </div>
 
               {/* Simulated Keycap Buttons */}
               <div className="space-y-1.5">
-                <div className="bg-emerald-50 border border-emerald-400/80 rounded-xl p-2 flex items-center justify-between text-xs shadow-2xs transition-transform group-hover:scale-[1.02]">
+                <div className="spatial-glass-emerald rounded-xl p-2.5 flex items-center justify-between text-xs transition-transform group-hover:scale-[1.01]">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-md bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">
+                    <span className="w-5 h-5 rounded-md bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0 shadow-2xs">
                       1
                     </span>
                     <span className="font-bold text-[11px] text-emerald-950">
@@ -706,7 +706,7 @@ export default function Home({ onStart, onBrowse }) {
                   <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
                 </div>
 
-                <div className="bg-white/80 border border-zinc-200/80 rounded-xl p-2 flex items-center justify-between text-xs opacity-50">
+                <div className="bg-white/70 border border-zinc-200/80 rounded-xl p-2 flex items-center justify-between text-xs opacity-50">
                   <div className="flex items-center gap-2">
                     <span className="w-5 h-5 rounded-md bg-zinc-100 text-zinc-700 font-bold text-[10px] flex items-center justify-center shrink-0">
                       2
@@ -719,7 +719,7 @@ export default function Home({ onStart, onBrowse }) {
               </div>
 
               {/* Progress Track */}
-              <div className="w-full bg-zinc-200/80 h-1 rounded-full overflow-hidden">
+              <div className="w-full bg-zinc-200/80 h-1.5 rounded-full overflow-hidden">
                 <div className="bg-[#111111] h-full w-1/4 rounded-full" />
               </div>
             </div>
@@ -750,26 +750,26 @@ export default function Home({ onStart, onBrowse }) {
 
           </div>
 
-          {/* STEP 02: Attio-Style Deterministic Gazette Logic Stage */}
-          <div className="group rounded-3xl bg-white border border-zinc-200/90 p-6 flex flex-col justify-between shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 space-y-5">
+          {/* STEP 02: Deterministic Logic Stage */}
+          <div className="group rounded-3xl spatial-glass p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 space-y-5">
             
-            {/* Clerk-Style Micro-UI Stage: Logic Verification Nodes */}
-            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-zinc-200/80 p-4 flex flex-col justify-between overflow-hidden relative group-hover:border-zinc-300 transition-all">
+            {/* Micro-UI Stage: Logic Verification Nodes */}
+            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-black/[0.06] p-4 flex flex-col justify-between overflow-hidden relative transition-all">
               
               {/* Header Badge */}
               <div className="flex items-center justify-between text-xs">
                 <span className="font-bold text-[10px] text-zinc-600 uppercase tracking-wider flex items-center gap-1.5">
                   <FileCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Gazette Rule Verification</span>
+                  <span>Rule Verification</span>
                 </span>
-                <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/70">
+                <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
                   3/3 PASSED
                 </span>
               </div>
 
               {/* Clean Rule Verification Criteria */}
               <div className="space-y-1.5">
-                <div className="rounded-lg bg-white p-2 border border-zinc-200 flex items-center justify-between text-xs shadow-2xs">
+                <div className="rounded-lg bg-white p-2 border border-zinc-200/90 flex items-center justify-between text-xs shadow-2xs">
                   <span className="text-[11px] font-medium text-zinc-700 truncate">
                     Cultivable Agricultural Land Title
                   </span>
@@ -779,7 +779,7 @@ export default function Home({ onStart, onBrowse }) {
                   </span>
                 </div>
 
-                <div className="rounded-lg bg-white p-2 border border-zinc-200 flex items-center justify-between text-xs shadow-2xs">
+                <div className="rounded-lg bg-white p-2 border border-zinc-200/90 flex items-center justify-between text-xs shadow-2xs">
                   <span className="text-[11px] font-medium text-zinc-700 truncate">
                     Kutcha or Temporary Dwelling
                   </span>
@@ -789,9 +789,9 @@ export default function Home({ onStart, onBrowse }) {
                   </span>
                 </div>
 
-                <div className="rounded-lg bg-white p-2 border border-zinc-200 flex items-center justify-between text-xs shadow-2xs">
+                <div className="rounded-lg bg-white p-2 border border-zinc-200/90 flex items-center justify-between text-xs shadow-2xs">
                   <span className="text-[11px] font-medium text-zinc-700 truncate">
-                    Socio-Economic Deprivation (D1–D7)
+                    Socio-Economic Deprivation Criteria
                   </span>
                   <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded">
                     <Check className="w-2.5 h-2.5 stroke-[3]" />
@@ -803,7 +803,7 @@ export default function Home({ onStart, onBrowse }) {
               {/* Status Line */}
               <div className="text-[10px] text-zinc-500 font-medium flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-                <span>Verified against central ministry guidelines · Zero intermediaries</span>
+                <span>Verified against official guidelines · Zero intermediaries</span>
               </div>
             </div>
 
@@ -833,26 +833,34 @@ export default function Home({ onStart, onBrowse }) {
 
           </div>
 
-          {/* STEP 03: Stripe Tax / Kiosk Thermal Slip Slide-Out */}
-          <div className="group rounded-3xl bg-white border border-zinc-200/90 p-6 flex flex-col justify-between shadow-2xs hover:shadow-lg hover:-translate-y-1 hover:border-zinc-300 transition-all duration-200 space-y-5">
+          {/* STEP 03: 3D Tactile Kiosk Print Slip (Moment 3) */}
+          <div className="group rounded-3xl spatial-glass p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 space-y-5">
             
-            {/* Clerk-Style Micro-UI Stage: Emerging Thermal Receipt */}
-            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-zinc-200/80 p-3 flex flex-col items-center justify-start overflow-hidden relative group-hover:border-zinc-300 transition-all">
+            {/* 3D Tactile Micro-UI Stage: Emerging Thermal Receipt with Realistic Shadow */}
+            <div className="h-44 rounded-2xl bg-[#F7F6F2] border border-black/[0.06] p-3 flex flex-col items-center justify-start overflow-hidden relative perspective-container">
               
-              {/* Printer Hardware Slot */}
-              <div className="w-28 h-1.5 rounded-full bg-zinc-800 mb-2 shadow-xs shrink-0" />
+              {/* Embossed Kiosk Printer Slot */}
+              <div className="w-32 h-2 rounded-full bg-[#18181B] mb-2 shadow-[inset_0_1px_2px_rgba(0,0,0,0.8),0_1px_0_rgba(255,255,255,0.8)] shrink-0" />
 
-              {/* Sliding Receipt Slip (Hover-Reactive Motion) */}
-              <div className="w-full bg-white rounded-xl border border-zinc-300/90 p-3 shadow-sm transition-transform duration-300 group-hover:translate-y-1 space-y-2">
+              {/* 3D Dimensional Paper Slip (Tactile Emerge with CSS 3D Depth) */}
+              <div 
+                style={{
+                  transform: 'perspective(700px) rotateX(10deg) translateY(-2px)',
+                  transformOrigin: 'top center'
+                }}
+                className="w-full bg-white rounded-xl border border-zinc-300/90 p-3 shadow-[0_12px_28px_-4px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.04)] transition-all duration-300 group-hover:rotate-x-0 group-hover:translate-y-1 space-y-2 relative"
+              >
+                {/* Top Paper Highlight */}
+                <div className="absolute inset-x-0 top-0 h-px bg-white" />
                 
                 <div className="flex items-center justify-between border-b border-zinc-100 pb-1.5">
                   <div className="flex items-center gap-1.5">
                     <ReceiptText className="w-3.5 h-3.5 text-zinc-700" />
-                    <span className="font-bold text-[10px] text-[#111111]">
-                      CSC DOCUMENT SLIP
+                    <span className="font-bold text-[10px] text-[#111111] tracking-wide">
+                      CSC APPLICATION SLIP
                     </span>
                   </div>
-                  <span className="text-[9px] font-bold text-zinc-500">
+                  <span className="text-[9px] font-bold text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
                     1-PAGE PDF
                   </span>
                 </div>
