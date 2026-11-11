@@ -61,3 +61,4 @@ Measured via `Performance.getMetrics` under 4× CPU slowdown rate:
 1. **Pure-CSS Base Guarantees Speed:** Because the spatial-glass styling, segmented tracks, and 3D extruded compounding blocks are compiled directly to hardware-composited CSS, there is zero JavaScript main-thread calculation blocking user interactions (TBT: 10 ms).
 2. **Micro-WebGL Shield is Non-Blocking:** The SchemeSathi shield medallion lazy-loads only after first paint and automatically pauses rendering when scrolled offscreen.
 3. **Independent Public Service Trust:** All unverified claims and government-monopoly designations ("statutory", "sovereign", "registry") have been completely replaced with accurate, transparent civic language.
+

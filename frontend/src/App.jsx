@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import Lenis from 'lenis';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -10,6 +11,25 @@ import CscPrintSlip from './components/results/CscPrintSlip';
 import SchemeExplorer from './pages/SchemeExplorer';
 import { evaluateEligibilityLocally, playSuccessChime } from './services/api';
 
+const SchemeSathi3DScene = lazy(() => import('./components/3d/SchemeSathi3DScene'));
+
+class Safe3DErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error) {
+    console.warn('3D Canvas gracefully caught error; continuing in high-speed pure-CSS mode:', error);
+  }
+  render() {
+    if (this.state.hasError) return null;
+    return this.props.children;
+  }
+}
+
 export default function App() {
   const [screen, setScreen] = useState('home'); // 'home' | 'interview' | 'review' | 'results' | 'guide' | 'slip' | 'explorer'
   const language = 'en'; // Strict English Only
@@ -17,6 +37,31 @@ export default function App() {
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState([]);
   const [selectedScheme, setSelectedScheme] = useState(null);
+
+  // ── Lenis Smooth Inertial Scroll (Oryzo.ai Physics) ─────────
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.2
+    });
+
+    let reqId;
+    function raf(time) {
+      lenis.raf(time);
+      reqId = requestAnimationFrame(raf);
+    }
+    reqId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(reqId);
+      lenis.destroy();
+    };
+  }, []);
 
   const handleStartInterview = (initialAnswers) => {
     if (initialAnswers && typeof initialAnswers === 'object') {
@@ -71,6 +116,15 @@ export default function App() {
         mode={mode}
         setMode={setMode}
       />
+
+      {/* Oryzo-Style Persistent 3D Scene (Lazy-loaded, safe boundary) */}
+      {screen === 'home' && (
+        <Safe3DErrorBoundary>
+          <Suspense fallback={null}>
+            <SchemeSathi3DScene />
+          </Suspense>
+        </Safe3DErrorBoundary>
+      )}
 
       {/* 3. Main Viewport */}
       <main className={`flex-1 w-full mx-auto ${screen === 'home' ? 'max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8' : 'max-w-5xl px-4 sm:px-6 py-6 sm:py-8'}`}>
