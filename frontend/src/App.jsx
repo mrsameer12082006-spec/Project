@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import DisclaimerBanner from './components/layout/DisclaimerBanner';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -62,10 +61,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-[#141417] transition-all font-sans selection:bg-[#141417] selection:text-white">
-      {/* 1. Subtle Trust Top Tag */}
-      <DisclaimerBanner />
-
-      {/* 2. Sleek Sticky Header */}
+      {/* 1. Sleek Sticky Header */}
       <Navbar
         currentScreen={screen}
         setScreen={setScreen}
@@ -144,7 +140,11 @@ export default function App() {
 
       {/* 4. Minimalist Footer */}
       <div className="no-print">
-        <Footer language={language} />
+        <Footer
+          onStart={handleStartInterview}
+          onBrowse={handleBrowseSchemes}
+          setScreen={setScreen}
+        />
       </div>
     </div>
   );

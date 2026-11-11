@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
+import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
 
 export default function Home({ onStart, onBrowse }) {
   const [hoveredOption, setHoveredOption] = useState(null);
@@ -497,7 +498,12 @@ export default function Home({ onStart, onBrowse }) {
       </section>
 
       {/* ───────────────────────────────────────────────────────────
-          3. HOW IT WORKS: High-Craft Animated 3-Step Pipeline (No Raw Crosshairs)
+          3. HOUSEHOLD WELFARE GROWTH BENTO (Fingrow / Dribbble Inspired)
+          ─────────────────────────────────────────────────────────── */}
+      <HouseholdEntitlementBento onStart={onStart} onBrowse={onBrowse} />
+
+      {/* ───────────────────────────────────────────────────────────
+          4. HOW IT WORKS: High-Craft Animated 3-Step Pipeline (No Raw Crosshairs)
           ─────────────────────────────────────────────────────────── */}
       <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-1">
