@@ -322,19 +322,19 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </div>
 
           {/* Action Row */}
-          <div className="pt-6 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4">
+          <div className="pt-6 border-t border-black/[0.06] flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
-              <span>Verified official guidelines from Ministry of Agriculture, Rural Development & NHA.</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
+              <span>Grounded directly in official 2026 central ministry welfare guidelines.</span>
             </div>
 
             <button
               type="button"
               onClick={onStart}
-              className="inline-flex items-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-7 py-3.5 text-xs sm:text-sm shadow-sm transition-all active:scale-[0.985]"
+              className="spatial-glass-button-dark inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-xs sm:text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] active:scale-[0.985] group"
             >
               <span>Check Your Household Eligibility</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
+import OryzoMarqueeBanner from '../components/home/OryzoMarqueeBanner';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
 import HeroShieldEmblem from '../components/home/HeroShieldEmblem';
 
@@ -154,15 +155,11 @@ export default function Home({ onStart, onBrowse }) {
         <div className="relative mx-auto max-w-7xl border-x border-[#E5E3DC] px-5 sm:px-8 lg:px-12 py-10 lg:py-16">
           <div className="grid grid-cols-1 items-center gap-10 lg:gap-12 lg:grid-cols-12">
             
-            {/* LEFT 6 COLUMNS: Editorial Pitch & Tactile Controls */}
+            {/* LEFT 6 COLUMNS: Editorial Headline + Vapi Audio + Trust Metrics */}
             <div className="lg:col-span-6 space-y-6">
 
-              {/* SchemeSathi 3D Shield Emblem + Gazette Status + Kiosk Switcher */}
-              <HeroShieldEmblem
-                activeAudience={activeAudience}
-                setActiveAudience={setActiveAudience}
-                className="pb-1"
-              />
+              {/* Minimal SchemeSathi Medallion & Eyebrow */}
+              <HeroShieldEmblem className="pb-1" />
 
               {/* Display Headline with Humanist Italic Accent */}
               <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
@@ -177,11 +174,11 @@ export default function Home({ onStart, onBrowse }) {
               {/* High-Impact Action Row: Primary CTA + Vapi Voice Pill */}
               <div className="flex flex-wrap items-center gap-3.5 pt-1">
                 
-                {/* Primary CTA Button */}
+                {/* Primary CTA Button (Apple-Spec Glassmorphism) */}
                 <button
                   type="button"
                   onClick={() => onStart()}
-                  className="group relative inline-flex items-center gap-3 rounded-full bg-[#111111] px-7 py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-[0_8px_20px_-4px_rgba(17,17,17,0.3)] transition-all duration-150 hover:bg-[#262626] active:scale-[0.985] focus:outline-hidden"
+                  className="spatial-glass-button-dark group relative inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-lg active:scale-[0.985] focus:outline-hidden"
                 >
                   <span className="tracking-tight">Check Your Eligibility</span>
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-xs transition-transform duration-150 group-hover:translate-x-1">
@@ -190,14 +187,14 @@ export default function Home({ onStart, onBrowse }) {
                 </button>
 
                 {/* Vapi-Style Interactive Audio Guide Pill with Live Equalizer & Bilingual Toggle */}
-                <div className="inline-flex items-center rounded-full bg-white border border-zinc-200/90 shadow-2xs p-1">
+                <div className="inline-flex items-center rounded-full spatial-glass border border-zinc-200/90 shadow-2xs p-1">
                   <button
                     type="button"
                     onClick={() => handleToggleAudio()}
                     className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.985] ${
                       isAudioPlaying
-                        ? 'bg-[#111111] text-white shadow-xs'
-                        : 'text-[#111111] hover:bg-zinc-100'
+                        ? 'spatial-glass-button-dark text-white'
+                        : 'text-[#111111] hover:bg-black/[0.04]'
                     }`}
                   >
                     {/* Live Oscillating Audio Equalizer */}
@@ -210,15 +207,15 @@ export default function Home({ onStart, onBrowse }) {
                     <span>{isAudioPlaying ? 'Stop Audio' : 'Audio Guide'}</span>
                   </button>
 
-                  {/* Apple Glassmorphic Bilingual Switcher */}
+                  {/* Bilingual Switcher */}
                   <div className="flex items-center gap-1 border-l border-zinc-200/80 pl-1.5 pr-1 text-[11px] font-bold">
                     <button
                       type="button"
                       onClick={() => handleToggleAudio('en')}
                       className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                         audioLang === 'en'
-                          ? 'bg-[#111111] text-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]'
-                          : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.04]'
+                          ? 'spatial-segmented-pill-active'
+                          : 'text-zinc-500 hover:text-zinc-900'
                       }`}
                     >
                       EN
@@ -228,8 +225,8 @@ export default function Home({ onStart, onBrowse }) {
                       onClick={() => handleToggleAudio('hi')}
                       className={`px-2.5 py-1 rounded-full transition-all duration-200 ${
                         audioLang === 'hi'
-                          ? 'bg-[#111111] text-white shadow-[0_1px_2px_rgba(0,0,0,0.1)]'
-                          : 'text-zinc-500 hover:text-zinc-900 hover:bg-black/[0.04]'
+                          ? 'spatial-segmented-pill-active'
+                          : 'text-zinc-500 hover:text-zinc-900'
                       }`}
                     >
                       हिन्दी
@@ -272,10 +269,9 @@ export default function Home({ onStart, onBrowse }) {
 
             </div>
 
-            {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card (Cal.com + GOV.UK Pattern) */}
+            {/* RIGHT 6 COLUMNS: Apple Glassmorphic Interactive Question 1 Card */}
             <div className="lg:col-span-6 perspective-container">
               
-              {/* Apple Glassmorphic Daylight Form Card with 3D Perspective Tilt */}
               <div 
                 onMouseMove={handleCardMouseMove}
                 onMouseLeave={handleCardMouseLeave}
@@ -295,7 +291,7 @@ export default function Home({ onStart, onBrowse }) {
                   
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1" aria-label="Step 1 of 4">
-                      <span className="h-1.5 w-6 rounded-full bg-[#111111]" />
+                      <span className="h-1.5 w-6 rounded-full bg-emerald-600" />
                       <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
                       <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
                       <span className="h-1.5 w-4 rounded-full bg-zinc-200" />
@@ -344,7 +340,7 @@ export default function Home({ onStart, onBrowse }) {
                           Yes, family owns cultivable land
                         </div>
                         <div className="text-xs text-zinc-500 mt-0.5">
-                          Qualifies for PM-KISAN & landholding welfare
+                          Qualifies for PM-KISAN ₹6k & agricultural safety nets
                         </div>
                       </div>
                     </div>
@@ -366,7 +362,7 @@ export default function Home({ onStart, onBrowse }) {
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 2
-                        ? 'bg-zinc-100/90 border-2 border-zinc-900 shadow-[0_3px_0_0_#18181B]'
+                        ? 'spatial-glass-button border-2 border-zinc-900 shadow-sm'
                         : 'bg-white/70 backdrop-blur-md border border-zinc-200/80 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
@@ -383,7 +379,7 @@ export default function Home({ onStart, onBrowse }) {
                           No agricultural land owned
                         </div>
                         <div className="text-xs text-zinc-500 mt-0.5">
-                          Focus on rural housing (PMAY-G) and healthcare (PM-JAY)
+                          Routes directly to rural housing (PMAY-G) & healthcare (PM-JAY)
                         </div>
                       </div>
                     </div>
@@ -399,28 +395,8 @@ export default function Home({ onStart, onBrowse }) {
 
                 </div>
 
-                {/* Sleek 1-Line Dynamic Micro-Ticker (Image 3 Redesign) */}
-                <div className="rounded-xl spatial-glass p-2.5 sm:p-3 border border-emerald-500/20 flex flex-wrap items-center justify-between gap-2 text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-                    <span className="text-zinc-600 font-medium">Live Reaction:</span>
-                    <span className="font-extrabold text-[#111111] text-sm metric-tabular">
-                      {effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 font-bold text-[11px] border border-emerald-300/70">
-                      {effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}
-                    </span>
-                    <span className="text-zinc-500 text-[11px] hidden sm:inline">
-                      {effectiveOption === 1 ? '· incl. PM-KISAN ₹6k' : '· excl. PM-KISAN (landless)'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Clean Bottom Action Row with Keyboard Shortcut Keycaps */}
-                <div className="pt-1 flex flex-wrap items-center justify-between gap-3 text-xs">
+                {/* Clean Bottom Action Row (Apple Glassmorphism, Image 1 Clean Replacement) */}
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-black/[0.05]">
                   <div className="flex items-center gap-2 text-zinc-500 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>No login or paperwork needed</span>
@@ -437,10 +413,10 @@ export default function Home({ onStart, onBrowse }) {
                     <button
                       type="button"
                       onClick={handleProceed}
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-6 py-2.5 text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_4px_12px_rgba(0,0,0,0.15)] transition-all active:scale-[0.985] group shrink-0 whitespace-nowrap"
+                      className="spatial-glass-button-dark inline-flex items-center justify-center gap-2 rounded-full font-bold px-7 py-3 text-sm text-white shadow-md active:scale-[0.985] group shrink-0 whitespace-nowrap"
                     >
                       <span>Continue to Step 2</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform shrink-0" />
+                      <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0" />
                     </button>
                   </div>
                 </div>
@@ -451,6 +427,9 @@ export default function Home({ onStart, onBrowse }) {
 
           </div>
         </div>
+
+        {/* Oryzo Continuous Kinetic Marquee Ribbon */}
+        <OryzoMarqueeBanner />
       </section>
 
       {/* ───────────────────────────────────────────────────────────

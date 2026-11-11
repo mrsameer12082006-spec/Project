@@ -50,7 +50,7 @@ export default function Navbar({
           <button
             type="button"
             onClick={() => setScreen('interview')}
-            className="inline-flex items-center text-xs font-bold px-4 py-2 rounded-full bg-[#111111] hover:bg-[#262626] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_2px_6px_rgba(0,0,0,0.12)] transition-all active:scale-[0.985]"
+            className="spatial-glass-button-dark inline-flex items-center text-xs font-bold px-4 py-2 rounded-full text-white shadow-sm active:scale-[0.985]"
           >
             Check Eligibility
           </button>

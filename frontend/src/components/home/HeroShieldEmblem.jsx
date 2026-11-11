@@ -194,9 +194,9 @@ export default function HeroShieldEmblem({
   }, [tilt]);
 
   return (
-    <div className={`flex flex-wrap items-center justify-between gap-3 ${className}`}>
+    <div className={`flex items-center gap-3 ${className}`}>
       
-      {/* ── 3D SchemeSathi Shield Emblem + Gazette Status Pill ────── */}
+      {/* ── SchemeSathi Shield Medallion (Tactile 3D Tilt) ────── */}
       <div 
         ref={containerRef}
         onMouseMove={handleMouseMove}
@@ -224,51 +224,19 @@ export default function HeroShieldEmblem({
 
           {/* SchemeSathi Brand Shield (Heraldic Vector Crest) */}
           <div className="relative z-10 w-full h-full rounded-[10px] bg-[#111111] flex items-center justify-center overflow-hidden">
-            {/* Top Specular Inner Rim */}
             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
-            
-            {/* Emerald Core Ambient Light */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(5,150,105,0.4)_0%,transparent_70%)] pointer-events-none" />
-            
-            {/* The SchemeSathi Crest */}
             <CivicCrestIcon className="w-5 h-5 text-emerald-400 stroke-[2] relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.4)]" />
           </div>
 
-          {/* Corner Specular Sparkle */}
           <div className="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 rounded-full bg-white/90 shadow-[0_0_4px_white]" />
         </div>
 
-        {/* Gazette Sync Pill Badge (Image 5 Apple-Spec Glass Design) */}
-        <div className="spatial-glass px-3.5 py-1.5 rounded-full flex items-center gap-2 text-xs font-semibold text-emerald-900 border border-emerald-500/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_8px_rgba(5,150,105,0.06)]">
-          <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse shrink-0" />
-          <span className="tracking-tight">Gazette Sync: 2026 Central Rules Active</span>
+        {/* Minimal Oryzo Eyebrow (No AI Cliches, No Clunky Pills) */}
+        <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-zinc-600 uppercase">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse" />
+          <span>[ 01 / SchemeSathi 2026 Central Welfare Protocol ]</span>
         </div>
-      </div>
-
-      {/* ── Segmented Control: Citizen / CSC Kiosk Toggle (Image 6) ─ */}
-      <div className="spatial-segmented-track flex items-center gap-1 text-xs font-semibold">
-        <button
-          type="button"
-          onClick={() => setActiveAudience('citizen')}
-          className={`px-3.5 py-1.5 transition-all duration-200 ${
-            activeAudience === 'citizen'
-              ? 'spatial-segmented-pill-active'
-              : 'spatial-segmented-pill-inactive'
-          }`}
-        >
-          Citizen
-        </button>
-        <button
-          type="button"
-          onClick={() => setActiveAudience('kiosk')}
-          className={`px-3.5 py-1.5 transition-all duration-200 ${
-            activeAudience === 'kiosk'
-              ? 'spatial-segmented-pill-active'
-              : 'spatial-segmented-pill-inactive'
-          }`}
-        >
-          CSC Kiosk
-        </button>
       </div>
 
     </div>

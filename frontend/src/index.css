@@ -321,26 +321,90 @@ body {
     0 4px 20px -2px rgba(5, 150, 105, 0.14);
 }
 
-/* 3. Tactile Segmented Track (Citizen / CSC Toggle, Category Selectors) */
+/* 3. Tactile Segmented Track (Apple Frosted Glass Track) */
 .spatial-segmented-track {
   background: rgba(0, 0, 0, 0.04);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
   border-radius: 9999px;
   padding: 3px;
 }
 
-/* 4. Active Segmented Pill Slider */
+/* 4. Active Segmented Pill Slider (Apple Glassmorphic High-Craft Pill) */
 .spatial-segmented-pill-active {
-  background: #111111;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 248, 250, 0.92) 100%);
+  color: #111111;
+  border-radius: 9999px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 2px 8px -1px rgba(0, 0, 0, 0.08),
+    0 1px 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+/* Dark Segmented Pill Variant */
+.spatial-segmented-pill-dark-active {
+  background: linear-gradient(180deg, rgba(34, 34, 39, 0.92) 0%, rgba(18, 18, 22, 0.96) 100%);
   color: #FFFFFF;
   border-radius: 9999px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
-    0 2px 6px rgba(0, 0, 0, 0.15),
-    0 8px 16px -2px rgba(0, 0, 0, 0.1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+    0 4px 14px -2px rgba(0, 0, 0, 0.25);
+}
+
+/* Apple-Spec Spatial Glass Button */
+.spatial-glass-button {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(245, 245, 248, 0.82) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 4px 16px -2px rgba(0, 0, 0, 0.06),
+    0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spatial-glass-button:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(250, 250, 252, 0.92) 100%);
+  border-color: rgba(255, 255, 255, 1);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 1),
+    0 8px 24px -4px rgba(0, 0, 0, 0.09);
+  transform: translateY(-1px);
+}
+.spatial-glass-button:active {
+  transform: translateY(0.5px) scale(0.99);
+}
+
+/* Apple-Spec Spatial Dark Glass Button */
+.spatial-glass-button-dark {
+  background: linear-gradient(180deg, rgba(28, 28, 33, 0.92) 0%, rgba(14, 14, 17, 0.96) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+    0 8px 24px -4px rgba(0, 0, 0, 0.3),
+    0 2px 4px 0 rgba(0, 0, 0, 0.12);
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spatial-glass-button-dark:hover {
+  background: linear-gradient(180deg, rgba(40, 40, 46, 0.95) 0%, rgba(20, 20, 25, 0.98) 100%);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
+    0 12px 32px -4px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+.spatial-glass-button-dark:active {
+  transform: translateY(0.5px) scale(0.99);
 }
 
 /* 5. Inactive Segmented Pill Item */
@@ -351,7 +415,7 @@ body {
 }
 .spatial-segmented-pill-inactive:hover {
   color: #111111;
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* 6. Physical 3D Extruded Blocks (Entitlement Bar) */
@@ -414,4 +478,27 @@ html.lenis, html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/* 10. Oryzo Kinetic Marquee Animations */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 14s linear infinite;
+}
+
 

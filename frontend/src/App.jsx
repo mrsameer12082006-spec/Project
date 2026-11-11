@@ -117,16 +117,7 @@ export default function App() {
         setMode={setMode}
       />
 
-      {/* Oryzo-Style Persistent 3D Scene (Lazy-loaded, safe boundary) */}
-      {screen === 'home' && (
-        <Safe3DErrorBoundary>
-          <Suspense fallback={null}>
-            <SchemeSathi3DScene />
-          </Suspense>
-        </Safe3DErrorBoundary>
-      )}
-
-      {/* 3. Main Viewport */}
+      {/* 2. Main Viewport */}
       <main className={`flex-1 w-full mx-auto ${screen === 'home' ? 'max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8' : 'max-w-5xl px-4 sm:px-6 py-6 sm:py-8'}`}>
         {screen === 'home' && (
           <Home
