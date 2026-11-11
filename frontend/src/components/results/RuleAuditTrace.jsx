@@ -20,7 +20,7 @@ export default function RuleAuditTrace({ scheme }) {
       <div className="mt-3 pt-3 border-t border-zinc-200 space-y-3">
         <div className="flex flex-wrap items-center justify-between text-zinc-500 text-[11px]">
           <span>Central Guidelines: <strong>{scheme.schemeName || scheme.englishName}</strong></span>
-          <span className="text-emerald-700 font-semibold">Statutory Criteria Evaluated</span>
+          <span className="text-emerald-700 font-semibold">Program Criteria Evaluated</span>
         </div>
 
         {/* Clean Human-Readable Criteria Rows */}
@@ -53,7 +53,7 @@ export default function RuleAuditTrace({ scheme }) {
                     {f.englishDescription || f.description}
                   </div>
                   <div className="text-[11px] text-zinc-500 mt-0.5">
-                    Statutory condition not met for this category
+                    Program criteria not met for this category
                   </div>
                 </div>
               </div>

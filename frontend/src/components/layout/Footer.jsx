@@ -73,7 +73,7 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
             </div>
 
             <p className="text-xs text-zinc-500 leading-relaxed max-w-sm">
-              An independent, non-commercial public service helping underserved rural and semi-urban Indian households discover and claim statutory government welfare benefits without middlemen.
+              An independent, non-commercial public service helping underserved rural and semi-urban Indian households discover and claim verified government welfare benefits without middlemen.
             </p>
           </div>
 
@@ -180,7 +180,7 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
               <li>
                 <span className="text-zinc-500 flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Statutory Eligibility Verification</span>
+                  <span>Transparent Eligibility Verification</span>
                 </span>
               </li>
             </ul>

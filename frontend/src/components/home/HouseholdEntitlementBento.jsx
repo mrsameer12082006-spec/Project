@@ -319,7 +319,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           <div className="pt-6 border-t border-zinc-100 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2 text-xs text-zinc-500 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
-              <span>Verified statutory guidelines from Ministry of Agriculture, Rural Development & NHA.</span>
+              <span>Verified official guidelines from Ministry of Agriculture, Rural Development & NHA.</span>
             </div>
 
             <button

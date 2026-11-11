@@ -293,3 +293,111 @@ body {
   background: #004B87;
   color: white;
 }
+
+/* ============================================================
+   Apple-Spec Spatial Glass & 3D Tactile Tokens
+   ============================================================ */
+
+/* 1. Spatial Glass Card Backing */
+.spatial-glass {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.9),
+    0 8px 32px -4px rgba(0, 0, 0, 0.04),
+    0 1px 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+/* 2. Active Civic Emerald Spatial Glass */
+.spatial-glass-emerald {
+  background: rgba(236, 253, 245, 0.85);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1.5px solid #059669;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.95),
+    0 4px 20px -2px rgba(5, 150, 105, 0.14);
+}
+
+/* 3. Tactile Segmented Track (Citizen / CSC Toggle, Category Selectors) */
+.spatial-segmented-track {
+  background: rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  padding: 3px;
+}
+
+/* 4. Active Segmented Pill Slider */
+.spatial-segmented-pill-active {
+  background: #111111;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    0 8px 16px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* 5. Inactive Segmented Pill Item */
+.spatial-segmented-pill-inactive {
+  color: #52525B;
+  border-radius: 9999px;
+  transition: all 150ms var(--ease-snappy);
+}
+.spatial-segmented-pill-inactive:hover {
+  color: #111111;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* 6. Physical 3D Extruded Blocks (Entitlement Bar) */
+.isometric-block-blue {
+  background: linear-gradient(180deg, #0284C7 0%, #0369A1 100%);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    0 3px 0 0 #075985,
+    0 6px 12px -2px rgba(3, 105, 161, 0.3);
+}
+
+.isometric-block-amber {
+  background: linear-gradient(180deg, #D97706 0%, #B45309 100%);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    0 3px 0 0 #92400E,
+    0 6px 12px -2px rgba(180, 83, 9, 0.3);
+}
+
+.isometric-block-emerald {
+  background: linear-gradient(180deg, #059669 0%, #047857 100%);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.35),
+    0 3px 0 0 #065F46,
+    0 6px 12px -2px rgba(4, 120, 87, 0.3);
+}
+
+/* 7. CSS 3D Perspective Tilt Container */
+.perspective-container {
+  perspective: 1200px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* 8. Reduced Motion Accessibility Override */
+@media (prefers-reduced-motion: reduce) {
+  .spatial-glass,
+  .spatial-glass-emerald,
+  .spatial-segmented-track {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #FFFFFF !important;
+  }
+  .preserve-3d {
+    transform: none !important;
+  }
+}
+

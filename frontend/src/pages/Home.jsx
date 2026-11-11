@@ -19,7 +19,6 @@ import {
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
-import TopographyCanvas from '../components/home/TopographyCanvas';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -130,9 +129,6 @@ export default function Home({ onStart, onBrowse }) {
           {/* Soft Amber Warmth (Center Inset) */}
           <div className="absolute top-44 left-1/3 w-[450px] h-[350px] rounded-full bg-[radial-gradient(circle,rgba(217,119,6,0.035)_0%,transparent_60%)] blur-3xl pointer-events-none" />
         </div>
-
-        {/* 3D Topographical Particle Wave (Micro-WebGL GPU Canvas) */}
-        <TopographyCanvas bloomActive={effectiveOption === 1} />
 
         {/* Main Framed Container with Vertical Architectural Rails */}
         <div className="relative mx-auto max-w-7xl border-x border-[#E5E3DC] px-5 sm:px-8 lg:px-12 py-10 lg:py-16">
