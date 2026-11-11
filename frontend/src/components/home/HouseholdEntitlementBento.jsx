@@ -4,7 +4,9 @@ import {
   ArrowRight,
   Sprout,
   Home as HomeIcon,
-  ShieldPlus,
+  HeartPulse,
+  Landmark,
+  ShieldCheck,
   Info
 } from 'lucide-react';
 import CountUp from '../common/CountUp';
@@ -96,7 +98,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       colorClass: 'text-sky-700',
       iconBoxClass: 'bg-sky-50 border-sky-200/80 text-sky-700 shadow-2xs',
       active: pmJayActive,
-      icon: ShieldPlus,
+      icon: HeartPulse,
       inactiveReason: null
     }
   ];
@@ -110,8 +112,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 pb-6">
         <div className="space-y-2 max-w-2xl">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-semibold tracking-tight w-fit">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
-            Compounding Entitlement Model
+            <Landmark className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Household Entitlement Calculation</span>
           </span>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#111111] leading-tight">

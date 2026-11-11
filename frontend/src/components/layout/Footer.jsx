@@ -1,6 +1,5 @@
 import React from 'react';
-import { ExternalLink, ArrowRight, ShieldCheck, CheckCircle2, Lock, FileText, Printer, Sliders, Check } from 'lucide-react';
-import { CivicCrestIcon } from '../common/CivicIcons';
+import { ExternalLink, ArrowRight, ShieldCheck, CheckCircle2, Lock, FileText, Printer, Sliders, Check, Landmark } from 'lucide-react';
 
 export default function Footer({ onStart, onBrowse, setScreen, currentScreen = 'home' }) {
   const isHomeScreen = currentScreen === 'home';
@@ -64,8 +63,8 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
           {/* Column 1: Brand & Civic Charter (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center shadow-xs">
-                <CivicCrestIcon className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-[#111111] text-emerald-400 flex items-center justify-center shadow-xs">
+                <Landmark className="w-4 h-4" />
               </div>
               <span className="font-extrabold text-lg text-[#111111] tracking-tight">
                 SchemeSathi

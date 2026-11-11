@@ -1,22 +1,22 @@
 import React from 'react';
-import { CivicCrestIcon } from '../common/CivicIcons';
+import { Landmark } from 'lucide-react';
 
 export default function Navbar({
   currentScreen,
   setScreen
 }) {
   return (
-    <header className="sticky top-0 z-30 bg-[#FAF9F5]/85 backdrop-blur-xl border-b border-[#E5E3DC]/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+    <header className="sticky top-0 z-30 bg-[#FAF9F5]/90 backdrop-blur-xl border-b border-[#E5E3DC]/80 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
       <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         
-        {/* Brand identity: High-impact Nike/Civic style */}
+        {/* Brand identity: Clean Civic Landmark */}
         <button
           onClick={() => setScreen('home')}
           className="flex items-center gap-2.5 text-left group focus:outline-hidden"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#111111] text-white flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
-            <CivicCrestIcon className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-lg bg-[#111111] text-emerald-400 flex items-center justify-center shadow-xs transition-transform group-hover:scale-105">
+            <Landmark className="w-4 h-4" />
           </div>
           <div>
             <div className="flex items-center gap-2">

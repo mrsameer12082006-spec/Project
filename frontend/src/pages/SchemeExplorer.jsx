@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ArrowLeft, ArrowRight, ExternalLink, Sprout, Home as HomeIcon, ShieldPlus, Layers } from 'lucide-react';
+import { Search, ArrowLeft, ArrowRight, ExternalLink, Sprout, Home as HomeIcon, HeartPulse, Layers } from 'lucide-react';
 import { VERIFIED_SCHEMES } from '../data/schemesData';
 
 export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme }) {
@@ -10,7 +10,7 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
     { id: 'all', label: 'All Schemes', icon: Layers },
     { id: 'farmer', label: 'Farmer Support', icon: Sprout },
     { id: 'housing', label: 'Rural Housing', icon: HomeIcon },
-    { id: 'health', label: 'Free Healthcare', icon: ShieldPlus },
+    { id: 'health', label: 'Free Healthcare', icon: HeartPulse },
   ];
 
   const filteredSchemes = VERIFIED_SCHEMES.filter(scheme => {
@@ -140,7 +140,7 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
                   <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold">
                     {isKisan && <Sprout className="w-3.5 h-3.5 text-emerald-600" />}
                     {isHousing && <HomeIcon className="w-3.5 h-3.5 text-amber-600" />}
-                    {isHealth && <ShieldPlus className="w-3.5 h-3.5 text-sky-600" />}
+                    {isHealth && <HeartPulse className="w-3.5 h-3.5 text-sky-600" />}
                     <span>{scheme.tag}</span>
                   </span>
                   <span className="text-[11px] text-zinc-500 font-medium">

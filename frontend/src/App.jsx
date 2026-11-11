@@ -11,25 +11,6 @@ import CscPrintSlip from './components/results/CscPrintSlip';
 import SchemeExplorer from './pages/SchemeExplorer';
 import { evaluateEligibilityLocally, playSuccessChime } from './services/api';
 
-const SchemeSathi3DScene = lazy(() => import('./components/3d/SchemeSathi3DScene'));
-
-class Safe3DErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  componentDidCatch(error) {
-    console.warn('3D Canvas gracefully caught error; continuing in high-speed pure-CSS mode:', error);
-  }
-  render() {
-    if (this.state.hasError) return null;
-    return this.props.children;
-  }
-}
-
 export default function App() {
   const [screen, setScreen] = useState('home'); // 'home' | 'interview' | 'review' | 'results' | 'guide' | 'slip' | 'explorer'
   const language = 'en'; // Strict English Only

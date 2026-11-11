@@ -5,22 +5,21 @@ import {
   ExternalLink,
   Sprout,
   Home as HomeIcon,
-  ShieldPlus,
+  HeartPulse,
   Sliders,
   FileCheck,
   ReceiptText,
   Clock,
   FileText,
-  CreditCard,
+  ShieldCheck,
   CheckCircle2,
   Check,
-  Volume2
+  Volume2,
+  Landmark
 } from 'lucide-react';
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
-import OryzoMarqueeBanner from '../components/home/OryzoMarqueeBanner';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
-import HeroShieldEmblem from '../components/home/HeroShieldEmblem';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -129,40 +128,28 @@ export default function Home({ onStart, onBrowse }) {
   };
 
   return (
-    <div className="space-y-16 sm:space-y-20 pb-16">
+    <div className="space-y-12 sm:space-y-14 pb-14">
       
       {/* ───────────────────────────────────────────────────────────
           1. ASYMMETRIC 2-COLUMN HERO & INTERACTIVE CONSOLE
           ─────────────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-[#FAF9F5] text-[#0C0A09] border-y border-[#E5E3DC] -mx-4 sm:-mx-6 lg:-mx-8">
         
-        {/* Atmospheric Sunlight Dual Radial Glow (Stripe / Linear Architecture) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 overflow-hidden"
-        >
-          {/* Warm Emerald / Mint Sunlight Glow (Top Right) */}
-          <div className="absolute -top-24 -right-16 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,rgba(5,150,105,0.08)_0%,rgba(16,185,129,0.03)_40%,transparent_70%)] blur-3xl pointer-events-none" />
-          
-          {/* Subtle Marine Sky Glow (Top Left) */}
-          <div className="absolute -top-32 -left-16 w-[550px] h-[550px] rounded-full bg-[radial-gradient(circle,rgba(2,132,199,0.06)_0%,transparent_65%)] blur-3xl pointer-events-none" />
-
-          {/* Soft Amber Warmth (Center Inset) */}
-          <div className="absolute top-44 left-1/3 w-[450px] h-[350px] rounded-full bg-[radial-gradient(circle,rgba(217,119,6,0.035)_0%,transparent_60%)] blur-3xl pointer-events-none" />
-        </div>
-
         {/* Main Framed Container with Vertical Architectural Rails */}
-        <div className="relative mx-auto max-w-7xl border-x border-[#E5E3DC] px-5 sm:px-8 lg:px-12 py-10 lg:py-16">
-          <div className="grid grid-cols-1 items-center gap-10 lg:gap-12 lg:grid-cols-12">
+        <div className="relative mx-auto max-w-7xl border-x border-[#E5E3DC] px-5 sm:px-8 lg:px-12 py-10 lg:py-12">
+          <div className="grid grid-cols-1 items-center gap-8 lg:gap-12 lg:grid-cols-12">
             
             {/* LEFT 6 COLUMNS: Editorial Headline + Vapi Audio + Trust Metrics */}
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-6 space-y-5">
 
-              {/* Minimal SchemeSathi Medallion & Eyebrow */}
-              <HeroShieldEmblem className="pb-1" />
+              {/* Calm Official Civic Eyebrow */}
+              <div className="flex items-center gap-2 text-xs font-semibold text-emerald-800 tracking-tight">
+                <Landmark className="w-4 h-4 text-emerald-700 shrink-0" />
+                <span>Verified Central Welfare Portal</span>
+              </div>
 
               {/* Display Headline with Humanist Italic Accent */}
-              <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
                 Find Government Schemes You Qualify For — <span className="italic font-serif font-normal text-zinc-700">One Simple Question</span> at a Time.
               </h1>
 
@@ -171,27 +158,15 @@ export default function Home({ onStart, onBrowse }) {
                 No bureaucratic forms, no login needed. Answer 4 simple questions one by one with voice or tap, verified against official central ministry guidelines.
               </p>
 
-              {/* High-Impact Action Row: Primary CTA + Vapi Voice Pill */}
-              <div className="flex flex-wrap items-center gap-3.5 pt-1">
+              {/* High-Impact Action Row: Vapi Voice Pill & Quick Tip */}
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 
-                {/* Primary CTA Button (Apple-Spec Glassmorphism) */}
-                <button
-                  type="button"
-                  onClick={() => onStart()}
-                  className="spatial-glass-button-dark group relative inline-flex items-center gap-3 rounded-full px-7 py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-lg active:scale-[0.985] focus:outline-hidden"
-                >
-                  <span className="tracking-tight">Check Your Eligibility</span>
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-xs transition-transform duration-150 group-hover:translate-x-1">
-                    →
-                  </span>
-                </button>
-
                 {/* Vapi-Style Interactive Audio Guide Pill with Live Equalizer & Bilingual Toggle */}
                 <div className="inline-flex items-center rounded-full spatial-glass border border-zinc-200/90 shadow-2xs p-1">
                   <button
                     type="button"
                     onClick={() => handleToggleAudio()}
-                    className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.985] ${
+                    className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.985] ${
                       isAudioPlaying
                         ? 'spatial-glass-button-dark text-white'
                         : 'text-[#111111] hover:bg-black/[0.04]'
@@ -234,10 +209,13 @@ export default function Home({ onStart, onBrowse }) {
                   </div>
                 </div>
 
+                <span className="text-xs text-zinc-500 font-medium">
+                  Takes 60 seconds · Voice or tap
+                </span>
               </div>
 
               {/* Trust Ledger Strip with Lucide Icons */}
-              <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#E5E3DC]">
+              <div className="grid grid-cols-3 gap-3 pt-3 border-t border-[#E5E3DC]">
                 <div>
                   <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
                     <Clock className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
@@ -249,7 +227,7 @@ export default function Home({ onStart, onBrowse }) {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
-                    <FileText className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <FileCheck className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                     <span>Questions</span>
                   </div>
                   <div className="mt-1 text-xs sm:text-sm font-bold text-[#0C0A09]">
@@ -258,10 +236,10 @@ export default function Home({ onStart, onBrowse }) {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
-                    <CreditCard className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                     <span>Privacy</span>
                   </div>
-                  <div className="mt-1 text-xs sm:text-sm font-bold text-[#16A34A]">
+                  <div className="mt-1 text-xs sm:text-sm font-bold text-emerald-700">
                     Zero Document Uploads
                   </div>
                 </div>
@@ -428,8 +406,6 @@ export default function Home({ onStart, onBrowse }) {
           </div>
         </div>
 
-        {/* Oryzo Continuous Kinetic Marquee Ribbon */}
-        <OryzoMarqueeBanner />
       </section>
 
       {/* ───────────────────────────────────────────────────────────
@@ -574,7 +550,7 @@ export default function Home({ onStart, onBrowse }) {
             <div className="p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
-                  <ShieldPlus className="w-3.5 h-3.5 text-sky-600" />
+                  <HeartPulse className="w-3.5 h-3.5 text-sky-600" />
                   <span>Free Healthcare</span>
                 </span>
                 <a
