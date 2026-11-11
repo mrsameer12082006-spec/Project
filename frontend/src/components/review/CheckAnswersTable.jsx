@@ -19,7 +19,7 @@ export default function CheckAnswersTable({
               Review Your Answers
             </h2>
             <p className="text-zinc-500 text-xs sm:text-sm">
-              Confirm your responses before running the deterministic scheme evaluation.
+              Confirm your responses before running the official scheme evaluation.
             </p>
           </div>
 

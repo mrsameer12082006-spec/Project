@@ -148,6 +148,7 @@ export default function App() {
           onStart={handleStartInterview}
           onBrowse={handleBrowseSchemes}
           setScreen={setScreen}
+          currentScreen={screen}
         />
       </div>
     </div>

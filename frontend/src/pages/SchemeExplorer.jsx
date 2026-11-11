@@ -48,7 +48,7 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
             Verified Central Welfare Schemes
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500">
-            Deterministic eligibility rules grounded directly in official central ministry guidelines
+            Official eligibility criteria grounded directly in central ministry guidelines
           </p>
         </div>
 
@@ -106,9 +106,26 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
 
       </div>
 
-      {/* Schemes Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {filteredSchemes.map(scheme => {
+      {/* Schemes Grid or Empty State */}
+      {filteredSchemes.length === 0 ? (
+        <div className="bg-white border border-zinc-200 rounded-2xl p-12 text-center space-y-3">
+          <p className="text-zinc-600 text-sm font-semibold">
+            No verified schemes found matching "{searchQuery}".
+          </p>
+          <button
+            type="button"
+            onClick={() => {
+              setSearchQuery('');
+              setSelectedCategory('all');
+            }}
+            className="text-xs font-bold text-[#111111] hover:underline px-4 py-2 bg-zinc-100 rounded-lg inline-block"
+          >
+            Clear Search Filters
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {filteredSchemes.map(scheme => {
           const isKisan = scheme.id.includes('kisan');
           const isHousing = scheme.id.includes('awas');
           const isHealth = scheme.id.includes('jay');
@@ -169,6 +186,7 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
           );
         })}
       </div>
+      )}
 
     </div>
   );

@@ -32,42 +32,69 @@ export default function Navbar({
           </div>
         </button>
 
-        {/* Clean Segmented Mode Switcher (Citizen vs Kiosk) */}
-        <div className="flex items-center bg-[#F2F2F4] border border-[#E4E4E7] p-1 rounded-lg h-9 shadow-2xs">
-          <div role="group" aria-label="Mode" className="relative flex items-center h-full">
-            <button
-              type="button"
-              onClick={() => setMode('citizen')}
-              className={`relative z-10 px-3 h-7 flex items-center rounded-md text-xs font-semibold transition-colors ${
-                mode === 'citizen' ? 'text-white' : 'text-zinc-600 hover:text-zinc-900'
-              }`}
-            >
-              {mode === 'citizen' && (
-                <motion.div
-                  layoutId="activeModeTab"
-                  className="absolute inset-0 bg-[#111111] rounded-md shadow-2xs -z-10"
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-              Citizen
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode('operator')}
-              className={`relative z-10 px-3 h-7 flex items-center rounded-md text-xs font-semibold transition-colors ${
-                mode === 'operator' ? 'text-white' : 'text-zinc-600 hover:text-zinc-900'
-              }`}
-            >
-              {mode === 'operator' && (
-                <motion.div
-                  layoutId="activeModeTab"
-                  className="absolute inset-0 bg-[#111111] rounded-md shadow-2xs -z-10"
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-              CSC Kiosk
-            </button>
+        {/* Right Navigation & Mode Switcher */}
+        <div className="flex items-center gap-3">
+          
+          {/* Schemes Directory Nav Link */}
+          <button
+            type="button"
+            onClick={() => setScreen('explorer')}
+            className={`hidden sm:inline-flex items-center text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors ${
+              currentScreen === 'explorer'
+                ? 'bg-zinc-100 text-[#111111] font-bold'
+                : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/70'
+            }`}
+          >
+            Verified Schemes
+          </button>
+
+          {/* Quick Check CTA */}
+          <button
+            type="button"
+            onClick={() => setScreen('interview')}
+            className="hidden sm:inline-flex items-center text-xs font-bold px-3.5 py-1.5 rounded-full bg-[#111111] hover:bg-[#262626] text-white shadow-2xs transition-all active:scale-[0.985]"
+          >
+            Check Eligibility
+          </button>
+
+          {/* Clean Segmented Mode Switcher (Citizen vs Kiosk) */}
+          <div className="flex items-center bg-[#F2F2F4] border border-[#E4E4E7] p-1 rounded-lg h-9 shadow-2xs">
+            <div role="group" aria-label="Mode" className="relative flex items-center h-full">
+              <button
+                type="button"
+                onClick={() => setMode('citizen')}
+                className={`relative z-10 px-3 h-7 flex items-center rounded-md text-xs font-semibold transition-colors ${
+                  mode === 'citizen' ? 'text-white' : 'text-zinc-600 hover:text-zinc-900'
+                }`}
+              >
+                {mode === 'citizen' && (
+                  <motion.div
+                    layoutId="activeModeTab"
+                    className="absolute inset-0 bg-[#111111] rounded-md shadow-2xs -z-10"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                Citizen
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode('operator')}
+                className={`relative z-10 px-3 h-7 flex items-center rounded-md text-xs font-semibold transition-colors ${
+                  mode === 'operator' ? 'text-white' : 'text-zinc-600 hover:text-zinc-900'
+                }`}
+              >
+                {mode === 'operator' && (
+                  <motion.div
+                    layoutId="activeModeTab"
+                    className="absolute inset-0 bg-[#111111] rounded-md shadow-2xs -z-10"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                CSC Kiosk
+              </button>
+            </div>
           </div>
+
         </div>
 
       </div>

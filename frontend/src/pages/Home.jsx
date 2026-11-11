@@ -428,7 +428,7 @@ export default function Home({ onStart, onBrowse }) {
               Featured Verified Schemes
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 mt-0.5">
-              Deterministic rules grounded directly in official central ministry guidelines
+              Official rules grounded directly in central ministry guidelines
             </p>
           </div>
 
@@ -612,7 +612,7 @@ export default function Home({ onStart, onBrowse }) {
             How SchemeSathi Works
           </h3>
           <p className="text-xs sm:text-sm text-zinc-500 max-w-xl">
-            A 3-step deterministic process designed for both individual citizens and Common Service Centre (CSC) kiosk operators
+            A 3-step verified process designed for both individual citizens and Common Service Centre (CSC) kiosk operators
           </p>
         </div>
 
@@ -766,11 +766,11 @@ export default function Home({ onStart, onBrowse }) {
               </div>
 
               <h4 className="font-bold text-[#111111] text-lg">
-                Deterministic Rule Match
+                Instant Criteria Verification
               </h4>
 
               <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
-                Instant deterministic verification strictly grounded in official central ministry gazette criteria without guesswork or intermediaries.
+                Instant criteria verification strictly grounded in official central ministry guidelines without guesswork or intermediaries.
               </p>
             </div>
 
