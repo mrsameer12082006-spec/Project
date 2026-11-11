@@ -12,6 +12,7 @@ import {
   FileText,
   CreditCard,
   CheckCircle2,
+  Check,
   Volume2
 } from 'lucide-react';
 import CountUp from '../components/common/CountUp';
@@ -19,11 +20,17 @@ import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
 
 export default function Home({ onStart, onBrowse }) {
+  const [selectedOption, setSelectedOption] = useState(1);
   const [hoveredOption, setHoveredOption] = useState(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const [audioLang, setAudioLang] = useState('en');
 
-  const audioIntro =
-    'Welcome to SchemeSathi. Discover verified government welfare schemes you qualify for by answering just four simple questions. No forms or login required. Click the button below to begin.';
+  const effectiveOption = hoveredOption !== null ? hoveredOption : selectedOption;
+
+  const audioIntros = {
+    en: 'Welcome to SchemeSathi. Discover verified government welfare schemes you qualify for by answering just 4 simple questions. Question 1: Do you or your family own cultivable agricultural land? Tap option 1 for Yes, or option 2 for No.',
+    hi: 'योजना साथी में आपका स्वागत है। केवल 4 सरल सवालों के जवाब देकर जानिए कि आप किन सरकारी कल्याणकारी योजनाओं के पात्र हैं। सवाल 1: क्या आपके परिवार के पास खेती योग्य भूमि है? हाँ के लिए विकल्प 1 और ना के लिए विकल्प 2 चुनें।'
+  };
 
   useEffect(() => {
     return () => {
@@ -31,18 +38,48 @@ export default function Home({ onStart, onBrowse }) {
     };
   }, []);
 
-  const handleToggleAudio = () => {
-    if (isAudioPlaying) {
+  // Keyboard navigation for power users & CSC kiosk operators
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') {
+        setSelectedOption(1);
+      } else if (e.key === '2') {
+        setSelectedOption(2);
+      } else if (e.key === 'Enter') {
+        handleProceed();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedOption]);
+
+  const handleToggleAudio = (targetLang) => {
+    const langToUse = targetLang || audioLang;
+    if (isAudioPlaying && (!targetLang || targetLang === audioLang)) {
       stopAudio();
       setIsAudioPlaying(false);
     } else {
+      stopAudio();
       setIsAudioPlaying(true);
-      speakAudio(audioIntro, 'en', {
+      if (targetLang && targetLang !== audioLang) {
+        setAudioLang(targetLang);
+      }
+      speakAudio(audioIntros[langToUse], langToUse, {
         onStart: () => setIsAudioPlaying(true),
         onEnd: () => setIsAudioPlaying(false),
         onError: () => setIsAudioPlaying(false)
       });
     }
+  };
+
+  const handleProceed = () => {
+    onStart({
+      has_land: {
+        value: selectedOption === 1,
+        label: selectedOption === 1 ? 'Yes, family owns cultivable land' : 'No agricultural land owned'
+      }
+    });
   };
 
   return (
@@ -51,16 +88,12 @@ export default function Home({ onStart, onBrowse }) {
       {/* ───────────────────────────────────────────────────────────
           1. ASYMMETRIC 2-COLUMN HERO & INTERACTIVE CONSOLE
           ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-[#F7F6F2] text-[#0C0A09] border-y border-[#E5E3DC] -mx-4 sm:-mx-6 lg:-mx-8">
+      <section className="relative overflow-hidden bg-[#FAFAF8] text-[#0C0A09] border-y border-[#E5E3DC] -mx-4 sm:-mx-6 lg:-mx-8">
         
-        {/* Architectural Background Grid & Atmospheric Radial Orbs */}
+        {/* Cal.com Architectural Background Grid */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#E5E3DC_1px,transparent_1px),linear-gradient(to_bottom,#E5E3DC_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,#000_40%,transparent_100%)] opacity-45"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute right-[6%] top-[8%] h-[440px] w-[440px] rounded-full bg-gradient-to-tr from-[#A7E5D3]/50 via-[#F4C5A8]/40 to-[#A8C8E8]/40 blur-3xl -z-0"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(17,17,17,0.08)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_85%_75%_at_50%_30%,#000_50%,transparent_100%)] opacity-60"
         />
 
         {/* Main Framed Container with Vertical Architectural Rails */}
@@ -70,9 +103,9 @@ export default function Home({ onStart, onBrowse }) {
             {/* LEFT 6 COLUMNS: Editorial Pitch & Tactile Controls */}
             <div className="lg:col-span-6 space-y-6">
 
-              {/* Display Headline */}
+              {/* Display Headline with Humanist Italic Accent */}
               <h1 className="text-3xl sm:text-5xl lg:text-[48px] font-extrabold tracking-[-0.035em] leading-[1.14] text-[#111111]">
-                Find Government Schemes You Qualify For — One Simple Question at a Time.
+                Find Government Schemes You Qualify For — <span className="italic font-serif font-normal text-zinc-700">One Simple Question</span> at a Time.
               </h1>
 
               {/* Plain Language Subtitle */}
@@ -80,11 +113,13 @@ export default function Home({ onStart, onBrowse }) {
                 No bureaucratic forms, no login needed. Answer 4 simple questions one by one with voice or tap, verified against official central ministry guidelines.
               </p>
 
-              {/* High-Impact Action Row (Nike-Style Pill Buttons) */}
+              {/* High-Impact Action Row: Primary CTA + Vapi Voice Pill */}
               <div className="flex flex-wrap items-center gap-3.5 pt-1">
+                
+                {/* Primary CTA Button */}
                 <button
                   type="button"
-                  onClick={onStart}
+                  onClick={() => onStart()}
                   className="group relative inline-flex items-center gap-3 rounded-full bg-[#111111] px-7 py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-[0_8px_20px_-4px_rgba(17,17,17,0.3)] transition-all duration-150 hover:bg-[#262626] active:scale-[0.985] focus:outline-hidden"
                 >
                   <span className="tracking-tight">Check Your Eligibility</span>
@@ -93,31 +128,54 @@ export default function Home({ onStart, onBrowse }) {
                   </span>
                 </button>
 
-                <button
-                  type="button"
-                  onClick={handleToggleAudio}
-                  className={`inline-flex items-center gap-3 rounded-full px-6 py-3.5 text-sm sm:text-[15px] font-semibold transition-all duration-150 active:scale-[0.985] focus:outline-hidden ${
-                    isAudioPlaying
-                      ? 'bg-[#111111] text-white shadow-[0_4px_12px_rgba(17,17,17,0.2)]'
-                      : 'bg-white text-[#111111] border border-[#E5E3DC] hover:bg-[#FAF9F6] shadow-xs'
-                  }`}
-                >
-                  {/* Live Equalizer Bars */}
-                  <span className="flex items-end gap-[2.5px] h-4" aria-hidden="true">
-                    {[0.4, 0.9, 0.6, 1, 0.5].map((h, i) => (
-                      <span
-                        key={i}
-                        style={{ height: `${h * 100}%` }}
-                        className={`w-[2.5px] rounded-full transition-all duration-200 ${
-                          isAudioPlaying
-                            ? 'bg-[#22C55E] animate-pulse'
-                            : 'bg-[#111111]'
-                        }`}
-                      />
-                    ))}
-                  </span>
-                  <span>{isAudioPlaying ? 'Stop Audio' : 'Audio Guide'}</span>
-                </button>
+                {/* Vapi-Style Interactive Audio Guide Pill with Live Equalizer & Bilingual Toggle */}
+                <div className="inline-flex items-center rounded-full bg-white border border-zinc-200/90 shadow-2xs p-1">
+                  <button
+                    type="button"
+                    onClick={() => handleToggleAudio()}
+                    className={`inline-flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-150 active:scale-[0.985] ${
+                      isAudioPlaying
+                        ? 'bg-[#111111] text-white shadow-xs'
+                        : 'text-[#111111] hover:bg-zinc-100'
+                    }`}
+                  >
+                    {/* Live Oscillating Audio Equalizer */}
+                    <span className="flex items-end gap-[2px] h-3.5 w-4" aria-hidden="true">
+                      <span className={`eq-bar ${isAudioPlaying ? 'animate-eq-bar-1 text-emerald-400' : 'h-1.5 text-zinc-400'}`} />
+                      <span className={`eq-bar ${isAudioPlaying ? 'animate-eq-bar-2 text-emerald-400' : 'h-3 text-zinc-600'}`} />
+                      <span className={`eq-bar ${isAudioPlaying ? 'animate-eq-bar-3 text-emerald-400' : 'h-2 text-zinc-500'}`} />
+                      <span className={`eq-bar ${isAudioPlaying ? 'animate-eq-bar-4 text-emerald-400' : 'h-3.5 text-zinc-700'}`} />
+                    </span>
+                    <span>{isAudioPlaying ? 'Stop Audio' : 'Audio Guide'}</span>
+                  </button>
+
+                  {/* Compact Bilingual Switcher */}
+                  <div className="flex items-center gap-1 border-l border-zinc-200 pl-1.5 pr-1 text-[11px] font-bold">
+                    <button
+                      type="button"
+                      onClick={() => handleToggleAudio('en')}
+                      className={`px-2 py-1 rounded-full transition-colors ${
+                        audioLang === 'en'
+                          ? 'bg-zinc-900 text-white'
+                          : 'text-zinc-500 hover:text-zinc-900'
+                      }`}
+                    >
+                      EN
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleToggleAudio('hi')}
+                      className={`px-2 py-1 rounded-full transition-colors ${
+                        audioLang === 'hi'
+                          ? 'bg-emerald-700 text-white'
+                          : 'text-zinc-500 hover:text-zinc-900'
+                      }`}
+                    >
+                      हिन्दी
+                    </button>
+                  </div>
+                </div>
+
               </div>
 
               {/* Trust Ledger Strip with Lucide Icons */}
@@ -153,7 +211,7 @@ export default function Home({ onStart, onBrowse }) {
 
             </div>
 
-            {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card */}
+            {/* RIGHT 6 COLUMNS: High-Craft Interactive Question Card (Cal.com + GOV.UK Pattern) */}
             <div className="lg:col-span-6">
               
               {/* Daylight Form Card */}
@@ -189,102 +247,167 @@ export default function Home({ onStart, onBrowse }) {
                   </p>
                 </div>
 
-                  {/* Tactile Keycap Option Rows */}
-                  <div className="space-y-2.5 pt-1">
-                    <button
-                      type="button"
-                      onClick={onStart}
-                      onMouseEnter={() => setHoveredOption(1)}
-                      onMouseLeave={() => setHoveredOption(null)}
-                      className="group flex w-full items-center justify-between rounded-xl bg-[#FAF9F6] p-3.5 sm:p-4 text-left shadow-[0_2px_0_0_#E5E3DC,0_0_0_1px_#E5E3DC] transition-all duration-150 hover:-translate-y-0.5 hover:bg-emerald-50/40 hover:shadow-[0_4px_12px_rgba(22,163,74,0.12),0_2px_0_0_#16A34A,0_0_0_1px_#16A34A] active:translate-y-[1px] focus:outline-hidden"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white font-mono text-xs font-bold text-[#141413] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_#D6D3D1] group-hover:bg-[#16A34A] group-hover:text-white group-hover:shadow-none transition-colors shrink-0">
-                          1
-                        </span>
-                        <div>
-                          <div className="text-sm sm:text-[15px] font-bold text-[#0C0A09]">
-                            Yes, family owns cultivable land
-                          </div>
-                          <div className="text-xs text-[#777169]">
-                            Qualifies for land-linked central income support
-                          </div>
-                        </div>
-                      </div>
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#777169] shadow-2xs group-hover:bg-[#16A34A] group-hover:text-white group-hover:translate-x-0.5 transition-all font-mono text-sm">
-                        →
+                {/* GOV.UK Tactile Keycap Option Rows */}
+                <div className="space-y-2.5 pt-1">
+                  
+                  {/* Option 1: Yes */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedOption(1)}
+                    onMouseEnter={() => setHoveredOption(1)}
+                    onMouseLeave={() => setHoveredOption(null)}
+                    className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
+                      selectedOption === 1
+                        ? 'bg-emerald-50/70 border-2 border-emerald-600 shadow-[0_3px_0_0_#059669]'
+                        : 'bg-white border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50/60 shadow-[0_2px_0_0_#E4E4E7]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
+                        selectedOption === 1
+                          ? 'bg-emerald-600 text-white shadow-xs'
+                          : 'bg-zinc-100 text-zinc-800 border border-zinc-200'
+                      }`}>
+                        1
                       </span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={onStart}
-                      onMouseEnter={() => setHoveredOption(2)}
-                      onMouseLeave={() => setHoveredOption(null)}
-                      className="group flex w-full items-center justify-between rounded-xl bg-[#FAF9F6] p-3.5 sm:p-4 text-left shadow-[0_2px_0_0_#E5E3DC,0_0_0_1px_#E5E3DC] transition-all duration-150 hover:-translate-y-0.5 hover:bg-stone-100/80 hover:shadow-[0_4px_12px_rgba(12,10,9,0.08),0_2px_0_0_#141413,0_0_0_1px_#141413] active:translate-y-[1px] focus:outline-hidden"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white font-mono text-xs font-bold text-[#141413] shadow-[0_1px_2px_rgba(0,0,0,0.08),0_0_0_1px_#D6D3D1] group-hover:bg-[#141413] group-hover:text-white group-hover:shadow-none transition-colors shrink-0">
-                          2
-                        </span>
-                        <div>
-                          <div className="text-sm sm:text-[15px] font-bold text-[#0C0A09]">
-                            No agricultural land owned
-                          </div>
-                          <div className="text-xs text-[#777169]">
-                            Non-landholding household
-                          </div>
+                      <div>
+                        <div className="text-sm sm:text-[15px] font-bold text-[#111111] leading-tight">
+                          Yes, family owns cultivable land
                         </div>
-                      </div>
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#777169] shadow-2xs group-hover:bg-[#141413] group-hover:text-white group-hover:translate-x-0.5 transition-all font-mono text-sm">
-                        →
-                      </span>
-                    </button>
-                  </div>
-
-                  {/* Scheme Match Dock */}
-                  <div className="rounded-xl bg-zinc-50 p-3 sm:p-3.5 border border-zinc-200/80">
-                    <div className="flex items-center justify-between text-xs text-zinc-600 font-medium mb-2">
-                      <span className="font-semibold text-zinc-800">Estimated Scheme Matches</span>
-                      <span className="text-emerald-700 font-semibold">
-                        {hoveredOption === 2 ? '2 of 3 Schemes Active' : '3 of 3 Schemes Active'}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-2">
-                      {/* PM-KISAN Chip */}
-                      <div
-                        className={`rounded-lg px-2.5 py-2 border text-xs transition-all ${
-                          hoveredOption === 1
-                            ? 'bg-emerald-50 border-emerald-500 text-emerald-950 shadow-2xs'
-                            : hoveredOption === 2
-                            ? 'bg-stone-100 border-stone-200 text-stone-400 opacity-50'
-                            : 'bg-white border-[#E5E3DC] text-[#141413]'
-                        }`}
-                      >
-                        <div className="font-semibold truncate">PM-KISAN</div>
-                        <div className="text-[11px] text-[#16A34A] font-bold">
-                          {hoveredOption === 2 ? 'Excluded' : '₹6,000/yr'}
-                        </div>
-                      </div>
-
-                      {/* PMAY-G Chip */}
-                      <div className="rounded-lg bg-white px-2.5 py-2 border border-[#E5E3DC] text-xs text-[#141413]">
-                        <div className="font-semibold truncate">PMAY-G</div>
-                        <div className="text-[11px] text-amber-700 font-bold">
-                          ₹1.30 Lakh
-                        </div>
-                      </div>
-
-                      {/* PM-JAY Chip */}
-                      <div className="rounded-lg bg-white px-2.5 py-2 border border-[#E5E3DC] text-xs text-[#141413]">
-                        <div className="font-semibold truncate">PM-JAY</div>
-                        <div className="text-[11px] text-sky-700 font-bold">
-                          ₹5,00,000
+                        <div className="text-xs text-zinc-500 mt-0.5">
+                          Qualifies for PM-KISAN & landholding welfare
                         </div>
                       </div>
                     </div>
+
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                      selectedOption === 1
+                        ? 'border-emerald-600 bg-emerald-600 text-white'
+                        : 'border-zinc-300 bg-white'
+                    }`}>
+                      {selectedOption === 1 && <Check className="w-3 h-3 stroke-[3]" />}
+                    </div>
+                  </button>
+
+                  {/* Option 2: No */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedOption(2)}
+                    onMouseEnter={() => setHoveredOption(2)}
+                    onMouseLeave={() => setHoveredOption(null)}
+                    className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
+                      selectedOption === 2
+                        ? 'bg-zinc-100 border-2 border-zinc-900 shadow-[0_3px_0_0_#18181B]'
+                        : 'bg-white border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50/60 shadow-[0_2px_0_0_#E4E4E7]'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
+                        selectedOption === 2
+                          ? 'bg-zinc-900 text-white shadow-xs'
+                          : 'bg-zinc-100 text-zinc-800 border border-zinc-200'
+                      }`}>
+                        2
+                      </span>
+                      <div>
+                        <div className="text-sm sm:text-[15px] font-bold text-[#111111] leading-tight">
+                          No agricultural land owned
+                        </div>
+                        <div className="text-xs text-zinc-500 mt-0.5">
+                          Focus on rural housing (PMAY-G) and healthcare (PM-JAY)
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                      selectedOption === 2
+                        ? 'border-zinc-900 bg-zinc-900 text-white'
+                        : 'border-zinc-300 bg-white'
+                    }`}>
+                      {selectedOption === 2 && <Check className="w-3 h-3 stroke-[3]" />}
+                    </div>
+                  </button>
+
+                </div>
+
+                {/* Attio-Style Live Scheme Impact Dock */}
+                <div className="rounded-xl bg-zinc-50 p-4 border border-zinc-200/80 space-y-3">
+                  
+                  <div className="flex items-center justify-between text-xs text-zinc-600 font-medium">
+                    <span className="font-semibold text-zinc-800">Live Eligibility Reaction</span>
+                    <span className="text-emerald-700 font-semibold inline-flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
+                      <span>{effectiveOption === 1 ? '3 of 3 Schemes Active' : '2 of 3 Schemes Active'}</span>
+                    </span>
                   </div>
+
+                  {/* 3 Interactive Scheme Chips */}
+                  <div className="grid grid-cols-3 gap-2">
+                    
+                    {/* PM-KISAN */}
+                    <div
+                      className={`rounded-lg p-2.5 border text-xs transition-all ${
+                        effectiveOption === 1
+                          ? 'bg-emerald-50 border-emerald-400 text-emerald-950 shadow-2xs scale-[1.02]'
+                          : 'bg-zinc-100/70 border-zinc-200 text-zinc-400 opacity-60'
+                      }`}
+                    >
+                      <div className="font-bold truncate text-[11px]">PM-KISAN</div>
+                      <div className={`font-extrabold text-xs mt-0.5 ${effectiveOption === 1 ? 'text-[#16A34A]' : 'text-zinc-400'}`}>
+                        {effectiveOption === 1 ? '₹6,000/yr' : 'Excluded'}
+                      </div>
+                      <div className="text-[10px] mt-0.5 truncate text-zinc-500">
+                        {effectiveOption === 1 ? 'Eligible' : 'Land required'}
+                      </div>
+                    </div>
+
+                    {/* PMAY-G */}
+                    <div className="rounded-lg bg-white p-2.5 border border-zinc-200 text-xs shadow-2xs">
+                      <div className="font-bold truncate text-[11px] text-zinc-800">PMAY-G</div>
+                      <div className="font-extrabold text-xs mt-0.5 text-amber-700">
+                        ₹1.30 Lakh
+                      </div>
+                      <div className="text-[10px] mt-0.5 truncate text-emerald-700 font-semibold">
+                        Eligible
+                      </div>
+                    </div>
+
+                    {/* PM-JAY */}
+                    <div className="rounded-lg bg-white p-2.5 border border-zinc-200 text-xs shadow-2xs">
+                      <div className="font-bold truncate text-[11px] text-zinc-800">PM-JAY</div>
+                      <div className="font-extrabold text-xs mt-0.5 text-sky-700">
+                        ₹5,00,000
+                      </div>
+                      <div className="text-[10px] mt-0.5 truncate text-emerald-700 font-semibold">
+                        Eligible
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Action Strip Inside Question Card */}
+                  <div className="pt-2 border-t border-zinc-200/80 flex items-center justify-between gap-3 text-xs">
+                    <span className="text-zinc-500 font-medium">
+                      Est. Total: <strong className="text-zinc-900">{effectiveOption === 1 ? '₹6,36,000 / yr' : '₹6,30,000 / yr'}</strong>
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={handleProceed}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-[#111111] hover:bg-[#262626] text-white font-bold px-4 py-2 text-xs shadow-sm transition-all active:scale-[0.985]"
+                    >
+                      <span>Continue to Step 2</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                </div>
+
+                {/* Kiosk Keyboard Hint */}
+                <div className="flex items-center justify-between text-[11px] text-zinc-400 font-medium pt-1">
+                  <span>Press <kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">1</kbd> or <kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">2</kbd> to toggle</span>
+                  <span><kbd className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-600 font-bold font-mono">Enter ↵</kbd> to continue</span>
+                </div>
 
               </div>
 

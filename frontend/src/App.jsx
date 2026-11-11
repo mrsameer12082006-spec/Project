@@ -18,7 +18,10 @@ export default function App() {
   const [results, setResults] = useState([]);
   const [selectedScheme, setSelectedScheme] = useState(null);
 
-  const handleStartInterview = () => {
+  const handleStartInterview = (initialAnswers) => {
+    if (initialAnswers && typeof initialAnswers === 'object') {
+      setAnswers(prev => ({ ...prev, ...initialAnswers }));
+    }
     setScreen('interview');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -95,6 +98,7 @@ export default function App() {
             onComplete={handleInterviewComplete}
             language={language}
             mode={mode}
+            initialStep={answers && answers.has_land ? 1 : 0}
           />
         )}
 
