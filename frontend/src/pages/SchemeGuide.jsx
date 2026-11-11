@@ -64,7 +64,7 @@ export default function SchemeGuide({
         
         {/* Header */}
         <div className="border-b border-zinc-100 pb-5 space-y-2">
-          <span className="text-[11px] font-mono text-zinc-400 uppercase tracking-wider block font-bold">
+          <span className="text-xs text-zinc-500 uppercase tracking-wider block font-bold">
             {scheme.englishMinistry || scheme.ministry}
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111]">
@@ -119,7 +119,7 @@ export default function SchemeGuide({
             <ol className="space-y-2.5 text-xs sm:text-sm text-zinc-700">
               {scheme.applicationSteps.map((step, idx) => (
                 <li key={idx} className="flex gap-3 bg-zinc-50/80 p-3.5 rounded-xl border border-zinc-200/60 items-center">
-                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-zinc-200 font-mono text-xs font-bold text-[#111111] shrink-0">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-md bg-zinc-200 text-xs font-bold text-[#111111] shrink-0">
                     {idx + 1}
                   </span>
                   <span className="leading-relaxed">{step}</span>
@@ -137,7 +137,7 @@ export default function SchemeGuide({
             href={scheme.officialUrl}
             target="_blank"
             rel="noreferrer"
-            className="text-[#111111] font-mono font-bold flex items-center gap-1 hover:underline"
+            className="text-[#111111] font-bold flex items-center gap-1 hover:underline"
           >
             <span>{scheme.officialUrl}</span>
             <ExternalLink className="w-3.5 h-3.5" />

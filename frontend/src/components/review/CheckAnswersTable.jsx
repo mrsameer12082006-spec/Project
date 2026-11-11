@@ -32,8 +32,8 @@ export default function CheckAnswersTable({
               return (
                 <div key={q.id} className="py-3.5 flex items-center justify-between gap-4">
                   <div className="space-y-0.5">
-                    <span className="text-[11px] font-mono text-zinc-400 font-semibold block uppercase">
-                      Question 0{idx + 1}
+                    <span className="text-xs text-zinc-500 font-semibold block">
+                      Question {idx + 1} of {questions.length}
                     </span>
                     <span className="text-xs sm:text-sm font-medium text-zinc-700 block">
                       {title}

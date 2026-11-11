@@ -122,7 +122,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           </p>
         </div>
 
-        {/* Profile Switcher Tabs with Smooth Layout Animation */}
+        {/* Profile Switcher Tabs */}
         <div className="flex items-center gap-1 bg-[#F2F2F4] border border-[#E4E4E7] p-1.5 rounded-xl w-fit shadow-2xs text-xs font-semibold self-start md:self-auto">
           {Object.values(baseProfiles).map(p => {
             const isSelected = activeProfile === p.id;
@@ -131,18 +131,13 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                 key={p.id}
                 type="button"
                 onClick={() => setActiveProfile(p.id)}
-                className={`relative px-3.5 py-2 rounded-lg transition-colors ${
-                  isSelected ? 'text-white' : 'text-zinc-600 hover:text-zinc-900'
+                className={`relative px-3.5 py-2 rounded-lg font-semibold transition-all ${
+                  isSelected
+                    ? 'bg-[#111111] text-white shadow-xs'
+                    : 'text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60'
                 }`}
               >
-                {isSelected && (
-                  <motion.div
-                    layoutId="activeProfilePill"
-                    className="absolute inset-0 bg-[#111111] rounded-lg shadow-2xs -z-10"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{p.label}</span>
+                <span>{p.label}</span>
               </button>
             );
           })}

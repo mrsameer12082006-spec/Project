@@ -79,8 +79,8 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
               <CivicCrestIcon className="w-5 h-5 text-white" />
             </div>
             <div>
-              <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-wider block">
-                CSC VLE KIOSK · GRAM PANCHAYAT SERVICE SLIP
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">
+                CSC VLE Kiosk · Gram Panchayat Service Slip
               </span>
               <h2 className="text-xl sm:text-2xl font-extrabold text-[#111111] tracking-tight">
                 SchemeSathi Citizen Slip
@@ -88,12 +88,12 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
             </div>
           </div>
 
-          <div className="text-right font-mono text-xs text-zinc-400 space-y-0.5">
-            <div className="font-bold text-zinc-700">#{slipId}</div>
+          <div className="text-right text-xs text-zinc-500 space-y-0.5">
+            <div className="font-bold text-zinc-800 font-mono">#{slipId}</div>
             <div>{currentDate}</div>
-            <div className="text-[10px] text-emerald-600 font-bold flex items-center justify-end gap-1">
+            <div className="text-[10px] text-emerald-700 font-semibold flex items-center justify-end gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block" />
-              <span>RULE AUDITED</span>
+              <span>Grounded in Central Rules</span>
             </div>
           </div>
         </div>
@@ -101,8 +101,8 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
         {/* Target Scheme Box */}
         <div className="bg-[#F4F3EE] border border-[#E5E3DC] rounded-xl p-4 sm:p-5 space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] font-mono font-bold text-zinc-500 uppercase tracking-wider">
-              TARGET WELFARE SCHEME:
+            <span className="text-xs font-bold text-zinc-600 uppercase tracking-wider">
+              Target Welfare Scheme:
             </span>
             <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200/80 flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
@@ -118,19 +118,19 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
             {scheme?.highlightAmount || '₹6,000 / year'}
           </div>
 
-          <div className="text-xs text-zinc-500 font-mono pt-2 border-t border-zinc-200 flex justify-between">
+          <div className="text-xs text-zinc-500 pt-2 border-t border-zinc-200 flex justify-between">
             <span>Portal: {scheme?.officialUrl || 'pmkisan.gov.in'}</span>
-            <span className="text-zinc-600 font-bold">Direct DBT Transfer</span>
+            <span className="text-zinc-700 font-semibold">Direct DBT Bank Transfer</span>
           </div>
         </div>
 
         {/* Interactive Document Checklist with Checkboxes */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold text-[#111111] uppercase tracking-wider font-mono">
-              MANDATORY DOCUMENTS CHECKLIST FOR CSC VISIT:
+            <span className="text-xs font-bold text-[#111111] uppercase tracking-wider">
+              Mandatory Documents Checklist for CSC Kiosk Visit:
             </span>
-            <span className="text-[11px] font-mono text-zinc-400 no-print">
+            <span className="text-[11px] text-zinc-500 no-print">
               Check before leaving home
             </span>
           </div>
@@ -174,12 +174,12 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
         <div className="border-t border-zinc-200 pt-5 grid grid-cols-1 sm:grid-cols-12 gap-4 text-xs text-zinc-500 items-end">
           
           <div className="sm:col-span-8 space-y-1">
-            <strong className="text-zinc-800 font-bold">INSTRUCTIONS FOR CSC OPERATOR:</strong>
+            <strong className="text-zinc-800 font-bold block text-xs">Official Note for CSC Operator:</strong>
             <p className="leading-relaxed text-[11px] text-zinc-600">
-              Please assist this citizen in filing the official online application on the central portal and provide the acknowledgement slip. Generated via 100% free deterministic eligibility check.
+              Please assist this citizen in filing the official online application on the central portal and provide the acknowledgement slip. Generated via 100% free eligibility check.
             </p>
-            <div className="text-[10px] text-zinc-400 pt-1 font-mono">
-              Session Ref: {slipId} · Zero PII Collected
+            <div className="text-[10px] text-zinc-400 pt-1">
+              Ref ID: <span className="font-mono">{slipId}</span> · Zero PII Collected
             </div>
           </div>
 
@@ -187,7 +187,7 @@ export default function CscPrintSlip({ scheme, userAnswers = {}, onBack }) {
             <span className="font-semibold text-[11px] text-zinc-600">
               CSC Operator Stamp & Sign
             </span>
-            <span className="text-[10px] text-zinc-400 border-t border-zinc-200 pt-1 font-mono">
+            <span className="text-[10px] text-zinc-400 border-t border-zinc-200 pt-1">
               Date: _______________
             </span>
           </div>

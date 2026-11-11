@@ -126,8 +126,8 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
                     {isHealth && <ShieldPlus className="w-3.5 h-3.5 text-sky-600" />}
                     <span>{scheme.tag}</span>
                   </span>
-                  <span className="font-mono text-[11px] text-zinc-400">
-                    {scheme.lastVerified}
+                  <span className="text-[11px] text-zinc-500 font-medium">
+                    Verified 2026
                   </span>
                 </div>
 
@@ -159,7 +159,7 @@ export default function SchemeExplorer({ onBack, onStartCheck, onSelectScheme })
                   href={scheme.officialUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-[11px] text-zinc-400 hover:text-zinc-800 font-mono flex items-center gap-1"
+                  className="text-[11px] text-zinc-500 hover:text-zinc-900 font-medium flex items-center gap-1 transition-colors"
                 >
                   <span>{scheme.officialUrl.replace('https://', '')}</span>
                   <ExternalLink className="w-3 h-3" />

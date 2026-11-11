@@ -23,14 +23,14 @@ export default function EligibilityResults({
       {/* Top Header Card */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 pb-6">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 bg-[#F2F2F4] border border-[#E4E4E7] px-3.5 py-1 rounded-full text-xs font-mono text-zinc-600 shadow-2xs">
+          <div className="inline-flex items-center gap-2 bg-[#F2F2F4] border border-[#E4E4E7] px-3.5 py-1 rounded-full text-xs text-zinc-700 shadow-2xs">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block shrink-0" />
-            <span className="font-bold text-zinc-800 font-sans">
-              Rule Match Complete
+            <span className="font-bold text-zinc-900">
+              Evaluation Complete
             </span>
             <span className="text-zinc-300">·</span>
-            <span className="text-zinc-500 font-mono text-[11px] font-bold">
-              {eligibleCount} / {results.length} SCHEMES MATCHED
+            <span className="text-emerald-700 text-xs font-bold">
+              {eligibleCount} of {results.length} Schemes Qualified
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111] tracking-tight">

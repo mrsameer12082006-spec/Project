@@ -52,7 +52,7 @@ export default function ResultCard({
           </span>
         </div>
 
-        <span className="text-[11px] font-mono text-zinc-400">
+        <span className="text-[11px] text-zinc-500 font-medium">
           Verified: {scheme.lastVerified}
         </span>
       </div>
@@ -110,7 +110,7 @@ export default function ResultCard({
 
         {/* Documents */}
         <div className="bg-zinc-50/80 border border-zinc-200/80 rounded-xl p-4 space-y-2">
-          <strong className="text-zinc-800 font-bold block text-xs uppercase tracking-wider font-mono">
+          <strong className="text-zinc-800 font-bold block text-xs uppercase tracking-wider">
             Required Documents:
           </strong>
           <ul className="space-y-1.5 text-zinc-700">
@@ -156,7 +156,7 @@ export default function ResultCard({
           href={scheme.officialUrl}
           target="_blank"
           rel="noreferrer"
-          className="text-xs text-zinc-400 hover:text-zinc-800 flex items-center gap-1 font-mono transition-colors"
+          className="text-xs text-zinc-500 hover:text-zinc-900 flex items-center gap-1 font-medium transition-colors"
         >
           <span>{scheme.officialUrl.replace('https://', '')}</span>
           <ExternalLink className="w-3 h-3" />

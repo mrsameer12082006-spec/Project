@@ -57,11 +57,8 @@ export default function GuidedInterview({
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs font-semibold text-zinc-500">
           <div className="flex items-center gap-2.5">
-            <span className="font-mono text-zinc-800 font-bold bg-zinc-100 border border-zinc-200/80 px-2 py-0.5 rounded text-[11px]">
-              0{currentStep + 1} / 0{QUESTION_REGISTRY.length}
-            </span>
-            <span className="text-zinc-700">
-              Question {currentStep + 1} of {QUESTION_REGISTRY.length}
+            <span className="text-zinc-800 font-bold bg-zinc-100 border border-zinc-200/80 px-2 py-0.5 rounded text-xs">
+              Step {currentStep + 1} of {QUESTION_REGISTRY.length}
             </span>
             {mode === 'operator' && (
               <span className="keycap-badge text-[10px] h-5 tracking-tight">

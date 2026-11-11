@@ -68,7 +68,7 @@ export default function QuestionCard({
                   className="w-full text-left bg-white hover:bg-[#FAF9F6] active:bg-[#F2F2F4] border border-zinc-200 hover:border-[#111111] rounded-xl p-4 transition-all duration-150 active:scale-[0.99] flex items-center justify-between group focus:outline-hidden shadow-2xs hover:shadow-xs"
                 >
                   <div className="flex items-center gap-3.5">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-100 font-mono text-xs font-bold text-[#111111] border border-zinc-200 group-hover:bg-[#111111] group-hover:text-white transition-colors shrink-0">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-zinc-100 text-xs font-bold text-[#111111] border border-zinc-200 group-hover:bg-[#111111] group-hover:text-white transition-colors shrink-0">
                       {idx + 1}
                     </span>
                     <span className="text-sm sm:text-base font-semibold text-[#111111] block leading-snug">
