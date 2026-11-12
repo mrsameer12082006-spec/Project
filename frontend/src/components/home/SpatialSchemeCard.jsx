@@ -5,7 +5,8 @@ import CountUp from '../common/CountUp';
 
 export default function SpatialSchemeCard({
   scheme,
-  onCheckEligibility
+  onCheckEligibility,
+  onSelectScheme
 }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -104,9 +105,13 @@ export default function SpatialSchemeCard({
             </span>
           </div>
 
-          <h3 className="text-lg font-extrabold text-[#111111] leading-snug">
-            {scheme.name}
-          </h3>
+          <button
+            type="button"
+            onClick={() => onSelectScheme && onSelectScheme(scheme)}
+            className="text-left font-extrabold text-[#111111] text-lg leading-snug hover:text-emerald-700 transition-colors cursor-pointer group/title flex items-center justify-between w-full"
+          >
+            <span>{scheme.name}</span>
+          </button>
         </div>
 
         {/* Plain Language Benefit Summary */}
@@ -136,15 +141,28 @@ export default function SpatialSchemeCard({
 
         </div>
 
-        {/* Solid High-Contrast Action Button (Image 7 Solved) */}
-        <button
-          type="button"
-          onClick={() => onCheckEligibility && onCheckEligibility(scheme)}
-          className="w-full py-3.5 px-5 rounded-xl font-bold text-xs sm:text-sm bg-[#111111] hover:bg-zinc-800 text-white shadow-md flex items-center justify-between transition-all duration-150 active:scale-[0.985] group/btn cursor-pointer"
-        >
-          <span>Check Your Eligibility</span>
-          <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/btn:translate-x-1 transition-transform shrink-0" />
-        </button>
+        {/* Action Button Row */}
+        <div className="space-y-2 pt-1">
+          <button
+            type="button"
+            onClick={() => onCheckEligibility && onCheckEligibility(scheme)}
+            className="w-full py-3.5 px-5 rounded-xl font-bold text-xs sm:text-sm bg-[#111111] hover:bg-zinc-800 text-white shadow-md flex items-center justify-between transition-all duration-150 active:scale-[0.985] group/btn cursor-pointer"
+          >
+            <span>Check Your Eligibility</span>
+            <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/btn:translate-x-1 transition-transform shrink-0" />
+          </button>
+
+          {onSelectScheme && (
+            <button
+              type="button"
+              onClick={() => onSelectScheme(scheme)}
+              className="w-full py-2 px-3 text-xs font-semibold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-200/50 rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+            >
+              <span>View Checklist & Application Steps</span>
+              <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+            </button>
+          )}
+        </div>
 
       </div>
 

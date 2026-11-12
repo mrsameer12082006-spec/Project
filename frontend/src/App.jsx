@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -10,9 +10,12 @@ import SchemeGuide from './pages/SchemeGuide';
 import CscPrintSlip from './components/results/CscPrintSlip';
 import SchemeExplorer from './pages/SchemeExplorer';
 import { evaluateEligibilityLocally, playSuccessChime } from './services/api';
+import { VERIFIED_SCHEMES } from './data/schemesData';
 
 export default function App() {
   const [screen, setScreen] = useState('home'); // 'home' | 'interview' | 'review' | 'results' | 'guide' | 'slip' | 'explorer'
+  const [previousScreen, setPreviousScreen] = useState('home');
+  const [interviewStep, setInterviewStep] = useState(0);
   const language = 'en'; // Strict English Only
   const [mode, setMode] = useState('citizen'); // 'citizen' | 'operator'
   const [answers, setAnswers] = useState({});
@@ -44,21 +47,39 @@ export default function App() {
     };
   }, []);
 
-  const handleStartInterview = (initialAnswers) => {
-    if (initialAnswers && typeof initialAnswers === 'object') {
-      setAnswers(prev => ({ ...prev, ...initialAnswers }));
-    }
-    setScreen('interview');
+  const handleNavigateHome = () => {
+    setPreviousScreen(screen);
+    setScreen('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBrowseSchemes = () => {
+    setPreviousScreen(screen);
     setScreen('explorer');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleStartInterview = (initialAnswers, step = null) => {
+    if (initialAnswers && typeof initialAnswers === 'object') {
+      setAnswers(prev => ({ ...prev, ...initialAnswers }));
+    }
+    const nextStep = typeof step === 'number' ? step : (initialAnswers && initialAnswers.has_land ? 1 : 0);
+    setInterviewStep(nextStep);
+    setPreviousScreen(screen);
+    setScreen('interview');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleEditAnswer = (stepIndex) => {
+    setInterviewStep(typeof stepIndex === 'number' ? stepIndex : 0);
+    setPreviousScreen(screen);
+    setScreen('interview');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleInterviewComplete = () => {
     playSuccessChime();
+    setPreviousScreen('interview');
     setScreen('review');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -72,19 +93,33 @@ export default function App() {
     const evaluated = evaluateEligibilityLocally(profile);
     setResults(evaluated);
     playSuccessChime();
+    setPreviousScreen('review');
     setScreen('results');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenDetails = (scheme) => {
-    setSelectedScheme(scheme);
+  const handleOpenDetails = (scheme, fromScreen = null) => {
+    const targetScheme = scheme || VERIFIED_SCHEMES[0];
+    setSelectedScheme(targetScheme);
+    setPreviousScreen(fromScreen || screen);
     setScreen('guide');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handlePrintSlip = (scheme) => {
-    setSelectedScheme(scheme || results[0]);
+  const handlePrintSlip = (scheme, fromScreen = null) => {
+    const defaultScheme = scheme || (results.length > 0 ? results[0] : VERIFIED_SCHEMES[0]);
+    setSelectedScheme(defaultScheme);
+    setPreviousScreen(fromScreen || screen);
     setScreen('slip');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSmartBack = () => {
+    // Return to the logical originating screen without leaving dead ends
+    const target = (previousScreen && previousScreen !== 'slip' && previousScreen !== 'guide') 
+      ? previousScreen 
+      : 'home';
+    setScreen(target);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -94,6 +129,9 @@ export default function App() {
       <Navbar
         currentScreen={screen}
         setScreen={setScreen}
+        onNavigateHome={handleNavigateHome}
+        onNavigateExplorer={handleBrowseSchemes}
+        onStartCheck={() => handleStartInterview({}, 0)}
         mode={mode}
         setMode={setMode}
       />
@@ -104,15 +142,16 @@ export default function App() {
           <Home
             onStart={handleStartInterview}
             onBrowse={handleBrowseSchemes}
+            onSelectScheme={handleOpenDetails}
             language={language}
           />
         )}
 
         {screen === 'explorer' && (
           <SchemeExplorer
-            onBack={() => setScreen('home')}
-            onStartCheck={handleStartInterview}
-            onSelectScheme={handleOpenDetails}
+            onBack={handleNavigateHome}
+            onStartCheck={() => handleStartInterview({}, 0)}
+            onSelectScheme={(s) => handleOpenDetails(s, 'explorer')}
             language={language}
           />
         )}
@@ -122,18 +161,28 @@ export default function App() {
             answers={answers}
             setAnswers={setAnswers}
             onComplete={handleInterviewComplete}
+            onBack={() => {
+              if (previousScreen === 'review') {
+                setScreen('review');
+              } else {
+                handleNavigateHome();
+              }
+            }}
             language={language}
             mode={mode}
-            initialStep={answers && answers.has_land ? 1 : 0}
+            initialStep={interviewStep}
           />
         )}
 
         {screen === 'review' && (
           <ReviewAnswers
             answers={answers}
-            onEditIndex={() => setScreen('interview')}
+            onEditIndex={handleEditAnswer}
             onConfirm={handleConfirmReview}
-            onBack={() => setScreen('interview')}
+            onBack={() => {
+              setInterviewStep(3);
+              setScreen('interview');
+            }}
             language={language}
           />
         )}
@@ -142,27 +191,39 @@ export default function App() {
           <EligibilityResults
             results={results.length > 0 ? results : evaluateEligibilityLocally({})}
             answers={answers}
-            onEditAnswers={() => setScreen('interview')}
-            onOpenDetails={handleOpenDetails}
-            onPrintSlip={handlePrintSlip}
+            onEditAnswers={() => setScreen('review')}
+            onOpenDetails={(s) => handleOpenDetails(s, 'results')}
+            onPrintSlip={(s) => handlePrintSlip(s, 'results')}
+            onBrowse={handleBrowseSchemes}
+            onHome={handleNavigateHome}
+            onStartOver={() => {
+              setAnswers({});
+              handleStartInterview({}, 0);
+            }}
             language={language}
           />
         )}
 
         {screen === 'guide' && (
           <SchemeGuide
-            scheme={selectedScheme || results[0]}
+            scheme={selectedScheme || (results.length > 0 ? results[0] : VERIFIED_SCHEMES[0])}
             userAnswers={answers}
-            onBack={() => setScreen('results')}
+            onBack={handleSmartBack}
+            onStartCheck={() => handleStartInterview({}, 0)}
+            onPrintSlip={(s) => handlePrintSlip(s, 'guide')}
+            onBrowse={handleBrowseSchemes}
+            previousScreen={previousScreen}
             language={language}
           />
         )}
 
         {screen === 'slip' && (
           <CscPrintSlip
-            scheme={selectedScheme || results[0]}
+            scheme={selectedScheme || (results.length > 0 ? results[0] : VERIFIED_SCHEMES[0])}
             userAnswers={answers}
-            onBack={() => setScreen('results')}
+            onBack={handleSmartBack}
+            onBrowse={handleBrowseSchemes}
+            onHome={handleNavigateHome}
             language={language}
           />
         )}
@@ -171,8 +232,10 @@ export default function App() {
       {/* 4. Minimalist Footer */}
       <div className="no-print">
         <Footer
-          onStart={handleStartInterview}
+          onStart={() => handleStartInterview({}, 0)}
           onBrowse={handleBrowseSchemes}
+          onPrintSlip={() => handlePrintSlip(null, 'home')}
+          onHome={handleNavigateHome}
           setScreen={setScreen}
           currentScreen={screen}
         />
