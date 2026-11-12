@@ -1,22 +1,50 @@
 import React from 'react';
-import { ExternalLink, ArrowRight, ShieldCheck, CheckCircle2, Lock, FileText, Printer, Sliders, Check, Landmark } from 'lucide-react';
+import {
+  ExternalLink,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Lock,
+  Printer,
+  Check,
+  Landmark,
+  Sprout,
+  Home as HomeIcon,
+  HeartPulse,
+  ReceiptText,
+  SlidersHorizontal,
+  Compass,
+  ArrowUp
+} from 'lucide-react';
 
 export default function Footer({ onStart, onBrowse, setScreen, currentScreen = 'home' }) {
   const isHomeScreen = currentScreen === 'home';
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="mt-16 border-t border-zinc-200 bg-[#FBFBFA] text-zinc-600 text-xs">
+    <footer className="mt-16 border-t border-[#E5E3DC] bg-[#FAF9F5] text-zinc-600 text-xs">
       
       {/* ───────────────────────────────────────────────────────────
           1. HIGH-IMPACT PRE-FOOTER CTA BANNER (HOMEPAGE ONLY)
           ─────────────────────────────────────────────────────────── */}
       {isHomeScreen && (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-10">
-          <div className="rounded-3xl bg-[#111111] text-white p-8 sm:p-12 lg:p-14 border border-zinc-800 shadow-xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="rounded-3xl bg-[#111111] text-white p-8 sm:p-12 lg:p-14 border border-zinc-800 shadow-[0_20px_50px_rgba(0,0,0,0.2)] relative overflow-hidden">
+            {/* Subtle radial ambient light */}
+            <div className="absolute -right-20 -top-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+            
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
               
               {/* Left 8 Cols: Pitch & Assurance */}
               <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-emerald-400">
+                  <Landmark className="w-4 h-4 text-emerald-400" />
+                  <span>Verified Civic Assistance</span>
+                </div>
+
                 <h2 className="text-2xl sm:text-4xl lg:text-[40px] font-extrabold tracking-tight text-white leading-[1.18]">
                   Claim What Is Rightfully Yours From Central Welfare Programs.
                 </h2>
@@ -34,9 +62,7 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                   className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-white px-7 py-4 text-sm font-bold text-[#111111] shadow-sm transition-all duration-150 hover:bg-zinc-100 active:scale-[0.985]"
                 >
                   <span>Check Eligibility in 60s</span>
-                  <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#111111] text-white text-xs transition-transform group-hover:translate-x-1">
-                    →
-                  </span>
+                  <ArrowRight className="w-4 h-4 text-[#111111] group-hover:translate-x-1 transition-transform" />
                 </button>
 
                 <button
@@ -55,41 +81,56 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
       )}
 
       {/* ───────────────────────────────────────────────────────────
-          2. AUTHORITATIVE 4-COLUMN CIVIC FOOTER
+          2. AUTHORITATIVE 4-COLUMN CIVIC FOOTER (REDESIGNED)
           ─────────────────────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           
           {/* Column 1: Brand & Civic Charter (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#111111] text-emerald-400 flex items-center justify-center shadow-xs">
-                <Landmark className="w-4 h-4" />
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#111111] text-emerald-400 flex items-center justify-center shadow-xs">
+                <Landmark className="w-5 h-5" />
               </div>
-              <span className="font-extrabold text-lg text-[#111111] tracking-tight">
-                SchemeSathi
-              </span>
+              <div>
+                <span className="font-extrabold text-lg text-[#111111] tracking-tight block leading-tight">
+                  SchemeSathi
+                </span>
+                <span className="text-[11px] font-semibold text-zinc-500">
+                  Verified Central Welfare Guidance
+                </span>
+              </div>
             </div>
 
-            <p className="text-xs text-zinc-500 leading-relaxed max-w-sm">
-              An independent, non-commercial public service helping underserved rural and semi-urban Indian households discover and claim verified government welfare benefits without middlemen.
+            <p className="text-xs text-zinc-600 leading-relaxed max-w-sm">
+              An independent, non-commercial public service helping rural and semi-urban Indian households discover and claim central welfare benefits without middlemen.
             </p>
+
+            {/* Live Trust Signal Pill */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-zinc-200/90 shadow-2xs text-[11px] font-bold text-zinc-800">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Official 2026 Gazette Guidelines Aligned</span>
+            </div>
           </div>
 
           {/* Column 2: Central Ministries & Official Portals (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
-              Official Central Portals
+            <div className="font-bold text-[#111111] uppercase tracking-wider text-xs flex items-center gap-1.5">
+              <span>Official Central Portals</span>
             </div>
-            <ul className="space-y-2 text-xs">
+            
+            <ul className="space-y-1.5 text-xs">
               <li>
                 <a
                   href="https://pmkisan.gov.in"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors group"
+                  className="flex items-center justify-between p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors group"
                 >
-                  <span className="text-zinc-700 group-hover:underline">PM-KISAN (Farmer Income)</span>
+                  <span className="flex items-center gap-2">
+                    <Sprout className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span className="font-medium group-hover:underline">PM-KISAN (Farmer Income)</span>
+                  </span>
                   <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-[#111111]" />
                 </a>
               </li>
@@ -98,9 +139,12 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                   href="https://pmayg.nic.in"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors group"
+                  className="flex items-center justify-between p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors group"
                 >
-                  <span className="text-zinc-700 group-hover:underline">PMAY-G (Rural Housing)</span>
+                  <span className="flex items-center gap-2">
+                    <HomeIcon className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                    <span className="font-medium group-hover:underline">PMAY-G (Rural Housing)</span>
+                  </span>
                   <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-[#111111]" />
                 </a>
               </li>
@@ -109,9 +153,12 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                   href="https://pmjay.gov.in"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors group"
+                  className="flex items-center justify-between p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors group"
                 >
-                  <span className="text-zinc-700 group-hover:underline">Ayushman Bharat (PM-JAY)</span>
+                  <span className="flex items-center gap-2">
+                    <HeartPulse className="w-3.5 h-3.5 text-sky-600 shrink-0" />
+                    <span className="font-medium group-hover:underline">Ayushman Bharat (PM-JAY)</span>
+                  </span>
                   <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-[#111111]" />
                 </a>
               </li>
@@ -120,9 +167,12 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                   href="https://india.gov.in"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors group"
+                  className="flex items-center justify-between p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors group"
                 >
-                  <span className="text-zinc-700 group-hover:underline">National Portal of India</span>
+                  <span className="flex items-center gap-2">
+                    <Landmark className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <span className="font-medium group-hover:underline">National Portal of India</span>
+                  </span>
                   <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-[#111111]" />
                 </a>
               </li>
@@ -131,9 +181,12 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                   href="https://pfms.nic.in"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors group"
+                  className="flex items-center justify-between p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors group"
                 >
-                  <span className="text-zinc-700 group-hover:underline">PFMS DBT Portal</span>
+                  <span className="flex items-center gap-2">
+                    <ReceiptText className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <span className="font-medium group-hover:underline">PFMS DBT Portal</span>
+                  </span>
                   <ExternalLink className="w-3 h-3 text-zinc-400 group-hover:text-[#111111]" />
                 </a>
               </li>
@@ -145,24 +198,25 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
             <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
               Citizen & Kiosk Tools
             </div>
-            <ul className="space-y-2 text-xs">
+            
+            <ul className="space-y-1.5 text-xs">
               <li>
                 <button
                   type="button"
                   onClick={onStart}
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors text-left text-zinc-700 hover:underline"
+                  className="w-full flex items-center gap-2 p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors text-left font-medium"
                 >
-                  <Sliders className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>4-Question Eligibility Check</span>
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                  <span>4-Question Eligibility Wizard</span>
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={onBrowse}
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors text-left text-zinc-700 hover:underline"
+                  className="w-full flex items-center gap-2 p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors text-left font-medium"
                 >
-                  <FileText className="w-3.5 h-3.5 text-zinc-400" />
+                  <Compass className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                   <span>Verified Schemes Directory</span>
                 </button>
               </li>
@@ -170,17 +224,17 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
                 <button
                   type="button"
                   onClick={onStart}
-                  className="hover:text-[#111111] flex items-center gap-1.5 transition-colors text-left text-zinc-700 hover:underline"
+                  className="w-full flex items-center gap-2 p-1.5 -mx-1.5 rounded-lg hover:bg-black/[0.04] text-zinc-700 hover:text-[#111111] transition-colors text-left font-medium"
                 >
-                  <Printer className="w-3.5 h-3.5 text-zinc-400" />
+                  <Printer className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                   <span>CSC Kiosk Print Slip Generator</span>
                 </button>
               </li>
               <li>
-                <span className="text-zinc-500 flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Transparent Eligibility Verification</span>
-                </span>
+                <div className="flex items-center gap-2 p-1.5 -mx-1.5 text-zinc-600 font-medium">
+                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Transparent Rule Audit Trace</span>
+                </div>
               </li>
             </ul>
           </div>
@@ -190,40 +244,49 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
             <div className="font-bold text-[#111111] uppercase tracking-wider text-xs">
               Public Charter
             </div>
-            <ul className="space-y-2 text-xs text-zinc-600">
-              <li className="flex items-center gap-1.5 text-emerald-700 font-semibold">
-                <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                <span>100% Free Always</span>
+            
+            <ul className="space-y-2 text-xs">
+              <li className="flex items-center gap-2 text-emerald-800 font-semibold bg-emerald-50/70 border border-emerald-200/60 px-2 py-1 rounded-md">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>100% Free Public Service</span>
               </li>
-              <li className="flex items-center gap-1.5">
+              <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
                 <Lock className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                 <span>Zero PII Stored</span>
               </li>
-              <li className="flex items-center gap-1.5">
+              <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                 <span>No Aadhaar Required</span>
               </li>
-              <li className="flex items-center gap-1.5">
+              <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
                 <Check className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-                <span>Zero Intermediaries</span>
+                <span>Direct to Portals</span>
               </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom Sub-Bar */}
-        <div className="mt-12 pt-6 border-t border-zinc-200 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="font-semibold text-zinc-700">© 2026 SchemeSathi Team</span>
+        {/* Bottom Sub-Bar with Scroll to Top */}
+        <div className="mt-12 pt-6 border-t border-[#E5E3DC] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <span className="font-bold text-zinc-800">© 2026 SchemeSathi</span>
             <span>·</span>
-            <span>CS002 Community Public Service</span>
+            <span>Independent Public Civic Technology</span>
             <span>·</span>
-            <span>Open Source Civic Technology</span>
+            <span>Gazette of India Verification</span>
           </div>
 
-          <div className="text-[11px] text-zinc-400 font-medium">
-            Grounded directly in official Gazette of India criteria · Zero user data retained
+          <div className="flex items-center gap-4">
+            <span className="text-zinc-500 hidden sm:inline">Zero personal data retained</span>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1 font-semibold text-zinc-700 hover:text-[#111111] transition-colors"
+            >
+              <span>Back to top</span>
+              <ArrowUp className="w-3 h-3" />
+            </button>
           </div>
         </div>
 

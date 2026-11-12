@@ -501,4 +501,46 @@ html.lenis, html.lenis body {
   animation: spin-slow 14s linear infinite;
 }
 
+/* 11. Spatial 3D Card & Lantern Spotlight */
+.spatial-card-3d {
+  position: relative;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 227, 220, 0.9);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px 0 rgba(0, 0, 0, 0.02),
+    0 8px 24px -4px rgba(0, 0, 0, 0.04);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.spatial-card-3d:hover {
+  border-color: rgba(200, 195, 185, 0.95);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 1),
+    0 4px 12px 0 rgba(0, 0, 0, 0.03),
+    0 20px 36px -8px rgba(0, 0, 0, 0.08);
+}
+.lantern-spotlight {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 250ms ease;
+  z-index: 10;
+}
+.spatial-card-3d:hover .lantern-spotlight {
+  opacity: 1;
+}
+
+/* 3D Hologram Seal Shimmer */
+.hologram-seal {
+  background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.85) 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.9), 0 2px 8px rgba(0,0,0,0.04);
+  backdrop-filter: blur(8px);
+}
+
+
 

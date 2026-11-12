@@ -20,6 +20,7 @@ import {
 import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
+import SpatialSchemeCard from '../components/home/SpatialSchemeCard';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -88,16 +89,76 @@ export default function Home({ onStart, onBrowse }) {
     const handleKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === '1') {
-        setSelectedOption(1);
+        handleSelectOption(1);
       } else if (e.key === '2') {
-        setSelectedOption(2);
+        handleSelectOption(2);
       } else if (e.key === 'Enter') {
         handleProceed();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedOption]);
+  }, []);
+
+  const handleSelectOption = (opt) => {
+    setSelectedOption(opt);
+    setTimeout(() => {
+      onStart({
+        has_land: {
+          value: opt === 1,
+          label: opt === 1 ? 'Yes, family owns cultivable land' : 'No agricultural land owned'
+        }
+      });
+    }, 240);
+  };
+
+  const featuredSchemes = [
+    {
+      id: 'pm-kisan',
+      rawAmount: 6000,
+      amount: '₹6,000',
+      period: '/ year',
+      tag: 'Farmer Income Support',
+      name: 'PM Kisan Samman Nidhi',
+      description: 'Direct income support of ₹6,000 per year transferred in 3 equal installments of ₹2,000 directly via DBT to eligible landholding farmer families.',
+      ministry: 'Ministry of Agriculture',
+      portalUrl: 'https://pmkisan.gov.in',
+      portalDomain: 'pmkisan.gov.in',
+      accent: 'emerald',
+      icon: Sprout,
+      highlightTag: 'Direct DBT Bank Transfer'
+    },
+    {
+      id: 'pm-awas',
+      rawAmount: 130000,
+      amount: '₹1,30,000',
+      period: 'Pucca Housing Grant',
+      tag: 'Rural Housing Support',
+      name: 'PM Awas Yojana (Gramin)',
+      description: 'Financial assistance of ₹1.20 to ₹1.30 Lakh for construction of a permanent pucca house + 90 days of dedicated MGNREGA unskilled labour wages.',
+      ministry: 'Ministry of Rural Development',
+      portalUrl: 'https://pmayg.nic.in',
+      portalDomain: 'pmayg.nic.in',
+      accent: 'amber',
+      icon: HomeIcon,
+      highlightTag: 'Pucca House + MGNREGA'
+    },
+    {
+      id: 'pm-jay',
+      rawAmount: 500000,
+      amount: '₹5,00,000',
+      period: '/ family / year',
+      tag: 'Cashless Healthcare',
+      name: 'Ayushman Bharat PM-JAY',
+      description: 'Comprehensive secondary and tertiary care hospitalization coverage up to ₹5 Lakh per family per year, completely cashless across 27,000+ empanelled hospitals.',
+      ministry: 'National Health Authority',
+      portalUrl: 'https://pmjay.gov.in',
+      portalDomain: 'pmjay.gov.in',
+      accent: 'sky',
+      icon: HeartPulse,
+      highlightTag: '27,000+ Cashless Hospitals'
+    }
+  ];
 
   const handleToggleAudio = (targetLang) => {
     const langToUse = targetLang || audioLang;
@@ -290,18 +351,18 @@ export default function Home({ onStart, onBrowse }) {
                   </p>
                 </div>
 
-                {/* GOV.UK Tactile Keycap Option Rows */}
-                <div className="space-y-2.5 pt-1">
+                {/* GOV.UK Tactile Keycap Option Rows with Instant Proceed */}
+                <div className="space-y-3 pt-1">
                   
                   {/* Option 1: Yes */}
                   <button
                     type="button"
-                    onClick={() => setSelectedOption(1)}
+                    onClick={() => handleSelectOption(1)}
                     onMouseEnter={() => setHoveredOption(1)}
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
                       selectedOption === 1
-                        ? 'spatial-glass-emerald'
+                        ? 'spatial-glass-emerald border-2 border-emerald-600 shadow-sm'
                         : 'bg-white/70 backdrop-blur-md border border-zinc-200/80 hover:border-zinc-300 hover:bg-white/95 shadow-[0_2px_0_0_#E4E4E7]'
                     }`}
                   >
@@ -323,19 +384,24 @@ export default function Home({ onStart, onBrowse }) {
                       </div>
                     </div>
 
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                      selectedOption === 1
-                        ? 'border-emerald-600 bg-emerald-600 text-white'
-                        : 'border-zinc-300 bg-white'
-                    }`}>
-                      {selectedOption === 1 && <Check className="w-3 h-3 stroke-[3]" />}
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
+                        Select →
+                      </span>
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                        selectedOption === 1
+                          ? 'border-emerald-600 bg-emerald-600 text-white'
+                          : 'border-zinc-300 bg-white'
+                      }`}>
+                        {selectedOption === 1 && <Check className="w-3 h-3 stroke-[3]" />}
+                      </div>
                     </div>
                   </button>
 
                   {/* Option 2: No */}
                   <button
                     type="button"
-                    onClick={() => setSelectedOption(2)}
+                    onClick={() => handleSelectOption(2)}
                     onMouseEnter={() => setHoveredOption(2)}
                     onMouseLeave={() => setHoveredOption(null)}
                     className={`group relative flex w-full items-center justify-between rounded-xl p-4 text-left transition-all duration-150 active:translate-y-[1px] focus:outline-hidden ${
@@ -362,41 +428,29 @@ export default function Home({ onStart, onBrowse }) {
                       </div>
                     </div>
 
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
-                      selectedOption === 2
-                        ? 'border-zinc-900 bg-zinc-900 text-white'
-                        : 'border-zinc-300 bg-white'
-                    }`}>
-                      {selectedOption === 2 && <Check className="w-3 h-3 stroke-[3]" />}
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-semibold text-zinc-900 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:inline">
+                        Select →
+                      </span>
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${
+                        selectedOption === 2
+                          ? 'border-zinc-900 bg-zinc-900 text-white'
+                          : 'border-zinc-300 bg-white'
+                      }`}>
+                        {selectedOption === 2 && <Check className="w-3 h-3 stroke-[3]" />}
+                      </div>
                     </div>
                   </button>
 
                 </div>
 
-                {/* Clean Bottom Action Row (Apple Glassmorphism, Image 1 Clean Replacement) */}
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs border-t border-black/[0.05]">
-                  <div className="flex items-center gap-2 text-zinc-500 font-medium">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>No login or paperwork needed</span>
+                {/* Clean Micro Status Line (Zero Clutter, Image 1 Completely Purged) */}
+                <div className="pt-2 flex items-center justify-between text-xs text-zinc-400 font-medium border-t border-black/[0.04]">
+                  <div className="flex items-center gap-1.5 text-zinc-500 text-[11px]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>Tap 1 or 2 to advance · No login needed</span>
                   </div>
-
-                  <div className="flex items-center gap-3 shrink-0">
-                    <div className="hidden sm:flex items-center gap-1.5 text-zinc-400 text-[11px] font-medium">
-                      <span>Press</span>
-                      <span className="keycap-badge">1</span>
-                      <span>or</span>
-                      <span className="keycap-badge">2</span>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={handleProceed}
-                      className="spatial-glass-button-dark inline-flex items-center justify-center gap-2 rounded-full font-bold px-7 py-3 text-sm text-white shadow-md active:scale-[0.985] group shrink-0 whitespace-nowrap"
-                    >
-                      <span>Continue to Step 2</span>
-                      <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform shrink-0" />
-                    </button>
-                  </div>
+                  <span className="text-[11px] font-semibold text-zinc-400">Step 1 of 4</span>
                 </div>
 
               </div>
@@ -432,168 +486,15 @@ export default function Home({ onStart, onBrowse }) {
           </button>
         </div>
 
-        {/* 3 Featured Passbook Cards with Micro-Lift Interaction */}
+        {/* 3 Spatial 3D Passbook Cards with Lantern Spotlight Interaction */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          {/* Card 1: PM-KISAN (Farmer Support) */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.2 }}
-            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
-          >
-            <div className="p-5 sm:p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
-                  <Sprout className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Farmer Support</span>
-                </span>
-                <a
-                  href="https://pmkisan.gov.in"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[11px] text-zinc-500 hover:text-emerald-800 font-medium flex items-center gap-1 transition-colors"
-                >
-                  <span>pmkisan.gov.in</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#0C0A09] metric-tabular tracking-tight">
-                  <CountUp end={6000} prefix="₹" duration={650} />{' '}
-                  <span className="text-xs font-medium text-zinc-500 font-sans">
-                    / year
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-[#0C0A09] leading-snug">
-                  PM Kisan Samman Nidhi
-                </h3>
-              </div>
-
-              <p className="text-xs text-zinc-600 leading-relaxed">
-                Direct income support of ₹6,000 per year transferred in 3 equal installments of ₹2,000 directly via DBT to eligible landholding farmer families.
-              </p>
-            </div>
-
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
-              <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                <span>
-                  Direct DBT Bank Transfer
-                </span>
-              </div>
-              <div className="text-zinc-400 text-[11px] pl-0.5">
-                Ministry of Agriculture & Farmers Welfare
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Card 2: PMAY-G (Rural Housing) */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.2 }}
-            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
-          >
-            <div className="p-5 sm:p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
-                  <HomeIcon className="w-3.5 h-3.5 text-amber-600" />
-                  <span>Rural Housing</span>
-                </span>
-                <a
-                  href="https://pmayg.nic.in"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[11px] text-zinc-500 hover:text-amber-800 font-medium flex items-center gap-1 transition-colors"
-                >
-                  <span>pmayg.nic.in</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#0C0A09] metric-tabular tracking-tight">
-                  ₹1.20–1.30{' '}
-                  <span className="text-xs font-medium text-zinc-500 font-sans">
-                    Lakh Grant
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-[#0C0A09] leading-snug">
-                  PM Awas Yojana (Gramin)
-                </h3>
-              </div>
-
-              <p className="text-xs text-zinc-600 leading-relaxed">
-                Financial assistance of ₹1.20 to ₹1.30 Lakh for construction of a permanent pucca house + 90 days of dedicated MGNREGA unskilled labour wages.
-              </p>
-            </div>
-
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
-              <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-                <span>
-                  Pucca House + 90 Days MGNREGA
-                </span>
-              </div>
-              <div className="text-zinc-400 text-[11px] pl-0.5">
-                Ministry of Rural Development
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Card 3: PM-JAY (Free Healthcare) */}
-          <motion.div
-            whileHover={{ y: -3 }}
-            transition={{ duration: 0.2 }}
-            className="tactile-card rounded-2xl overflow-hidden border border-zinc-200 hover:border-zinc-300 flex flex-col justify-between shadow-2xs hover:shadow-md transition-all duration-200"
-          >
-            <div className="p-5 sm:p-6 space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-2xs text-zinc-900 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-tight">
-                  <HeartPulse className="w-3.5 h-3.5 text-sky-600" />
-                  <span>Free Healthcare</span>
-                </span>
-                <a
-                  href="https://pmjay.gov.in"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[11px] text-zinc-500 hover:text-sky-800 font-medium flex items-center gap-1 transition-colors"
-                >
-                  <span>pmjay.gov.in</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
-              </div>
-
-              <div className="space-y-1">
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#0C0A09] metric-tabular tracking-tight">
-                  <CountUp end={500000} prefix="₹" duration={750} />{' '}
-                  <span className="text-xs font-medium text-zinc-500 font-sans">
-                    / family / year
-                  </span>
-                </div>
-                <h3 className="text-base font-bold text-[#0C0A09] leading-snug">
-                  Ayushman Bharat PM-JAY
-                </h3>
-              </div>
-
-              <p className="text-xs text-zinc-600 leading-relaxed">
-                Comprehensive secondary and tertiary care hospitalization coverage up to ₹5 Lakh per family per year, completely cashless across 27,000+ empanelled hospitals.
-              </p>
-            </div>
-
-            <div className="p-4 sm:p-5 pt-3 border-t border-zinc-100 bg-zinc-50/50 space-y-2 text-xs text-zinc-500">
-              <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
-                <span>
-                  27,000+ Cashless Hospitals
-                </span>
-              </div>
-              <div className="text-zinc-400 text-[11px] pl-0.5">
-                National Health Authority (NHA)
-              </div>
-            </div>
-          </motion.div>
-
+          {featuredSchemes.map((scheme) => (
+            <SpatialSchemeCard
+              key={scheme.id}
+              scheme={scheme}
+              onCheckEligibility={() => onStart({})}
+            />
+          ))}
         </div>
 
       </section>
