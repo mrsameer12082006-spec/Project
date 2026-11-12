@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight, Landmark } from 'lucide-react';
 import CountUp from '../common/CountUp';
 
 export default function SpatialSchemeCard({
@@ -8,7 +8,7 @@ export default function SpatialSchemeCard({
   onCheckEligibility
 }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0, active: false });
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e) => {
     if (window.matchMedia('(pointer: coarse)').matches) return;
@@ -19,54 +19,42 @@ export default function SpatialSchemeCard({
     const centerY = rect.height / 2;
 
     setTilt({
-      x: Math.max(-5, Math.min(5, -((y - centerY) / centerY) * 5)),
-      y: Math.max(-5, Math.min(5, ((x - centerX) / centerX) * 5))
+      x: Math.max(-4, Math.min(4, -((y - centerY) / centerY) * 4)),
+      y: Math.max(-4, Math.min(4, ((x - centerX) / centerX) * 4))
     });
-    setMousePos({ x, y, active: true });
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     setTilt({ x: 0, y: 0 });
-    setMousePos(prev => ({ ...prev, active: false }));
+    setIsHovered(false);
   };
 
   const Icon = scheme.icon;
 
-  // Theme configuration for Lantern glow and badges
-  const colorThemes = {
+  // Solid, authoritative color themes (No translucent/washed out pastels)
+  const solidThemes = {
     emerald: {
-      lantern: 'rgba(5, 150, 105, 0.16)',
-      badgeBg: 'bg-emerald-50',
-      badgeBorder: 'border-emerald-200/90',
-      badgeText: 'text-emerald-800',
-      iconText: 'text-emerald-600',
-      dotBg: 'bg-emerald-500',
-      btnHover: 'hover:text-emerald-800',
-      linkHover: 'hover:text-emerald-800'
+      badge: 'bg-emerald-700 text-white shadow-xs',
+      dot: 'bg-emerald-600',
+      borderHover: 'hover:border-emerald-600',
+      accentText: 'text-emerald-700'
     },
     amber: {
-      lantern: 'rgba(217, 119, 6, 0.16)',
-      badgeBg: 'bg-amber-50',
-      badgeBorder: 'border-amber-200/90',
-      badgeText: 'text-amber-800',
-      iconText: 'text-amber-600',
-      dotBg: 'bg-amber-500',
-      btnHover: 'hover:text-amber-800',
-      linkHover: 'hover:text-amber-800'
+      badge: 'bg-amber-700 text-white shadow-xs',
+      dot: 'bg-amber-600',
+      borderHover: 'hover:border-amber-600',
+      accentText: 'text-amber-800'
     },
     sky: {
-      lantern: 'rgba(2, 132, 199, 0.16)',
-      badgeBg: 'bg-sky-50',
-      badgeBorder: 'border-sky-200/90',
-      badgeText: 'text-sky-800',
-      iconText: 'text-sky-600',
-      dotBg: 'bg-sky-500',
-      btnHover: 'hover:text-sky-800',
-      linkHover: 'hover:text-sky-800'
+      badge: 'bg-sky-700 text-white shadow-xs',
+      dot: 'bg-sky-600',
+      borderHover: 'hover:border-sky-600',
+      accentText: 'text-sky-700'
     }
   };
 
-  const theme = colorThemes[scheme.accent] || colorThemes.emerald;
+  const theme = solidThemes[scheme.accent] || solidThemes.emerald;
 
   return (
     <motion.div
@@ -74,52 +62,33 @@ export default function SpatialSchemeCard({
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: mousePos.active ? 'transform 100ms ease-out' : 'transform 450ms cubic-bezier(0.16, 1, 0.3, 1)'
+        transition: isHovered ? 'transform 100ms ease-out' : 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1)'
       }}
-      className="spatial-card-3d rounded-2xl overflow-hidden flex flex-col justify-between group transition-shadow duration-300"
+      className={`bg-white rounded-2xl border-2 border-[#E5E3DC] ${theme.borderHover} hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-hidden shadow-sm relative`}
     >
-      {/* ── Lantern 3D Spotlight Overlay (Cursor Reactive) ── */}
-      {mousePos.active && (
-        <div
-          className="lantern-spotlight"
-          style={{
-            opacity: 1,
-            background: `radial-gradient(340px circle at ${mousePos.x}px ${mousePos.y}px, ${theme.lantern}, transparent 75%)`
-          }}
-        />
-      )}
-
-      {/* Main Card Content */}
-      <div className="p-6 sm:p-7 space-y-5 relative z-10">
+      {/* ── 1. Top Section & Header ── */}
+      <div className="p-6 sm:p-7 space-y-5">
         
-        {/* Top Header: Category Tag & 3D Holographic Seal */}
+        {/* Solid Category Badge & Official Portal Link */}
         <div className="flex items-center justify-between gap-3">
-          <span className={`inline-flex items-center gap-1.5 ${theme.badgeBg} ${theme.badgeBorder} ${theme.badgeText} border px-3 py-1 rounded-md text-xs font-bold tracking-tight shadow-2xs`}>
-            <Icon className={`w-3.5 h-3.5 ${theme.iconText} shrink-0`} />
+          
+          {/* Solid Authoritative Category Badge */}
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold tracking-tight ${theme.badge}`}>
+            <Icon className="w-3.5 h-3.5 text-white shrink-0 stroke-[2.5]" />
             <span>{scheme.tag}</span>
           </span>
 
-          {/* 3D Holographic Seal / External Portal */}
-          <div className="flex items-center gap-2">
-            <a
-              href={scheme.portalUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={`text-xs font-semibold text-zinc-400 ${theme.linkHover} flex items-center gap-1 transition-colors`}
-              title={`Visit official ${scheme.portalDomain} portal`}
-            >
-              <span>{scheme.portalDomain}</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-
-            {/* Micro 3D Hologram Badge */}
-            <div 
-              style={{ transform: 'translateZ(18px)' }}
-              className="hologram-seal w-7 h-7 rounded-lg border border-black/[0.06] flex items-center justify-center text-zinc-600 transition-transform group-hover:scale-105"
-            >
-              <Icon className="w-3.5 h-3.5 opacity-80" />
-            </div>
-          </div>
+          {/* Solid Portal Link */}
+          <a
+            href={scheme.portalUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-800 text-xs font-bold transition-colors border border-zinc-200/90"
+            title={`Official Ministry Portal: ${scheme.portalDomain}`}
+          >
+            <span>{scheme.portalDomain}</span>
+            <ExternalLink className="w-3 h-3 text-zinc-500" />
+          </a>
         </div>
 
         {/* Rupee Value with Large Clean Tabular Counter */}
@@ -130,48 +99,51 @@ export default function SpatialSchemeCard({
             ) : (
               <span>{scheme.amount}</span>
             )}
-            <span className="text-xs sm:text-sm font-semibold text-zinc-500 font-sans tracking-normal">
+            <span className="text-xs sm:text-sm font-bold text-zinc-600 font-sans tracking-normal">
               {scheme.period}
             </span>
           </div>
 
-          <h3 className="text-lg font-bold text-[#111111] leading-snug group-hover:text-emerald-950 transition-colors">
+          <h3 className="text-lg font-extrabold text-[#111111] leading-snug">
             {scheme.name}
           </h3>
         </div>
 
         {/* Plain Language Benefit Summary */}
-        <p className="text-xs sm:text-[13px] text-zinc-600 leading-relaxed">
+        <p className="text-xs sm:text-[13px] text-zinc-700 leading-relaxed font-medium">
           {scheme.description}
         </p>
 
       </div>
 
-      {/* Tactile Lower Ledger & Action Strip */}
-      <div className="p-4 sm:p-5 pt-3 border-t border-zinc-200/70 bg-[#FBFBFA]/80 space-y-3 relative z-10">
+      {/* ── 2. Solid Bottom Ledger & Action Row ── */}
+      <div className="p-5 sm:p-6 pt-4 border-t border-[#E5E3DC] bg-[#FAF9F5] space-y-4">
         
-        {/* Verification Status & Ministry Info */}
-        <div className="flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2 text-zinc-800 bg-white border border-zinc-200/90 shadow-2xs px-2.5 py-1 rounded-md text-[11px] font-semibold">
-            <span className={`w-1.5 h-1.5 rounded-full ${theme.dotBg} shrink-0 animate-pulse`} />
+        {/* Ministry & Benefit Status Rows (No Truncation) */}
+        <div className="space-y-2">
+          
+          {/* Full Ministry Name */}
+          <div className="flex items-center gap-1.5 text-xs font-bold text-[#111111]">
+            <Landmark className="w-3.5 h-3.5 text-zinc-600 shrink-0" />
+            <span className="leading-tight">{scheme.ministry}</span>
+          </div>
+
+          {/* Solid Delivery Tag */}
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-white text-zinc-900 text-[11px] font-bold border border-zinc-200 shadow-2xs">
+            <span className={`w-2 h-2 rounded-full ${theme.dot} shrink-0 animate-pulse`} />
             <span>{scheme.highlightTag}</span>
           </div>
 
-          <span className="text-[11px] text-zinc-400 font-medium truncate max-w-[170px]" title={scheme.ministry}>
-            {scheme.ministry}
-          </span>
         </div>
 
-        {/* Clickable Card Action */}
+        {/* Solid High-Contrast Action Button (Image 7 Solved) */}
         <button
           type="button"
           onClick={() => onCheckEligibility && onCheckEligibility(scheme)}
-          className="w-full flex items-center justify-between py-2 px-3 rounded-lg text-xs font-bold text-[#111111] hover:bg-zinc-100/90 border border-transparent hover:border-zinc-200 transition-all group/btn"
+          className="w-full py-3.5 px-5 rounded-xl font-bold text-xs sm:text-sm bg-[#111111] hover:bg-zinc-800 text-white shadow-md flex items-center justify-between transition-all duration-150 active:scale-[0.985] group/btn cursor-pointer"
         >
-          <span className="flex items-center gap-1.5">
-            <span>Check eligibility for this scheme</span>
-          </span>
-          <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover/btn:translate-x-1 transition-transform" />
+          <span>Check Your Eligibility</span>
+          <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/btn:translate-x-1 transition-transform shrink-0" />
         </button>
 
       </div>

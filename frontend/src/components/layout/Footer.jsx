@@ -246,48 +246,25 @@ export default function Footer({ onStart, onBrowse, setScreen, currentScreen = '
             </div>
             
             <ul className="space-y-2 text-xs">
-              <li className="flex items-center gap-2 text-emerald-800 font-semibold bg-emerald-50/70 border border-emerald-200/60 px-2 py-1 rounded-md">
+              <li className="flex items-center gap-2 text-zinc-900 font-bold px-1">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 <span>100% Free Public Service</span>
               </li>
               <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
-                <Lock className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                <Lock className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>Zero PII Stored</span>
               </li>
               <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
-                <ShieldCheck className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>No Aadhaar Required</span>
               </li>
               <li className="flex items-center gap-2 text-zinc-700 font-medium px-1">
-                <Check className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
+                <Check className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
                 <span>Direct to Portals</span>
               </li>
             </ul>
           </div>
 
-        </div>
-
-        {/* Bottom Sub-Bar with Scroll to Top */}
-        <div className="mt-12 pt-6 border-t border-[#E5E3DC] flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <span className="font-bold text-zinc-800">© 2026 SchemeSathi</span>
-            <span>·</span>
-            <span>Independent Public Civic Technology</span>
-            <span>·</span>
-            <span>Gazette of India Verification</span>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <span className="text-zinc-500 hidden sm:inline">Zero personal data retained</span>
-            <button
-              type="button"
-              onClick={scrollToTop}
-              className="inline-flex items-center gap-1 font-semibold text-zinc-700 hover:text-[#111111] transition-colors"
-            >
-              <span>Back to top</span>
-              <ArrowUp className="w-3 h-3" />
-            </button>
-          </div>
         </div>
 
       </div>

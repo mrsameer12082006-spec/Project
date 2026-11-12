@@ -67,8 +67,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Direct DBT into Aadhaar-linked Bank Account',
       amount: '₹6,000 / yr',
       benefitTag: 'Direct Bank DBT',
-      colorClass: 'text-emerald-700',
-      iconBoxClass: 'bg-emerald-50 border-emerald-200/80 text-emerald-700 shadow-2xs',
+      colorClass: 'text-emerald-800 font-bold',
+      iconBoxClass: 'bg-emerald-700 text-white shadow-xs',
       active: pmKisanActive,
       icon: Sprout,
       inactiveReason: 'Requires cultivable agricultural land title in revenue records'
@@ -81,8 +81,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Direct Treasury Construction Subsidy + MGNREGA wages',
       amount: '₹1,30,000 Grant',
       benefitTag: 'Direct Construction Subsidy',
-      colorClass: 'text-amber-700',
-      iconBoxClass: 'bg-amber-50 border-amber-200/80 text-amber-700 shadow-2xs',
+      colorClass: 'text-amber-800 font-bold',
+      iconBoxClass: 'bg-amber-700 text-white shadow-xs',
       active: pmAwasActive,
       icon: HomeIcon,
       inactiveReason: isKutchaHouse ? 'Not selected under senior citizen priority profile' : 'Dwelling is already a permanent pucca structure'
@@ -95,8 +95,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
       payout: 'Cashless hospitalization across 27,000+ hospitals',
       amount: '₹5,00,000 / yr',
       benefitTag: 'Annual Cashless Hospital Cover',
-      colorClass: 'text-sky-700',
-      iconBoxClass: 'bg-sky-50 border-sky-200/80 text-sky-700 shadow-2xs',
+      colorClass: 'text-sky-800 font-bold',
+      iconBoxClass: 'bg-sky-700 text-white shadow-xs',
       active: pmJayActive,
       icon: HeartPulse,
       inactiveReason: null
@@ -111,8 +111,8 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
           ─────────────────────────────────────────────────────────── */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 pb-6">
         <div className="space-y-2 max-w-2xl">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-xs font-semibold tracking-tight w-fit">
-            <Landmark className="w-3.5 h-3.5 text-emerald-700" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-700 text-white text-xs font-bold tracking-tight shadow-xs w-fit">
+            <Landmark className="w-3.5 h-3.5 text-emerald-300" />
             <span>Household Entitlement Calculation</span>
           </span>
 
