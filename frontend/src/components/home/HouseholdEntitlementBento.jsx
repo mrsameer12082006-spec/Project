@@ -212,31 +212,57 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
             </div>
 
             {/* 3D Extruded Isometric Compounding Blocks (Moment 2: 79% / 20% / 1% Honest Proportions) */}
-            <div className="space-y-3 pt-2">
-              <div className="h-6 w-full bg-zinc-100/80 rounded-xl p-1 flex gap-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] border border-black/[0.04]">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-80px" }}
+              className="space-y-3 pt-2"
+            >
+              <div className="h-6 w-full bg-zinc-100/80 rounded-xl p-1 flex gap-1.5 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] border border-black/[0.04] overflow-hidden">
                 {pmJayPct > 0 && (
                   <motion.div
-                    style={{ width: `${pmJayPct}%` }}
-                    className="isometric-block-blue h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
-                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                    custom={`${pmJayPct}%`}
+                    variants={{
+                      hidden: { width: 0 },
+                      show: (customWidth) => ({
+                        width: customWidth,
+                        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+                      })
+                    }}
+                    style={{ background: 'var(--blue-primary)' }}
+                    className="h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help shadow-xs"
                   >
                     <span className="hidden sm:inline px-1 truncate drop-shadow-xs">79% Healthcare</span>
                   </motion.div>
                 )}
                 {pmAwasPct > 0 && (
                   <motion.div
-                    style={{ width: `${pmAwasPct}%` }}
-                    className="isometric-block-amber h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
-                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                    custom={`${pmAwasPct}%`}
+                    variants={{
+                      hidden: { width: 0 },
+                      show: (customWidth) => ({
+                        width: customWidth,
+                        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }
+                      })
+                    }}
+                    style={{ background: 'var(--orange-primary)' }}
+                    className="h-full rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help shadow-xs"
                   >
                     <span className="hidden sm:inline px-1 truncate drop-shadow-xs">20% Housing</span>
                   </motion.div>
                 )}
                 {pmKisanPct > 0 && (
                   <motion.div
-                    style={{ width: `${pmKisanPct}%` }}
-                    className="isometric-block-emerald h-full min-w-[22px] rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help"
-                    transition={{ type: 'spring', stiffness: 220, damping: 24 }}
+                    custom={`${pmKisanPct}%`}
+                    variants={{
+                      hidden: { width: 0 },
+                      show: (customWidth) => ({
+                        width: customWidth,
+                        transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }
+                      })
+                    }}
+                    style={{ background: 'var(--green-primary)' }}
+                    className="h-full min-w-[22px] rounded-lg relative group flex items-center justify-center text-[10px] text-white font-extrabold tracking-wider overflow-hidden cursor-help shadow-xs"
                   >
                     <span className="px-1 drop-shadow-xs">1%</span>
                   </motion.div>
@@ -262,7 +288,7 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
 
             {/* Included Scheme Breakdown Rows (Clean Passbook Ledger) */}
             <div className="space-y-3 pt-2">
@@ -330,14 +356,17 @@ export default function HouseholdEntitlementBento({ onStart, onBrowse }) {
               <span>Grounded directly in official 2026 central ministry welfare guidelines.</span>
             </div>
 
-            <button
+            <motion.button
               type="button"
+              whileHover={{ scale: 1.02, backgroundColor: '#000000' }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
               onClick={onStart}
-              className="spatial-glass-button-dark inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-xs sm:text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] active:scale-[0.985] group"
+              className="spatial-glass-button-dark inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-xs sm:text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] group cursor-pointer"
             >
               <span>Check Your Household Eligibility</span>
               <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </motion.button>
           </div>
 
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Landmark, Compass, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Navbar({
   currentScreen,
@@ -80,10 +81,12 @@ export default function Navbar({
           </button>
 
           {/* Quick Check CTA */}
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleCheck}
-            className={`inline-flex items-center gap-1.5 text-xs font-bold px-3.5 sm:px-4 py-2 rounded-full shadow-sm transition-all active:scale-[0.985] cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 text-xs font-bold px-3.5 sm:px-4 py-2 rounded-full shadow-sm transition-colors cursor-pointer ${
               currentScreen === 'interview' || currentScreen === 'review'
                 ? 'bg-emerald-700 text-white shadow-emerald-700/20'
                 : 'spatial-glass-button-dark text-white'
@@ -91,7 +94,7 @@ export default function Navbar({
           >
             <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
             <span>Check Eligibility</span>
-          </button>
+          </motion.button>
         </div>
 
       </div>

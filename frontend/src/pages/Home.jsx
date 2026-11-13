@@ -21,6 +21,7 @@ import CountUp from '../components/common/CountUp';
 import { speakAudio, stopAudio } from '../services/api';
 import HouseholdEntitlementBento from '../components/home/HouseholdEntitlementBento';
 import SpatialSchemeCard from '../components/home/SpatialSchemeCard';
+import FadeIn from '../components/FadeIn';
 
 // Framer-Motion Stagger & Scroll Entrance Variants (Apple / Linear Physics)
 const staggerContainer = {
@@ -31,6 +32,14 @@ const staggerContainer = {
       staggerChildren: 0.1,
       delayChildren: 0.05
     }
+  }
+};
+
+const gridVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
   }
 };
 
@@ -465,63 +474,74 @@ export default function Home({ onStart, onBrowse }) {
       {/* ───────────────────────────────────────────────────────────
           2. FEATURED SCHEMES: Crisp Passbook Cards with Lucide Icons
           ─────────────────────────────────────────────────────────── */}
-      <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#0C0A09]">
-              Featured Verified Schemes
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-500 mt-0.5">
-              Official rules grounded directly in central ministry guidelines
-            </p>
+      <FadeIn delay={0.1}>
+        <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex items-center justify-between border-b border-zinc-200 pb-4">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-[#0C0A09]">
+                Featured Verified Schemes
+              </h2>
+              <p className="text-xs sm:text-sm text-zinc-500 mt-0.5">
+                Official rules grounded directly in central ministry guidelines
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={onBrowse}
+              className="text-xs sm:text-sm font-semibold text-[#0C0A09] hover:underline"
+            >
+              View all schemes →
+            </button>
           </div>
 
-          <button
-            type="button"
-            onClick={onBrowse}
-            className="text-xs sm:text-sm font-semibold text-[#0C0A09] hover:underline"
+          {/* 3 Spatial 3D Passbook Cards with Staggered Cascading Reveal */}
+          <motion.div
+            variants={gridVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            View all schemes →
-          </button>
-        </div>
+            {featuredSchemes.map((scheme) => (
+              <SpatialSchemeCard
+                key={scheme.id}
+                scheme={scheme}
+                onCheckEligibility={() => onStart({})}
+              />
+            ))}
+          </motion.div>
 
-        {/* 3 Spatial 3D Passbook Cards with Lantern Spotlight Interaction */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {featuredSchemes.map((scheme) => (
-            <SpatialSchemeCard
-              key={scheme.id}
-              scheme={scheme}
-              onCheckEligibility={() => onStart({})}
-            />
-          ))}
-        </div>
-
-      </section>
+        </section>
+      </FadeIn>
 
       {/* ───────────────────────────────────────────────────────────
           3. HOUSEHOLD WELFARE GROWTH BENTO (Fingrow / Dribbble Inspired)
           ─────────────────────────────────────────────────────────── */}
-      <HouseholdEntitlementBento onStart={onStart} onBrowse={onBrowse} />
+      <FadeIn delay={0.15}>
+        <HouseholdEntitlementBento onStart={onStart} onBrowse={onBrowse} />
+      </FadeIn>
 
       {/* ───────────────────────────────────────────────────────────
           4. HOW IT WORKS: Clerk-Style Self-Playing Micro-UI Bento Cards
           ─────────────────────────────────────────────────────────── */}
-      <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="space-y-1">
-          <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-            Civic Service Pipeline
+      <FadeIn delay={0.2}>
+        <section className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-1">
+            <div className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+              Civic Service Pipeline
+            </div>
+            <h3 className="font-extrabold text-2xl sm:text-3xl text-[#111111] tracking-tight">
+              How SchemeSathi Works
+            </h3>
+            <p className="text-xs sm:text-sm text-zinc-500 max-w-xl">
+              A 3-step verified process designed for both individual citizens and Common Service Centre (CSC) kiosk operators
+            </p>
           </div>
-          <h3 className="font-extrabold text-2xl sm:text-3xl text-[#111111] tracking-tight">
-            How SchemeSathi Works
-          </h3>
-          <p className="text-xs sm:text-sm text-zinc-500 max-w-xl">
-            A 3-step verified process designed for both individual citizens and Common Service Centre (CSC) kiosk operators
-          </p>
-        </div>
 
-        {/* 3 Clerk-Style Self-Playing Micro-UI Bento Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* 3 Clerk-Style Self-Playing Micro-UI Bento Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* STEP 01: Voice & Tap Interactive Simulation */}
           <div className="group rounded-3xl spatial-glass p-6 flex flex-col justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-200 space-y-5">
@@ -773,6 +793,7 @@ export default function Home({ onStart, onBrowse }) {
 
         </div>
       </section>
+      </FadeIn>
 
     </div>
   );

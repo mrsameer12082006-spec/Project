@@ -15,14 +15,47 @@
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 
-  /* Mercury & Warm-Neutral Tokens */
-  --ink-primary: #141417;
-  --ink-secondary: #63636E;
-  --surface-canvas: #FAFAFA;
+  /* The Warm Civic Palette */
+  --bg-body: #F9F8F6; /* Warm off-white, feels like thick paper */
+  --bg-main: #F9F8F6;
+  --bg-card: #FFFFFF;
+  
+  /* Deep, soft ink */
+  --text-main: #1A1A1A;
+  --text-muted: #737373;
+  --border-light: #EBEBEB;
+  --border-color: #EBEBEB;
+  
+  /* The Scheme Accents (Refined for Accessibility) */
+  --green-primary: #166534;    /* Agriculture */
+  --green-light: #DCFCE7;
+  --accent-green: #166534;
+  --accent-green-light: #DCFCE7;
+  
+  --orange-primary: #C2410C;   /* Housing */
+  --orange-light: #FFEDD5;
+  --accent-orange: #C2410C;
+  --accent-orange-light: #FFEDD5;
+  
+  --blue-primary: #0369A1;     /* Healthcare */
+  --blue-light: #E0F2FE;
+  --accent-blue: #0369A1;
+  --accent-blue-light: #E0F2FE;
+  
+  /* Premium Layered Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.02);
+  --shadow-lg: 0 20px 40px -10px rgba(0,0,0,0.08), 0 10px 20px -10px rgba(0,0,0,0.04);
+  --shadow-hover: 0 25px 50px -12px rgba(0,0,0,0.08);
+
+  /* Mercury & Warm-Neutral Aliases for full backwards-compatibility */
+  --ink-primary: var(--text-main);
+  --ink-secondary: var(--text-muted);
+  --surface-canvas: var(--bg-body);
   --surface-well: #F2F2F4;
-  --surface-card: #FFFFFF;
-  --border-subtle: #E4E4E7;
-  --signal-emerald: #059669;
+  --surface-card: var(--bg-card);
+  --border-subtle: var(--border-light);
+  --signal-emerald: var(--green-primary);
 
   /* Benchmark Snappy Easing */
   --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
@@ -33,10 +66,10 @@
 }
 
 body {
-  background-color: var(--surface-canvas);
-  background-image: radial-gradient(rgba(15, 23, 42, 0.065) 0.75px, transparent 0.75px);
-  background-size: 24px 24px;
-  color: var(--ink-primary);
+  background-color: var(--bg-body);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ── Accessible Minimum Touch Target: 44px-48px ────── */

@@ -57,15 +57,35 @@ export default function SpatialSchemeCard({
 
   const theme = solidThemes[scheme.accent] || solidThemes.emerald;
 
+  // Themed colored glow shadows (Apple / Stripe dynamic illumination)
+  const themeGlows = {
+    emerald: { border: 'var(--green-primary)', shadow: 'rgba(22, 101, 52, 0.18)' },
+    green: { border: 'var(--green-primary)', shadow: 'rgba(22, 101, 52, 0.18)' },
+    amber: { border: 'var(--orange-primary)', shadow: 'rgba(194, 65, 12, 0.18)' },
+    orange: { border: 'var(--orange-primary)', shadow: 'rgba(194, 65, 12, 0.18)' },
+    sky: { border: 'var(--blue-primary)', shadow: 'rgba(3, 105, 161, 0.18)' },
+    blue: { border: 'var(--blue-primary)', shadow: 'rgba(3, 105, 161, 0.18)' }
+  };
+  const activeGlow = themeGlows[scheme.accent] || themeGlows.emerald;
+
   return (
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ 
+        y: -8, 
+        boxShadow: `0 25px 50px -12px ${activeGlow.shadow}`,
+        borderColor: activeGlow.border 
+      }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
       style={{
         transform: `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
         transition: isHovered ? 'transform 100ms ease-out' : 'transform 400ms cubic-bezier(0.16, 1, 0.3, 1)'
       }}
-      className={`bg-white rounded-2xl border-2 border-[#E5E3DC] ${theme.borderHover} hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-hidden shadow-sm relative`}
+      className={`bg-white rounded-2xl border-2 border-[#E5E3DC] transition-all duration-200 flex flex-col justify-between overflow-hidden shadow-sm relative cursor-pointer`}
     >
       {/* ── 1. Top Section & Header ── */}
       <div className="p-6 sm:p-7 space-y-5">
@@ -141,16 +161,19 @@ export default function SpatialSchemeCard({
 
         </div>
 
-        {/* Action Button Row */}
+        {/* Action Button Row with Spring Micro-Interactions */}
         <div className="space-y-2 pt-1">
-          <button
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.02, backgroundColor: '#000000' }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             onClick={() => onCheckEligibility && onCheckEligibility(scheme)}
-            className="w-full py-3.5 px-5 rounded-xl font-bold text-xs sm:text-sm bg-[#111111] hover:bg-zinc-800 text-white shadow-md flex items-center justify-between transition-all duration-150 active:scale-[0.985] group/btn cursor-pointer"
+            className="w-full py-3.5 px-5 rounded-xl font-bold text-xs sm:text-sm bg-[#111111] text-white shadow-md flex items-center justify-between transition-colors duration-150 group/btn cursor-pointer"
           >
             <span>Check Your Eligibility</span>
-            <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/btn:translate-x-1 transition-transform shrink-0" />
-          </button>
+            <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/btn:translate-x-1.5 transition-transform shrink-0" />
+          </motion.button>
 
           {onSelectScheme && (
             <button
